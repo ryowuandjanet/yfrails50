@@ -1,0 +1,2 @@
+class Yfcase < ApplicationRecord
+end

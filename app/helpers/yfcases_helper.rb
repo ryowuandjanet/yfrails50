@@ -1,0 +1,2 @@
+module YfcasesHelper
+end

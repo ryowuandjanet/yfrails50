@@ -1,0 +1,22 @@
+<%= form_with(model: yfcase, local: true) do |form| %>
+  <% if yfcase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(yfcase.errors.count, "error") %> prohibited this yfcase from being saved:</h2>
+
+      <ul>
+        <% yfcase.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :case_number %>
+    <%= form.text_field :case_number %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
