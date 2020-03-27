@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  is_debtor: false
+  is_creditor: false
+  is_land_owner: false
+  is_build_owner: false
+  name: MyString
+  identity_card: MyString
+  birthday: 2020-03-27 13:38:57
+  other_address: MyString
+  local_phone: MyString
+  mobile_phone: MyString
+  personnal_notes: MyString
+  yfcase: one
+
+two:
+  is_debtor: false
+  is_creditor: false
+  is_land_owner: false
+  is_build_owner: false
+  name: MyString
+  identity_card: MyString
+  birthday: 2020-03-27 13:38:57
+  other_address: MyString
+  local_phone: MyString
+  mobile_phone: MyString
+  personnal_notes: MyString
+  yfcase: two

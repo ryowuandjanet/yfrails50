@@ -1,9 +1,171 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Case number:</strong>
-  <%= @yfcase.case_number %>
-</p>
+<!-- YF評量表 -->
+<h1 class="x110000">YF評量表</h1>
 
-<%= link_to 'Edit', edit_yfcase_path(@yfcase) %> |
-<%= link_to 'Back', yfcases_path %>
+
+<!-- 基本資料 -->
+<div class="basedata">
+    <table class="table">
+        <tr>
+            <th style="border-bottom:1px dashed #000;">案號</th>
+            <td style="border-bottom:1px dashed #000;">
+                <%= @yfcase.case_number %>
+            </td>
+            <th style="border-bottom:1px dashed #000;">債務人</th>
+            <td>
+            	<% if @yfcase.personnals.where(is_debtor: true).count > 1 %>
+                    <%= @yfcase.personnals.where(is_debtor: true).first.name %> ...共<%= @yfcase.personnals.where(is_debtor: true).count %>名<br>
+                    <%= (@yfcase.co_owner == true ) ? '土地/建物共有人一致' : ' ' %>
+                <% elsif @yfcase.personnals.where(is_debtor: true).count == 1 %>
+                    <%= @yfcase.personnals.where(is_debtor: true).first.name %><br>
+                    <%= (@yfcase.co_owner == true ) ? '土地/建物共有人一致' : ' ' %>
+                <% else %>
+                    <%= ' ' %>
+                <% end %>
+            </td>
+            <th class="x110002" style="border-bottom:1px dashed #000;">債權人</th>
+            <td class="x120002" style="border-bottom:1px dashed #000;">
+                <% if @yfcase.personnals.where(is_creditor: true).count > 1 %>
+                    <%= @yfcase.personnals.where(is_creditor: true).first.name %> ...共<%= @yfcase.personnals.where(is_creditor: true).count %>名
+                <% elsif @yfcase.personnals.where(is_creditor: true).count == 1 %>
+                    <%= @yfcase.personnals.where(is_creditor: true).first.name %>
+                <% else %>
+                    <%= ' ' %>
+                <% end %>
+            </td>
+        </tr>
+        <tr>
+            <th class="x110003">地址</th>
+            <td class="x120003">
+                <%= @yfcase.township.try(:zip_code) %> <%= @yfcase.country.try(:name) %><%= \
+                @yfcase.township.try(:name) %><%= @yfcase.other_address %>
+            </td>
+        </tr>
+    </table>
+</div>
+<br>
+
+<!-- 土地 -->
+<div class="land">
+    <table class="table">
+        <tr>
+            <th>地號</th>
+            <th>地號謄本</th>
+            <th>地坪(面積)<br>平方公尺(坪)</th>
+            <th>持分</th>
+            <th>地坪(持分)<br>平方公尺(坪)</th>
+            <td></td>
+            <th>地坪(面積)<br>平方公尺(坪)</th>
+            <td></td>
+            <th>建坪(面積)<br>平方公尺(坪)</th>
+        </tr>
+        <tr>
+            <td>
+                <% @yfcase.lands.each do |land| %>
+                <%= land.land_number %><br>
+                <% end %>
+            </td>
+            <td>
+                <% @yfcase.lands.each do |land| %>
+                <% if land.land_url == "" %>
+                <%= link_to " " %> <br>
+                <% else%>
+                <%= link_to "連結", land.land_url, target: "_blank" %>　<br>
+                <% end %>
+                <% end %>
+            </td>
+            <td>
+                <% @yfcase.lands.each do |land| %>
+                <%= area(land.land_area,1,1,1).round(2) %> (
+                <%= area(land.land_area,1,1,0.3025).round(2) %>) <br>
+                <% end %>
+            </td>
+            <td>
+                <% @yfcase.lands.each do |land| %>
+                <%= land.land_holding_point_personal %>/
+                <%= land.land_holding_point_all %> <br>
+                <% end %>
+            </td>
+            <td>
+                <% @yfcase.lands.each do |land| %>
+                <%= area(land.land_area,land.land_holding_point_personal,land.land_holding_point_all,1).round(2) %> (
+                <%= area(land.land_area,land.land_holding_point_personal,land.land_holding_point_all,0.3025).round(2) %>) <br>
+                <% end %>
+            </td>
+            <td></td>
+            <td>
+                <% if @yfcase.lands.count ==0 %>
+                <%= " " %>
+                <% else %>
+                <%= number_to_currency(@landtotalarea, unit: "", precision: 2) %> (
+                <%= number_to_currency(@landtotalarea * 0.3025, unit: "", precision: 2) %>)
+                <% end %>
+            </td>
+            <td></td>
+            <td>
+                <% if @yfcase.builds.count ==0 %>
+                <%= " " %>
+                <% else %>
+                <%= number_to_currency(@buildtotalarea, unit: "", precision: 2) %> (
+                <%= number_to_currency(@buildtotalarea * 0.3025, unit: "", precision: 2) %>)
+                <% end %>
+            </td>
+        </tr>
+    </table>
+</div>
+<br>  
+
+<!-- 建物 -->
+<div class="build">
+    <table class="table">
+        <tr>
+            <th>建號</th>
+            <th>建號謄本</th>
+            <th>建坪(面積)<br>平方公尺(坪)</th>
+            <th>持分</th>
+            <th>建坪(持分)<br>平方公尺(坪)</th>
+            <th>建物型/使用</th>
+            <th>使用分區</th>
+        </tr>
+        <% @yfcase.builds.each do |build| %>
+        <tr>
+            <td>
+                <%= build.build_number %>
+            </td>
+            <td>
+                <% if build.build_url == "" %>
+                <%= link_to " " %> <br>
+                <% else%>
+                <%= link_to "連結", build.build_url, target: "_blank" %>
+                <% end %>
+            </td>
+            <td>
+                <%= area(build.build_area,1,1,1).round(2) %> (
+                <%= area(build.build_area,1,1,0.3025).round(2) %>)
+            </td>
+            <td>
+                <%= build.build_holding_point_personal %>/
+                <%= build.build_holding_point_all %>
+            </td>
+            <td>
+                <%= area(build.build_area,build.build_holding_point_personal,build.build_holding_point_all,1).round(2) %> (
+                <%= area(build.build_area,build.build_holding_point_personal,build.build_holding_point_all,0.3025).round(2) %>)
+            </td>
+            <td>
+                <%= build.build_type_use %>
+            </td>
+            <td>
+                <%= build.use_partition %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+</div>
+<br>
+
+<div id="showitem">
+	<%= link_to '編輯', edit_yfcase_path(@yfcase),class: "btn btn-primary" %> |
+	<%= link_to '返回', yfcases_path,class: "btn btn-info" %>
+</div>
+

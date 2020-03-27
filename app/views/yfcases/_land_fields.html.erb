@@ -1,0 +1,24 @@
+<div class="nested-fields">
+    <div class="field" style="border:1px solid #000;">
+        <table>
+            <tr>
+                <th style="width:20%"><%= f.label :land_number,"地號", :style => "width: 100%" %></th>
+                <th style="width:12%"><%= f.label :land_area,"地坪(平方公尺)", :style => "width: 100%" %></th>
+                <th style="width:7%"><%= f.label :land_holding_point_personal,"持分(個人)", :style => "width: 100%" %></th>
+                <th style="width:7%"><%= f.label :land_holding_point_all,"持分(所有)", :style => "width: 100%" %></th>
+                <th style="width:46%"><%= f.label :land_url,"地號謄本", :style => "width: 100%" %></th>
+                <th style="width:8%">項目</th>
+            </tr>
+            <tr>
+            	<td><%= f.text_field :land_number, :style => "width: 100%" %></td>
+            	<td><%= f.number_field :land_area, :step => 0.01, :style => "width: 100%" %></td>
+            	<td><%= f.number_field :land_holding_point_personal, :style => "width: 100%" %></td>
+            	<td><%= f.number_field :land_holding_point_all, :style => "width: 100%" %></td>
+            	<td><%= f.url_field :land_url, :style => "width: 100%" %></td>
+            	<td><%= link_to_remove_association "刪除地號", f, class: "btn btn-danger btn-sm" %></td>
+            </tr>
+        </table>
+    	 
+    </div>
+</div>
+

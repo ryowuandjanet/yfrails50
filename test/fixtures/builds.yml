@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  build_number: MyString
+  build_url: MyString
+  build_area: 9.99
+  build_holding_point_personal: 1
+  build_holding_point_all: 1
+  build_type_use: MyString
+  use_partition: MyString
+  yfcase: one
+
+two:
+  build_number: MyString
+  build_url: MyString
+  build_area: 9.99
+  build_holding_point_personal: 1
+  build_holding_point_all: 1
+  build_type_use: MyString
+  use_partition: MyString
+  yfcase: two

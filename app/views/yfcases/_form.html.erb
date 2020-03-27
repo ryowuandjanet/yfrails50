@@ -1,22 +1,123 @@
-<%= form_with(model: yfcase, local: true) do |form| %>
-  <% if yfcase.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(yfcase.errors.count, "error") %> prohibited this yfcase from being saved:</h2>
-
-      <ul>
+<%= form_with(model: yfcase, local: true) do |f| %>
+<% if yfcase.errors.any? %>
+<div id="error_explanation">
+    <h2>
+        <%= pluralize(yfcase.errors.count, "error") %> prohibited this yfcase from being saved:</h2>
+    <ul>
         <% yfcase.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+        <li>
+            <%= message %>
+        </li>
         <% end %>
-      </ul>
+    </ul>
+</div>
+<% end %>
+<div class="accordion" id="accordionExample">
+    <!-- 基本資料   -->
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    基本資料
+                </button>
+            </h2>
+        </div>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <%= f.label :case_number, "案號" %>
+                        <%= f.text_field :case_number, class: 'form-control'  %>
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <%= f.label :country_id,"縣市" %>
+                        <%= f.collection_select :country_id, Country.order(:name), :id, :name, include_blank: true, :prompt => '請輸入縣市', class: 'form-control' %>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <%= f.label :township_id,"鄉鎮區" %>
+                        <%= f.grouped_collection_select :township_id, Country.order(:name), :township, :name, :id, :name, include_blank: true, :prompt => '請輸入鄉鎮區', class: 'form-control' %>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <%= f.label :address, "其他後續地址欄位" %>
+                        <%= f.text_field :address , placeholder: '在此輸入其他地址資訊', class: 'form-control' %>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= form.label :case_number %>
-    <%= form.text_field :case_number %>
-  </div>
+    <!-- 相關人員 -->
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    相關人員
+                </button>
+            </h2>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+                <div>
+                    <%= f.check_box :co_owner %>
+                    <%= f.label :co_owner,"土地 / 建物共有人是否一致", style: "color:red;" %>
+                </div>
+                <div id="relatedpersonnels">
+                    <%= f.fields_for :personnals do |personnal| %>
+                    <%= render 'personnal_fields', f: personnal %>
+                    <% end %>
+                    <div class="links">
+                        <%= link_to_add_association '新增相關人員', f, :personnals, class: "btn btn-success btn-sm" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <!-- 土地 / 建物 -->
+    <div class="card">
+        <div class="card-header" id="headingFour">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                    土地 / 建物
+                </button>
+            </h2>
+        </div>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="field">
+                    <h3>地號</h3>
+                    <div id="lands">
+                        <%= f.fields_for :lands do |land| %>
+                        <%= render 'land_fields', f: land %>
+                        <% end %>
+                        <div class="links">
+                            <%= link_to_add_association '新增地號', f, :lands, class: "btn btn-success btn-sm" %>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <h3>建號</h3>
+                    <div id="builds">
+                        <%= f.fields_for :builds do |build| %>
+                        <%= render 'build_fields', f: build %>
+                        <% end %>
+                        <div class="links">
+                            <%= link_to_add_association '新增建號', f, :builds, class: "btn btn-success btn-sm" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            
+    <div class="form-group">
+        <%= f.submit "更新YF評量表", class: "btn btn-outline-dark" %>
+        <%= link_to "返回", root_path, class: "btn btn-outline-secondary" %>
+    </div>
+</div>
 <% end %>

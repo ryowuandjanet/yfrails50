@@ -1,0 +1,55 @@
+<div class="nested-fields">
+    <div class="field" style="border:1px solid #000;">
+        <table>
+            <table class="table">
+                <tr>
+                    <td scope="col" style="width:15%;">
+                        <div class="form-check">
+                            <%= f.check_box :is_debtor %> 債務人
+                        </div>
+                        <div class="form-check">
+                            <%= f.check_box :is_creditor %> 債權人
+                        </div>
+                        <div class="form-check">
+                            <%= f.check_box :is_land_owner %> 土地共有人
+                        </div>
+                        <div class="form-check">
+                            <%= f.check_box :is_build_owner %> 建物共有人
+                        </div>
+                        <div class="form-row">
+                        </div>
+                    </td>
+                    <td scope="col" style="width:85%;">
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <%= f.text_field :name, label: "姓名" %>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <%= f.text_field :identity_card, label: "身分証(統一編號)" %>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <%= f.date_field :birthday, label: "生日" %>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <%= f.text_field :local_phone, label: "市內電話" %>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <%= f.text_field :mobile_phone, label: "手機號碼" %>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <%= f.text_field :personnal_notes, label: "備註" %>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <%= f.text_field :other_address, label: '地址' %>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </table>
+    </div>
+</div>

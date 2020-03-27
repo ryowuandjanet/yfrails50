@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  land_number: MyString
+  land_url: MyString
+  land_area: 9.99
+  land_holding_point_personal: 1
+  land_holding_point_all: 1
+  yfcase: one
+
+two:
+  land_number: MyString
+  land_url: MyString
+  land_area: 9.99
+  land_holding_point_personal: 1
+  land_holding_point_all: 1
+  yfcase: two

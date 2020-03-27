@@ -1,0 +1,28 @@
+<div class="nested-fields">
+    <div class="field" style="border:1px solid #000;">
+        <table>
+            <tr>
+                <th style="width:20%"><%= f.label :build_number,"建號", :style => "width: 100%" %></th>
+                <th style="width:12%"><%= f.label :build_area,"建坪(平方公尺)", :style => "width: 100%" %></th>
+                <th style="width:7%"><%= f.label :build_holding_point_personal,"持分(個人)", :style => "width: 100%" %></th>
+                <th style="width:7%"><%= f.label :build_holding_point_all,"持分(所有)", :style => "width: 100%" %></th>
+                <th style="width:17%"><%= f.label :build_type_use,"建物型/使用", :style => "width: 100%" %></th>
+                <th style="width:10%"><%= f.label :use_partition,"使用分區", :style => "width: 100%" %></th> 
+                <th style="width:19%"><%= f.label :build_url,"地號謄本", :style => "width: 100%" %></th>
+                <th style="width:8%">項目</th>
+            </tr>
+            <tr>
+            	<td><%= f.text_field :build_number, :style => "width: 100%" %></td>
+            	<td><%= f.number_field :build_area, :step => 0.01, :style => "width: 100%" %></td>
+            	<td><%= f.number_field :build_holding_point_personal, :style => "width: 100%" %></td>
+            	<td><%= f.number_field :build_holding_point_all, :style => "width: 100%" %></td>
+                <td><%= f.select(:build_type_use,Yfcase::CLASS_LIST) %></td> 
+                <td><%= f.select(:use_partition,Yfcase::AREA_LIST) %></td>           	
+            	<td><%= f.url_field :build_url, :style => "width: 100%" %></td>
+            	<td><%= link_to_remove_association "刪除地號", f, class: "btn btn-danger btn-sm" %></td>
+            </tr>
+        </table>
+    	 
+    </div>
+</div>
+
