@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_063954) do
+ActiveRecord::Schema.define(version: 2020_03_27_085204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,23 +137,23 @@ ActiveRecord::Schema.define(version: 2020_03_27_063954) do
     t.string "other_notes"
     t.string "survey_resolution"
     t.string "final_decision"
-    t.string "occupy"
-    t.string "register"
-    t.string "parking_space"
-    t.string "management_fee"
-    t.string "rent"
-    t.string "leak"
-    t.string "easy_parking"
-    t.string "railway"
-    t.string "vegetable_market"
-    t.string "supermarket"
-    t.string "school"
-    t.string "park"
-    t.string "post_office"
-    t.string "main_road"
-    t.string "water_and_power_failure"
-    t.string "good_vision"
     t.boolean "co_owner"
+    t.boolean "occupy"
+    t.boolean "register"
+    t.boolean "parking_space"
+    t.boolean "management_fee"
+    t.boolean "rent"
+    t.boolean "leak"
+    t.boolean "easy_parking"
+    t.boolean "railway"
+    t.boolean "vegetable_market"
+    t.boolean "supermarket"
+    t.boolean "school"
+    t.boolean "park"
+    t.boolean "post_office"
+    t.boolean "main_road"
+    t.boolean "water_and_power_failure"
+    t.boolean "good_vision"
     t.index ["country_id"], name: "index_yfcases_on_country_id"
     t.index ["township_id"], name: "index_yfcases_on_township_id"
   end

@@ -1,0 +1,62 @@
+<div id="buildchecklist">
+    <table class="table table-bordered buildchecklisttable">
+        <tr class="info">
+            <th>是 / 否</th>
+            <th>查檢項目</th>
+            <th>是 / 否</th>
+            <th>查檢項目</th>
+        </tr>
+        <tr>
+            <td><%= f.check_box :occupy %></td>
+            <td><%= f.label :occupy,"01.建物坐落是否無占用鄰地" %></td>
+            <td><%= f.check_box :vegetable_market %></td>
+            <td><%= f.label :vegetable_market,"09.是否鄰近菜市場" %></td>
+        </tr>
+        <tr class="warning">
+            <td><%= f.check_box :register %></td>
+            <td><%= f.label :register,"02.建物是否無未保存登記建物" %></td>
+            <td><%= f.check_box :supermarket %></td>
+            <td><%= f.label :supermarket,"10.是否鄰近大賣場" %></td>
+        </tr>
+        <tr>
+            <td><%= f.check_box :parking_space %></td>
+            <td><%= f.label :parking_space,"03.大樓是否有停車位(機車/汽車)" %></td>
+            <td><%= f.check_box :school %></td>
+            <td><%= f.label :school,"11.是否鄰近學校" %></td>
+        </tr>
+        <tr class="warning">
+            <td><%= f.check_box :management_fee %></td>
+            <td><%= f.label :management_fee,"04.大樓公寓是否有無積欠管理費" %></td>
+            <td> <%= f.check_box :park %></td>
+            <td><%= f.label :park,"12.是否鄰近公園" %></td>
+        </tr>
+
+        <tr>
+            <td><%= f.check_box :rent %></td>
+            <td><%= f.label :rent,"05.有無出租或出借或佔用" %></td>
+            <td><%= f.check_box :post_office %></td>
+            <td><%= f.label :post_office,"13.是否鄰近郵局或常用機關" %></td>
+        </tr>
+        <tr class="warning">
+            <td><%= f.check_box :leak %></td>
+            <td><%= f.label :leak,"06.建物是否無嚴重漏水現象" %></td>
+            <td><%= f.check_box :main_road %></td>
+            <td><%= f.label :main_road,"14.是否鄰近幹道" %></td>
+        </tr>
+
+        <tr>
+            <td><%= f.check_box :easy_parking %></td>
+            <td><%= f.label :easy_parking,"07.建物前或附近是否停車方便" %></td>
+            <td><%= f.check_box :water_and_power_failure %></td>
+            <td><%= f.label :water_and_power_failure,"15.是否斷水斷電" %></td>
+        </tr>
+        <tr class="warning">
+            <td><%= f.check_box :railway %></td>
+            <td><%= f.label :railway,"08.是否鄰近捷運站或台鐵站" %></td>
+            <td><%= f.check_box :good_vision %></td>
+            <td><%= f.label :good_vision,"16.建物採光視野是否良好" %></td>
+        </tr>
+    </table>
+</div>
+
+

@@ -164,6 +164,112 @@
 </div>
 <br>
 
+<!-- 建物查檢表 -->
+<div class="buildchecklist">
+    <table class="table">
+        <tr>
+            <th style="width:10%;">有(是) / 無(否)</th>
+            <th style="width:40%;">查檢內容</th>
+            <th style="width:10%;">有(是) / 無(否)</th>
+            <th style="width:40%;">查檢內容</th>
+        </tr>
+        <!-- 第一行 -->
+        <tr>
+            <td>
+                <%= buttonyeson(@yfcase.occupy) %>
+            </td>
+            <th>01.建物坐落是否無占用鄰地</th>
+            <td>
+                <%= buttonyeson(@yfcase.vegetable_market) %>
+            </td>
+            <th>09.是否鄰近菜市場</th>
+        </tr>
+        <!-- 第二行 -->
+        <tr>
+            <td>
+                <%= buttonyeson(@yfcase.register) %>
+            </td>
+            <th>02.建物是否無未保存登記建物</th>
+            <td>
+                <%= buttonyeson(@yfcase.supermarket) %>
+            </td>
+            <th>10.是否鄰近大賣場</th>
+        </tr>
+        <!-- 第三行 -->
+        <tr>
+            <td>
+                <%= buttonyeson(@yfcase.parking_space) %>
+            </td>
+            <th>03.大樓是否有停車位(機車/汽車)</th>
+            <td>
+                <%= buttonyeson(@yfcase.school) %>
+            </td>
+            <th>11.是否鄰近學校</th>
+        </tr>
+        <!-- 第四行 -->
+        <tr>
+            <td>
+                <%= buttonyeson(@yfcase.management_fee) %>
+            </td>
+            <th>04.大樓公寓是否有無積欠管理費</th>
+            <td>
+                <%= buttonyeson(@yfcase.park) %>
+            </td>
+            <th>12.是否鄰近公園</th>
+        </tr>
+        <!-- 第五行 -->
+        <tr>
+            <td>
+                <%= buttonyeson(@yfcase.rent) %>
+            </td>
+            <th>05.有無出租或出借或佔用</th>
+            <td>
+                <%= buttonyeson(@yfcase.post_office) %>
+            </td>
+            <th>13.是否鄰近郵局或常用機關</th>
+        </tr>
+        <!-- 第六行 -->
+        <tr>
+            <td>
+                <%= buttonyeson(@yfcase.leak) %>
+            </td>
+            <th>06.建物是否無嚴重漏水現象</th>
+            <td>
+                <%= buttonyeson(@yfcase.main_road) %>
+            </td>
+            <th>14.是否鄰近幹道</th>
+        </tr>
+        <!-- 第七行 -->
+        <tr>
+            <td>
+                <%= buttonyeson(@yfcase.easy_parking) %>
+            </td>
+            <th>07.建物前或附近是否停車方便</th>
+            <td>
+                <%= buttonyeson(@yfcase.water_and_power_failure) %>
+            </td>
+            <th>15.是否斷水斷電</th>
+        </tr>
+        <!-- 第八行 -->
+        <tr>
+            <td>
+                <%= buttonyeson(@yfcase.railway) %>
+            </td>
+            <th>08.是否鄰近捷運站或台鐵站</th>
+            <td>
+                <%= buttonyeson(@yfcase.good_vision) %>
+            </td>
+            <th>16.建物採光視野是否良好</th>
+        </tr>
+        <!-- 備註 -->
+        <tr>
+            <th>備註</th>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<br>
+
 <div id="showitem">
 	<%= link_to '編輯', edit_yfcase_path(@yfcase),class: "btn btn-primary" %> |
 	<%= link_to '返回', yfcases_path,class: "btn btn-info" %>
