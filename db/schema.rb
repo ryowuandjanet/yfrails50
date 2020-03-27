@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_085204) do
+ActiveRecord::Schema.define(version: 2020_03_27_171556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,23 @@ ActiveRecord::Schema.define(version: 2020_03_27_085204) do
     t.index ["yfcase_id"], name: "index_lands_on_yfcase_id"
   end
 
+  create_table "objectbuilds", force: :cascade do |t|
+    t.string "address"
+    t.integer "total_price"
+    t.decimal "build_area", precision: 9, scale: 2
+    t.decimal "house_age", precision: 5, scale: 2
+    t.string "floor_height"
+    t.string "objectbuild_url"
+    t.string "surveyora"
+    t.string "surveyorb"
+    t.decimal "plusa", precision: 3, scale: 2
+    t.decimal "plusb", precision: 3, scale: 2
+    t.bigint "yfcase_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["yfcase_id"], name: "index_objectbuilds_on_yfcase_id"
+  end
+
   create_table "personnals", force: :cascade do |t|
     t.boolean "is_debtor"
     t.boolean "is_creditor"
@@ -63,6 +80,24 @@ ActiveRecord::Schema.define(version: 2020_03_27_085204) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["yfcase_id"], name: "index_personnals_on_yfcase_id"
+  end
+
+  create_table "plusrateas", force: :cascade do |t|
+    t.string "persona"
+    t.decimal "plusa", precision: 4, scale: 2
+    t.bigint "objectbuild_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["objectbuild_id"], name: "index_plusrateas_on_objectbuild_id"
+  end
+
+  create_table "plusratebs", force: :cascade do |t|
+    t.string "personb"
+    t.decimal "plusb", precision: 4, scale: 2
+    t.bigint "objectbuild_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["objectbuild_id"], name: "index_plusratebs_on_objectbuild_id"
   end
 
   create_table "townships", force: :cascade do |t|
@@ -88,6 +123,8 @@ ActiveRecord::Schema.define(version: 2020_03_27_085204) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -154,11 +191,16 @@ ActiveRecord::Schema.define(version: 2020_03_27_085204) do
     t.boolean "main_road"
     t.boolean "water_and_power_failure"
     t.boolean "good_vision"
+    t.integer "user_id"
     t.index ["country_id"], name: "index_yfcases_on_country_id"
     t.index ["township_id"], name: "index_yfcases_on_township_id"
+    t.index ["user_id"], name: "index_yfcases_on_user_id"
   end
 
   add_foreign_key "builds", "yfcases"
   add_foreign_key "lands", "yfcases"
+  add_foreign_key "objectbuilds", "yfcases"
   add_foreign_key "personnals", "yfcases"
+  add_foreign_key "plusrateas", "objectbuilds"
+  add_foreign_key "plusratebs", "objectbuilds"
 end

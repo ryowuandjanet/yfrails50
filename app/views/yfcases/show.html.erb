@@ -194,7 +194,97 @@
         <tr>
             <th>實價登錄市價</th>
             <td>
-                <!-- 在此輸入物件人員加成訊息 -->
+                <table class="table table-bordered">
+                    <tr class="danger">
+                        <th>附件</th>
+                        <th>地址</th>
+                        <th>總價(萬)</th>
+                        <th>建坪(坪)</th>
+                        <th>單價(萬)</th>
+                        <th>屋齡(年)</th>
+                        <th>單位</th>
+                        <th>樓高</th>
+                        <% if user_signed_in? %>
+                            <th>勘查員A</th>
+                        <% end %>
+                        <th>人員A</th>
+                        <th>加成A</th>
+                        <% if user_signed_in? %>
+                            <th>勘查員B</th>
+                        <% end %>
+                        <th>人員B</th>
+                        <th>加成B</th>
+                        <th>計算</th>
+                    </tr>
+                    <% @yfcase.objectbuilds.each do |objectbuild| %>
+                    <tr>
+                        <td>
+                            <% if objectbuild.objectbuild_url == "" %>
+                                <%= link_to "" %>
+                            <% else %>
+                                <%= link_to "連結", objectbuild.objectbuild_url, target: "_blank" %>
+                            <% end %>
+                        </td>
+                        <td>
+                            <%= objectbuild.address %>
+                        </td>
+                        <td>
+                            <%= objectbuild.total_price %>
+                        </td>
+                        <td>
+                            <%= objectbuild.build_area %>
+                        </td>
+                        <td>
+                            <%= holdingpoint(objectbuild.total_price,objectbuild.build_area).round(2) %>
+                        </td>
+                        <td>
+                            <%= objectbuild.house_age %>
+                        </td>
+
+                        <td>
+                            <%= objectbuild.floor_height %>
+                        </td>
+                            <% if user_signed_in? %>
+                                <td>
+                                    <% if objectbuild.plusa == nil %>
+                                        <%= link_to "勘查員A", editplusratea_yfcase_objectbuild_path(@yfcase,objectbuild),class: "btn btn-primary bt-sm" %>
+                                    <% else %>
+                                        <%= link_to "勘查員A","#", disabled: true,class: "btn btn-default bt-sm", style: "color:#777;border:1px solid #777;" %>
+                                    <% end %>
+                                </td>
+                            <% end %>  
+
+                        <td>
+                           <%= objectbuild.surveyora %>
+                        </td>
+                        <td>
+                            <% @plusa=objectbuild.plusa %>
+                            <%= @plusa %>
+                        </td>
+                            <% if user_signed_in? %>
+                                <td>
+                                    <% if objectbuild.plusb == nil %>
+                                        <%= link_to "勘查員B", editplusrateb_yfcase_objectbuild_path(@yfcase,objectbuild),class: "btn btn-primary bt-sm" %>
+                                    <% else %>
+                                        <%= link_to "勘查員B","#", disabled: true,class: "btn btn-default bt-sm", style: "color:#777;border:1px solid #777;" %>
+                                    <% end %>
+                                </td>
+                            <% end %>
+                        <td>
+                            <%= objectbuild.surveyorb %>
+                        </td>
+                        <td>
+                            <% @plusb=objectbuild.plusb %>
+                            <%= @plusb %>
+                        </td>
+                        <td>
+                            <% @totalmesa = testvalue(objectbuild.total_price.to_f/objectbuild.build_area.to_f,@plusa,@plusb)*10000 %>
+                            <%= number_to_currency(@totalmesa, unit: "", precision: 0 ) %>
+                        </td>
+                    </tr>
+                    <% end %>
+                </table>
+
 
                 <%= link_to @yfcase.net_price_registration_market_price_title, @yfcase.net_price_registration_market_price_link, target: "_blank" %>
             </td>

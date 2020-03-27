@@ -43,8 +43,8 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
-                        <%= f.label :address, "其他後續地址欄位" %>
-                        <%= f.text_field :address , placeholder: '在此輸入其他地址資訊', class: 'form-control' %>
+                        <%= f.label :other_address, "其他後續地址欄位" %>
+                        <%= f.text_field :other_address , placeholder: '在此輸入其他地址資訊', class: 'form-control' %>
                     </div>
                 </div>
             </div>
@@ -114,6 +114,7 @@
             </div>
         </div>
     </div>
+
 
      <!-- 建物查檢表 -->
     <div class="card">
@@ -243,7 +244,31 @@
             </div>
         </div>
     </div>   
-
+    <!-- 物件資料 -->
+    <div class="card">
+        <div class="card-header" id="headingSeven">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                    物件資料
+                </button>
+            </h2>
+        </div>
+        <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="field">
+                    <h3>物件資料</h3>
+                    <div id="objectbuilds">
+                        <%= f.fields_for :objectbuilds do |objectbuild| %>
+                        <%= render 'objectbuild_fields', f: objectbuild %>
+                        <% end %>
+                        <div class="links">
+                            <%= link_to_add_association '新增物件', f, :objectbuilds, class: "btn btn-success btn-sm" %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="form-group">
         <%= f.submit "更新YF評量表", class: "btn btn-outline-dark" %>
         <%= link_to "返回", root_path, class: "btn btn-outline-secondary" %>

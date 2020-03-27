@@ -19,7 +19,7 @@ class YfcasesController < ApplicationController
 
   # GET /yfcases/new
   def new
-    @yfcase = Yfcase.new
+    @yfcase = current_user.yfcases.build
   end
 
   # GET /yfcases/1/edit
@@ -29,8 +29,8 @@ class YfcasesController < ApplicationController
   # POST /yfcases
   # POST /yfcases.json
   def create
-    @yfcase = Yfcase.new(yfcase_params)
-
+    @yfcase = current_user.yfcases.build(yfcase_params)
+    @yfcase.user=current_user
     respond_to do |format|
       if @yfcase.save
         format.html { redirect_to @yfcase, notice: 'Yfcase was successfully created.' }
@@ -69,7 +69,7 @@ class YfcasesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_yfcase
-      @yfcase = Yfcase.find(params[:id])
+      @yfcase = current_user.yfcases.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
@@ -89,6 +89,7 @@ class YfcasesController < ApplicationController
         :occupy,:register,:parking_space,:management_fee,:rent,:leak,:easy_parking,:railway,:vegetable_market,:supermarket,:school,:park,:post_office,:main_road,:water_and_power_failure,:good_vision, \
         personnals_attributes: [:id, :is_debtor, :is_creditor, :is_land_owner, :is_build_owner, :name, :identity_card, :birthday, :other_address, :local_phone, :mobile_phone, :personnal_notes, :_destroy], \
         lands_attributes: [:id, :land_number, :land_url, :land_area, :land_holding_point_personal, :land_holding_point_all, :_destroy], \
+        objectbuilds_attributes: [:id, :address, :total_price, :build_area, :house_age, :floor_height, :surveyora, :surveyorb, :plusa, :plusb, :objectbuild_url, :_destroy], \
         builds_attributes: [:id, :build_number,:build_url,:build_area, :build_holding_point_personal, :build_holding_point_all, :build_type_use,:use_partition, :_destroy] )
     end
 end

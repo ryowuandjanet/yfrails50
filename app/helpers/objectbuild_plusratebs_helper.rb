@@ -1,0 +1,2 @@
+module ObjectbuildPlusratebsHelper
+end

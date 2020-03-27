@@ -1,0 +1,35 @@
+<div class="nested-fields">
+    <div class="field" style="border:1px solid #000;">
+        <table>
+            <tr>
+                <th><%= f.label :address,"地址" %></th>
+                <th><%= f.label :total_price,"總價(萬)" %></th>
+                <th><%= f.label :build_area,"建坪(萬)" %></th>
+                <th><%= f.label :house_age,"屋齡(年)" %></th>
+                <th><%= f.label :floor_height,"樓高" %></th>
+                <th><%= f.label :surveyora,"勘查員A" %></th>
+                <th><%= f.label :plusa,"加成A" %></th>
+                <th><%= f.label :surveyorb,"勘查員B" %></th>
+                <th><%= f.label :plusb,"加成B" %></th>
+                <th><%= f.label :objectbuild_url,"附件連結" %></th>
+                <th>項目</th>
+
+            </tr>
+            <tr>
+                <td><%= f.text_field :address %></td>
+                <td><%= f.text_field :total_price, size: "6" %></td>
+                <td><%= f.text_field :build_area, size: "6" %>  </td>
+                <td><%= f.text_field :house_age, size: "5" %></td> 
+                <td><%= f.text_field :floor_height, size: "4" %></td>
+                <td><%= f.text_field :surveyora, size: "8" %></td>
+                <td><%= f.text_field :plusa, size: "4" %></td>
+                <td><%= f.text_field :surveyorb, size: "8" %></td>
+                <td><%= f.text_field :plusb, size: "4" %></td>
+                <td><%= f.text_field :objectbuild_url, size: "4" %></td>
+                <td><%= link_to_remove_association "刪除物件", f, class: "btn btn-danger btn-sm" %></td>
+                
+            </tr>
+        </table>
+    	 
+    </div>
+</div>

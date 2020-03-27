@@ -10,6 +10,18 @@
   </div>
 
   <div class="field">
+    <%= f.label :first_name,"姓氏" %><br />
+    <%= f.text_field :first_name, autocomplete: "first_name", \
+                                                  class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name,"名稱" %><br />
+    <%= f.text_field :last_name, autocomplete: "email", \
+                                                  class: "form-control" %>
+  </div>
+
+  <div class="field">
     <%= f.label :password,"密碼" %>
     <% if @minimum_password_length %>
     <em>(最少<%= @minimum_password_length %>個字元)</em>

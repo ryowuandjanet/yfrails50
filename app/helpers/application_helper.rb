@@ -5,11 +5,11 @@ module ApplicationHelper
 	# 	return result
 	# end
 
-	# # 計算持分
-	# def holdingpoint(arg1,arg2)
-	# 	result = arg1.to_f / arg2.to_f
-	# 	return result
-	# end
+	# 計算持分
+	def holdingpoint(arg1,arg2)
+		result = arg1.to_f / arg2.to_f
+		return result
+	end
 
 	# 計算面積 ( 面積 , 持分[個人] , 持分[所有] , 倍數[平方公尺=0.3025坪] ) 
 	def area(area,holdingpointperson,holdingpointall,multiple)
@@ -54,17 +54,17 @@ module ApplicationHelper
 
 
 
-	# def testvalue(x,a,b)
-	# 	if a == nil && b == nil
-	# 		x * 1
-	# 	elsif b == nil
-	# 		x * a
-	# 	elsif a == nil
-	# 		x * b
-	# 	else
-	# 		x * ((a+b)/2)
-	# 	end
-	# end
+	def testvalue(x,a,b)
+		if a == nil && b == nil
+			x * 1
+		elsif b == nil
+			x * a
+		elsif a == nil
+			x * b
+		else
+			x * ((a+b)/2)
+		end
+	end
 
 	# def all_tags
 	#   tags.map(&:totalpriced)

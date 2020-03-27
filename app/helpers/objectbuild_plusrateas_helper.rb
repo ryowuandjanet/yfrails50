@@ -1,0 +1,2 @@
+module ObjectbuildPlusrateasHelper
+end

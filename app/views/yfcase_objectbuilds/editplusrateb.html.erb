@@ -1,0 +1,14 @@
+<h1>加成B</h1>
+
+<%= form_for @plusb , :url => updateplusrateb_yfcase_objectbuild_path( @yfcase,@plusb), method: :patch do |f| %>
+<div class="form-group">
+    <%= f.label :plusb %>
+    <%= f.number_field :plusb, in: 0..10, :step => 0.01, :required => true , :class => "form-control" %>
+    <%= f.hidden_field :surveyorb, :value => "#{current_user.first_name}#{current_user.last_name}" %>
+</div>
+
+<div class="form-group">
+    <%= f.submit :class => "btn btn-primary" %>
+</div>
+<% end %>
+<%= link_to "back", yfcase_path(@yfcase) %>

@@ -9,7 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 require('bootstrap');
 require("cocoon");
-require('jquery-ui/widgets/datepicker') 
+ 
 // require('controllers');
 
 import "@fortawesome/fontawesome-free/js/all";
@@ -43,3 +43,4 @@ import "@fortawesome/fontawesome-free/js/all";
   });
 
 }).call(this);
+
