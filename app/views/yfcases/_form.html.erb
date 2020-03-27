@@ -130,10 +130,128 @@
             </div>
         </div>
     </div>
-            
+
+    <!-- 勘查記錄 -->
+    <div class="card">
+        <div class="card-header" id="headingSix">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                    勘查記錄
+                </button>
+            </h2>
+        </div>
+        <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        初勘日期
+                    </div>
+                    <div class="form-group col-md-10">
+                        <%= f.text_field :first_survey_day, class: "datepicker form-control" %>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        會勘日期
+                    </div>
+                    <div class="form-group col-md-10">
+                        <%= f.text_field :other_survey_day, class: "datepicker form-control" %>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        勘查項目
+                    </div>
+                    <div class="form-group col-md-3">
+                        <%= f.text_field :foreclosure_announcement_title,class: "form-control",placeholder: "請輸入勘查項目標題" %>
+                    </div>
+                    <div class="form-group col-md-7">
+                        <%= f.text_field :foreclosure_announcement_link,class: "form-control",placeholder: "請輸入勘查項目連結" %>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        物件照片(證物四)
+                    </div>
+                    <div class="form-group col-md-3">
+                        <%= f.text_field :object_photo_title, class: "form-control",placeholder: "請輸入物件照片標題" %>
+                    </div>
+                    <div class="form-group col-md-7">
+                        <%= f.text_field :object_photo_link, class: "form-control",placeholder: "請輸入物件照片連結" %>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        實價登錄市價
+                    </div>
+                    <div class="form-group col-md-3">
+                        <%= f.text_field :net_price_registration_market_price_title, class: "form-control",placeholder: "請輸入實價登錄市價標題" %>
+                    </div>
+                    <div class="form-group col-md-7">
+                        <%= f.text_field :net_price_registration_market_price_link, class: "form-control",placeholder: "請輸入實價登錄市價連結" %>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        實價登錄地圖(證物五)
+                    </div>
+                    <div class="form-group col-md-3">
+                        <%= f.text_field :net_price_registration_map_title, class: "form-control",placeholder: "請輸入實價登錄地圖標題" %>
+                    </div>
+                    <div class="form-group col-md-7">
+                        <%= f.text_field :net_price_registration_map_link, class: "form-control",placeholder: "請輸入實價登錄地圖連結" %>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        實價登錄照片(證物六)
+                    </div>
+                    <div class="form-group col-md-3">
+                        <%= f.text_field :net_price_registration_photo_title, class: "form-control",placeholder: "請輸入實價登錄照片標題" %>
+                    </div>
+                    <div class="form-group col-md-7">
+                        <%= f.text_field :net_price_registration_photo_link, class: "form-control",placeholder: "請輸入實價登錄照片連結" %>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        法拍記錄(證物七)
+                    </div>
+                    <div class="form-group col-md-3">
+                        <%= f.text_field :auction_record_title, class: "form-control",placeholder: "請輸入法拍記錄標題" %>
+                    </div>
+                    <div class="form-group col-md-7">
+                        <%= f.text_field :auction_record_link, class: "form-control",placeholder: "請輸入法拍記錄連結" %>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        備註
+                    </div>
+                    <div class="form-group col-md-10">
+                        <%= f.text_field :other_notes, class: "form-control",placeholder: "請輸入備註" %>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        會勘決議
+                    </div>
+                    <div class="form-group col-md-3">
+                        <%= f.text_field :survey_resolution, class: "form-control",placeholder: "請輸入會勘決議標題" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+
     <div class="form-group">
         <%= f.submit "更新YF評量表", class: "btn btn-outline-dark" %>
         <%= link_to "返回", root_path, class: "btn btn-outline-secondary" %>
     </div>
 </div>
 <% end %>
+<script>
+    $( function() {
+        $( ".datepicker" ).datepicker();
+    } );
+</script>
