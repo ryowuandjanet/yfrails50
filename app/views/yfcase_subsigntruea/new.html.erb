@@ -1,0 +1,12 @@
+<h2>New</h2>
+<%= current_user.first_name %><%= current_user.last_name %>
+<%= form_for @signtruea , :url => yfcase_subsigntrueas_path( @yfcase ) do |f| %>
+<div class="form-group">
+    <%= f.hidden_field :signtruea, :value => "#{current_user.first_name}#{current_user.last_name}" %>
+</div>
+
+<div class="form-group">
+    <%= f.submit "同意", :class => "btn btn-primary" %>
+</div>
+<% end %>
+<%= link_to "返回", yfcase_path(@yfcase) %>

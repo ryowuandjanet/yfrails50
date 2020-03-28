@@ -164,6 +164,235 @@
 </div>
 <br>
 
+<!-- 拍賣結果 -->
+<div class="auction">
+    <table class="table">
+        <tr>
+            <th>拍賣日</th>
+            <th colspan="4">拍別(可進場CP值)</th>
+            <th>底價(NT)<br><small style="color:red;">各拍建議底價</small></th>
+            <th>坪價(NT)</th>
+            <th>時價(NT)</th>
+            <th>CP</th>
+            <th>點閱</th>
+            <th>監控</th>
+            <th>建議加價</th>
+            <th>保証金</th>
+            <th>備註</th>
+        </tr>
+        <!-- 第一拍 -->
+        <tr>
+            <!-- 拍別：第一拍 -->
+            <td>
+                <%= @yfcase.floor_price_1 == 0 ? ' ' : @yfcase.auction_day_1 %>
+            </td>
+            <th>第一拍</th>
+            <th>0.92</th>
+            <th>1.15</th>
+            <th>1.44</th>
+            <!-- 第一拍：底價 -->
+            <td>
+                <%= @yfcase.floor_price_1 == 0 ? ' ' : currency_helper(@yfcase.floor_price_1,0) %>
+            </td>
+            <!-- 第一拍：坪價 -->
+            <td>
+                <%= (@yfcase.floor_price_1 == 0 || @yfcase.builds.count == 0) ? ' ' : currency_helper(@pingprice1,0) %>
+            </td>
+            <!-- 第一拍：時價 -->
+            <td>
+                <%= (@yfcase.floor_price_1 == 0 || @yfcase.objectbuilds.count == 0) ? ' ' : currency_helper(@marketprice,0) %>
+            </td>
+            <!-- 第一拍：CP值 -->
+            <td>
+                <%= (@yfcase.floor_price_1 == 0 || @yfcase.builds.count == 0 || @yfcase.objectbuilds.count == 0) ? ' ' : (@marketprice / @pingprice1).round(2) %>
+            </td>
+            <!-- 第一拍：點閱 -->
+            <td>
+                <%= @yfcase.floor_price_1 == 0 ? ' ' : @yfcase.click_1 %>
+            </td>
+            <!-- 第一拍：監控 -->
+            <td>
+                <%= @yfcase.floor_price_1 == 0 ? ' ' : @yfcase.monitor_1 %>
+            </td>
+            <!-- 第一拍：建議加價 -->
+            <td>
+                <%= @yfcase.floor_price_1 == 0 ? ' ' : suggestedincrease(@yfcase.floor_price_1,@yfcase.click_1,@yfcase.monitor_1) %>
+            </td>
+            <!-- 第一拍：保証金 -->
+            <td>
+                <%= @yfcase.floor_price_1 == 0 ? ' ' : currency_helper(@yfcase.margin_1,0) %>
+            </td>
+            <!-- 第一拍：備註 -->
+            <td>
+            </td>
+        </tr>
+        <!-- 第二拍 -->
+        <tr>
+            <!-- 拍別：第二拍 -->
+            <td>
+                <%= @yfcase.floor_price_2 == 0 ? ' ' : @yfcase.auction_day_2 %>
+            </td>
+            <th>第二拍</th>
+            <th>1.15</th>
+            <th>1.44</th>
+            <th>1.80</th>
+            <!-- 第二拍：底價 -->
+            <td>
+                <%= @yfcase.floor_price_2 == 0 ? ' ' : currency_helper(@yfcase.floor_price_2,0) %>
+                <!-- 第二拍建議底價 -->
+                <% if @yfcase.floor_price_1 != 0 %>
+                    <br><small style="color:red;"><%= currency_helper(@yfcase.floor_price_1 * 0.8 ,0) %></small>
+                <% else %>
+                    <%= " " %>
+                <% end %>
+            </td>
+            <!-- 第二拍：坪價 -->
+            <td>
+                <%= (@yfcase.floor_price_2 == 0 || @yfcase.builds.count == 0) ? ' ' : currency_helper(@pingprice2,0) %>
+            </td>
+            <!-- 第二拍：時價 -->
+            <td>
+                <%= (@yfcase.floor_price_2 == 0 || @yfcase.objectbuilds.count == 0) ? ' ' : currency_helper(@marketprice,0) %>
+            </td>
+            <!-- 第二拍：CP值 -->
+            <td>
+                <%= (@yfcase.floor_price_2 == 0 || @yfcase.builds.count == 0 || @yfcase.objectbuilds.count == 0) ? ' ' : (@marketprice / @pingprice2).round(2) %>
+            </td>
+            <!-- 第二拍：點閱 -->
+            <td>
+                <%= @yfcase.floor_price_2 == 0 ? ' ' : @yfcase.click_2 %>
+            </td>
+            <!-- 第二拍：監控 -->
+            <td>
+                <%= @yfcase.floor_price_2 == 0 ? ' ' : @yfcase.monitor_2 %>
+            </td>
+            <!-- 第二拍：建議加價 -->
+            <td>
+                <%= @yfcase.floor_price_2 == 0 ? ' ' : suggestedincrease(@yfcase.floor_price_2,@yfcase.click_2,@yfcase.monitor_2) %>
+            </td>
+            <!-- 第二拍：保証金 -->
+            <td>
+                <%= @yfcase.floor_price_2 == 0 ? ' ' : currency_helper(@yfcase.margin_2,0) %>
+            </td>
+            <!-- 第二拍：備註 -->
+            <td>
+
+            </td>
+        </tr>
+        <!-- 第三拍 -->
+        <tr>
+            <!-- 拍別：第三拍 -->
+            <td>
+                <%= @yfcase.floor_price_3 == 0 ? ' ' : @yfcase.auction_day_3 %>
+            </td>
+            <th>第三拍</th>
+            <th>1.44</th>
+            <th>1.80</th>
+            <th>2.25</th>
+            <!-- 第三拍：底價 -->
+            <td>
+                <%= @yfcase.floor_price_3 == 0 ? ' ' : currency_helper(@yfcase.floor_price_3,0) %>
+                <!-- 第三拍建議底價 -->
+                <% if @yfcase.floor_price_1 != 0 %>
+                    <br><small style="color:red;"><%= currency_helper(@yfcase.floor_price_1 * 0.8 * 0.8 ,0) %></small>
+                <% elsif @yfcase.floor_price_2 != 0 %>
+                    <br><small style="color:red;"><%= currency_helper(@yfcase.floor_price_2 * 0.8 ,0) %></small>
+                <% else %>
+                    <%= " " %>
+                <% end %> 
+            </td>
+            <!-- 第三拍：坪價 -->
+            <td>
+                <%= (@yfcase.floor_price_3 == 0 || @yfcase.builds.count == 0) ? ' ' : currency_helper(@pingprice3,0) %>
+            </td>
+            <!-- 第三拍：時價 -->
+            <td>
+                <%= (@yfcase.floor_price_3 == 0 || @yfcase.objectbuilds.count == 0) ? ' ' : currency_helper(@marketprice,0) %>
+            </td>
+            <!-- 第三拍：CP值 -->
+            <td>
+                <%= (@yfcase.floor_price_3 == 0 || @yfcase.builds.count == 0 || @yfcase.objectbuilds.count == 0) ? ' ' : (@marketprice / @pingprice3).round(2) %>
+            </td>
+            <!-- 第三拍：點閱 -->
+            <td>
+                <%= @yfcase.floor_price_3 == 0 ? ' ' : @yfcase.click_3 %>
+            </td>
+            <!-- 第三拍：監控 -->
+            <td>
+                <%= @yfcase.floor_price_3 == 0 ? ' ' : @yfcase.monitor_3 %>
+            </td>
+            <!-- 第三拍：建議加價 -->
+            <td>
+                <%= @yfcase.floor_price_3 == 0 ? ' ' : suggestedincrease(@yfcase.floor_price_3,@yfcase.click_3,@yfcase.monitor_3) %>
+            </td>
+            <!-- 第三拍：保証金 -->
+            <td>
+                <%= @yfcase.floor_price_3 == 0 ? ' ' : currency_helper(@yfcase.margin_3,0) %>
+            </td>
+            <!-- 第三拍：備註 -->
+            <td>
+            </td>
+        </tr>
+        <!-- 第四拍 -->
+        <tr>
+            <!-- 拍別：第四拍 -->
+            <td>
+                <%= @yfcase.floor_price_4 == 0 ? ' ' : @yfcase.auction_day_4 %>
+            </td>
+            <th>第四拍</th>
+            <th>1.80</th>
+            <th>2.25</th>
+            <th>2.81</th>
+            <!-- 第四拍：底價 -->
+            <td>
+                <%= @yfcase.floor_price_4 == 0 ? ' ' : currency_helper(@yfcase.floor_price_4,0) %>
+                <!-- 第四拍建議底價 -->
+                <% if @yfcase.floor_price_1 != 0 %>
+                    <br><small style="color:red;"><%= currency_helper(@yfcase.floor_price_1 * 0.8 * 0.8 * 0.8 ,0) %></small>
+                <% elsif @yfcase.floor_price_2 != 0 %>
+                    <br><small style="color:red;"><%= currency_helper(@yfcase.floor_price_2 * 0.8 * 0.8 ,0) %></small>
+                <% elsif @yfcase.floor_price_3 != 0 %>
+                    <br><small style="color:red;"><%= currency_helper(@yfcase.floor_price_3 * 0.8 ,0) %></small>
+                <% else %>
+                    <%= " " %>
+                <% end %>
+            </td>
+            <!-- 第四拍：坪價 -->
+            <td>
+                <%= (@yfcase.floor_price_4 == 0 || @yfcase.builds.count == 0) ? ' ' : currency_helper(@pingprice4,0) %>
+            </td>
+            <!-- 第四拍：時價 -->
+            <td>
+                <%= (@yfcase.floor_price_4 == 0 || @yfcase.objectbuilds.count == 0) ? ' ' : currency_helper(@marketprice,0) %>
+            </td>
+            <!-- 第四拍：CP值 -->
+            <td>
+                <%= (@yfcase.floor_price_4 == 0 || @yfcase.builds.count == 0 || @yfcase.objectbuilds.count == 0) ? ' ' : (@marketprice / @pingprice4).round(2) %>
+            </td>
+            <!-- 第四拍：點閱 -->
+            <td>
+                <%= @yfcase.floor_price_4 == 0 ? ' ' : @yfcase.click_4 %>
+            </td>
+            <!-- 第四拍：監控 -->
+            <td>
+                <%= @yfcase.floor_price_4 == 0 ? ' ' : @yfcase.monitor_4 %>
+            </td>
+            <!-- 第四拍：建議加價 -->
+            <td>
+                <%= @yfcase.floor_price_4 == 0 ? ' ' : suggestedincrease(@yfcase.floor_price_4,@yfcase.click_4,@yfcase.monitor_4) %>
+            </td>
+            <!-- 第四拍：保証金 -->
+            <td>
+                <%= @yfcase.floor_price_4 == 0 ? ' ' : currency_helper(@yfcase.margin_4,0) %>
+            </td>
+            <!-- 第四拍：備註 -->
+            <td>
+            </td>
+        </tr>
+    </table>
+</div>
+<br>
+
 <!-- 勘查結果 -->
 <div class="attachment">
     <table class="table">
@@ -424,6 +653,83 @@
         <tr>
             <th>備註</th>
             <td></td>
+        </tr>
+    </table>
+</div>
+<br>
+
+<!-- 最終判定 -->
+<div class="finaldecision">
+    <table class="table">
+        <tr>
+            <th>結論</th>
+            <th>區域負責人</th>
+            <th>
+                副署人員1
+                <% if @yfcase.final_decision == " " %>
+                    <%= ' ' %>
+                <% else %>
+                    <% if @yfcase.subsigntrueas.first == nil && %>
+                         <%= link_to "副署人員1", new_yfcase_subsigntruea_path(@yfcase),class: "btn btn-primary btn-sm" %>
+                    <% else %>
+                         <%= link_to "副署人員1", yfcase_path(@yfcase), :disabled => true,class: "btn btn-danger btn-sm", style: "border:1px solid gray;background-color:gray;" %>
+                    <% end %>
+                <% end %>    
+            </th>
+            <th>
+                副署人員2
+                <% if @yfcase.final_decision == " " %>
+                    <%= ' ' %>
+                <% else %>
+                    <% if @yfcase.subsigntruebs.first == nil %>
+                         <%= link_to "副署人員2", new_yfcase_subsigntrueb_path(@yfcase),class: "btn btn-primary btn-sm" %>
+                    <% else %>
+                         <%= link_to "副署人員2", yfcase_path(@yfcase), :disabled => true,class: "btn btn-danger btn-sm", style: "border:1px solid gray;background-color:gray;" %>
+                    <% end %>
+                <% end %>
+            </th>
+            <th>
+                副署人員3
+                <% if @yfcase.final_decision == " " %>
+                    <%= ' ' %>
+                <% else %>
+                    <% if @yfcase.subsigntruecs.first == nil %>
+                         <%= link_to "副署人員3", new_yfcase_subsigntruec_path(@yfcase),class: "btn btn-primary btn-sm" %>
+                    <% else %>
+                         <%= link_to "副署人員3", yfcase_path(@yfcase), :disabled => true,class: "btn btn-danger btn-sm", style: "border:1px solid gray;background-color:gray;" %>
+                    <% end %>
+                <% end %>
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <%= @yfcase.final_decision %>
+            </td>
+            <td>
+                <%= @yfcase.user.first_name %>
+                <%= @yfcase.user.last_name %>
+            </td>
+            <td>
+                <% if @yfcase.subsigntrueas.first == nil %>
+                    <%= ' ' %>
+                <% else %>
+                    <%= @yfcase.subsigntrueas.first.signtruea %>
+                <% end %>
+            </td>
+            <td>
+                <% if @yfcase.subsigntruebs.first == nil %>
+                    <%= ' ' %
+                <% else %>
+                    <%= @yfcase.subsigntruebs.first.signtrueb %>
+                <% end %>
+            </td>
+            <td>
+                <% if @yfcase.subsigntruecs.first == nil %>
+                    <%= ' ' %>
+                <% else %>
+                    <%= @yfcase.subsigntruecs.first.signtruec %>
+                <% end %>
+            </td>
         </tr>
     </table>
 </div>

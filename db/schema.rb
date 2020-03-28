@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_171556) do
+ActiveRecord::Schema.define(version: 2020_03_28_132626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,30 @@ ActiveRecord::Schema.define(version: 2020_03_27_171556) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["objectbuild_id"], name: "index_plusratebs_on_objectbuild_id"
+  end
+
+  create_table "subsigntrueas", force: :cascade do |t|
+    t.string "signtruea"
+    t.bigint "yfcase_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["yfcase_id"], name: "index_subsigntrueas_on_yfcase_id"
+  end
+
+  create_table "subsigntruebs", force: :cascade do |t|
+    t.string "signtrueb"
+    t.bigint "yfcase_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["yfcase_id"], name: "index_subsigntruebs_on_yfcase_id"
+  end
+
+  create_table "subsigntruecs", force: :cascade do |t|
+    t.string "signtruec"
+    t.bigint "yfcase_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["yfcase_id"], name: "index_subsigntruecs_on_yfcase_id"
   end
 
   create_table "townships", force: :cascade do |t|
@@ -203,4 +227,7 @@ ActiveRecord::Schema.define(version: 2020_03_27_171556) do
   add_foreign_key "personnals", "yfcases"
   add_foreign_key "plusrateas", "objectbuilds"
   add_foreign_key "plusratebs", "objectbuilds"
+  add_foreign_key "subsigntrueas", "yfcases"
+  add_foreign_key "subsigntruebs", "yfcases"
+  add_foreign_key "subsigntruecs", "yfcases"
 end

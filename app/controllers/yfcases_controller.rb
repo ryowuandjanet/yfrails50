@@ -1,4 +1,5 @@
 class YfcasesController < ApplicationController
+  include ApplicationHelper
   before_action :set_yfcase, only: [:show, :edit, :update, :destroy]
 
   # GET /yfcases
@@ -15,11 +16,22 @@ class YfcasesController < ApplicationController
     # 建坪總面積 (平方公尺)
     @buildtotalarea = @yfcase.builds.map { |n| [n.build_area.to_f * (n.build_holding_point_personal.to_f / n.build_holding_point_all.to_f)] }.flatten.sum 
 
+    # 坪價(萬)
+    @pingprice1 = @yfcase.floor_price_1.to_f / (@buildtotalarea*0.3025).to_f
+    @pingprice2 = @yfcase.floor_price_2.to_f / (@buildtotalarea*0.3025).to_f
+    @pingprice3 = @yfcase.floor_price_3.to_f / (@buildtotalarea*0.3025).to_f
+    @pingprice4 = @yfcase.floor_price_4.to_f / (@buildtotalarea*0.3025).to_f
+
+    # 時價(萬)
+
+    marketpricecount = @yfcase.objectbuilds.count
+    marketpricesum=@yfcase.objectbuilds.map { |n| [(testvalue(n.total_price.to_f / n.build_area.to_f ,n.plusa,n.plusb))] }.flatten
+    @marketprice = marketpricesum.map!{|e| e.to_f}.sum.fdiv(marketpricesum.size) * 10000
   end
 
   # GET /yfcases/new
   def new
-    @yfcase = current_user.yfcases.build
+    @yfcase = current_user.yfcases.build(floor_price_1:0,floor_price_2:0,floor_price_3:0,floor_price_4:0)
   end
 
   # GET /yfcases/1/edit

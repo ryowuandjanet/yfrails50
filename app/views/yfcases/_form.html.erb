@@ -78,6 +78,123 @@
         </div>
     </div>
 
+    <!-- 拍賣資訊 -->
+    <div class="card">
+        <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    拍賣資訊
+                </button>
+            </h2>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+           
+                    <div class="form-row" style="background-color:PaleGoldenRod;">
+                        <div class="col-2">
+                            拍別
+                        </div>
+                        <div class="col-2">
+                            拍賣日
+                        </div>
+                        <div class="col-2">
+                            底價(NT)
+                        </div>
+                        <div class="col-2">
+                            點閱
+                        </div>
+                        <div class="col-2">
+                            監控
+                        </div>
+                        <div class="col-2">
+                            保証金
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-2">
+                            第一拍
+                        </div>
+                        <div class="col-2">
+                            <%= f.text_field :auction_day_1, class: "datepicker form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :floor_price_1, in: 0..100000000, :required => true, class: "form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :click_1, class: "form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :monitor_1, class: "form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :margin_1, class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-2">
+                            第二拍
+                        </div>
+                        <div class="col-2">
+                            <%= f.text_field :auction_day_2, class: "datepicker form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :floor_price_2, in: 0..100000000, :required => true, class: "form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :click_2, class: "form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :monitor_2, class: "form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :margin_2, class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-2">
+                            第三拍
+                        </div>
+                        <div class="col-2">
+                            <%= f.text_field :auction_day_3, class: "datepicker form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :floor_price_3, in: 0..100000000, :required => true, class: "form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :click_3, class: "form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :monitor_3, class: "form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :margin_3, class: "form-control" %>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-2">
+                            第四拍
+                        </div>
+                        <div class="col-2">
+                            <%= f.text_field :auction_day_4, class: "datepicker form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :floor_price_4, in: 0..100000000, :required => true, class: "form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :click_4, class: "form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :monitor_4, class: "form-control" %>
+                        </div>
+                        <div class="col-2">
+                            <%= f.number_field :margin_4, class: "form-control" %>
+                        </div>
+                    </div>
+               
+            </div>
+        </div>
+    </div>
+
     <!-- 土地 / 建物 -->
     <div class="card">
         <div class="card-header" id="headingFour">
@@ -269,14 +386,39 @@
             </div>
         </div>
     </div>
+    <!-- 最終判定 -->
+    <div class="card">
+        <div class="card-header" id="headingEight">
+            <h2 class="mb-0">
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                    最終判定
+                </button>
+            </h2>
+        </div>
+        <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+            <div class="card-body">
+                <table id="finaldecision">
+                    <tr>
+                        <th>
+                            <%= f.label :final_decision,"結論" %>
+                        </th>
+                        <td>
+                            <%= f.select(:final_decision,Yfcase::JUDGMENT_LIST) %>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
     <div class="form-group">
         <%= f.submit "更新YF評量表", class: "btn btn-outline-dark" %>
         <%= link_to "返回", root_path, class: "btn btn-outline-secondary" %>
     </div>
 </div>
-<% end %>
 <script>
     $( function() {
         $( ".datepicker" ).datepicker();
     } );
 </script>
+<% end %>

@@ -19,37 +19,37 @@ module ApplicationHelper
 
 
 
-	# # 計算物件坪價 ( 底價 , 建坪[坪] , 持分[個人] , 持分[所有] ) 
-	# def unitprice(floorprice,buildarea,buildholdingpointperson,buildholdingpointall)
-	# 	result= floorprice / (buildarea * 0.3025*(buildholdingpointperson.to_f / buildholdingpointall.to_f))
-	# 	return result
-	# end
+	# 計算物件坪價 ( 底價 , 建坪[坪] , 持分[個人] , 持分[所有] ) 
+	def unitprice(floorprice,buildarea,buildholdingpointperson,buildholdingpointall)
+		result= floorprice / (buildarea * 0.3025*(buildholdingpointperson.to_f / buildholdingpointall.to_f))
+		return result
+	end
 	
 
-	# # 計算時價( 總價 , 坪數[坪] , 加成A , 加成B , 筆數 )
-	# def marketprice(object,totalprice,buildarea,plusa,plusb)
-	# 	# 計算坪價
-	# 	unitprice = totalprice.to_f / buildarea.to_f
-	# 	plus = (plusa.to_f + plusb.to_f) / 2
-	# 	return unitprice * plus
-	# end
+	# 計算時價( 總價 , 坪數[坪] , 加成A , 加成B , 筆數 )
+	def marketprice(object,totalprice,buildarea,plusa,plusb)
+		# 計算坪價
+		unitprice = totalprice.to_f / buildarea.to_f
+		plus = (plusa.to_f + plusb.to_f) / 2
+		return unitprice * plus
+	end
 
-	# # 計算建議加價費用 ( 底價 , 點閱 , 監控  ) 
-	# def suggestedincrease(floorprice,click,monitor)
-	# 	result=((((click.to_f-100)/100).abs.ceil)*(monitor.to_f/100*3))
+	# 計算建議加價費用 ( 底價 , 點閱 , 監控  ) 
+	def suggestedincrease(floorprice,click,monitor)
+		result=((((click.to_f-100)/100).abs.ceil)*(monitor.to_f/100*3))
 		
-	# 	if result > 0.15
-	# 		return  "(#{0.15*100}%)/#{currency_helper(floorprice*(1+0.15),0)}"
-	# 	else
-	# 		return "(#{result*100}%)/#{currency_helper(floorprice*(1+result),0)}"
-	# 	end
-	# end	
+		if result > 0.15
+			return  "(#{0.15*100}%)/#{currency_helper(floorprice*(1+0.15),0)}"
+		else
+			return "(#{result*100}%)/#{currency_helper(floorprice*(1+result),0)}"
+		end
+	end	
 
-	# # 設定貨幣格式helper
-	# def currency_helper(price,precision)
-	# 	result=number_to_currency(price, unit: "", precision: precision )
-	# 	return result
-	# end
+	# 設定貨幣格式helper
+	def currency_helper(price,precision)
+		result=number_to_currency(price, unit: "", precision: precision )
+		return result
+	end
 
 
 
