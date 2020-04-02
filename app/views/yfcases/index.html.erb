@@ -1,27 +1,42 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Yfcases</h1>
-
+<p id="notice">
+    <%= notice %>
+</p>
+<h1>YF評量表</h1>
 <table>
-  <thead>
-    <tr>
-      <th>Case number</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @yfcases.each do |yfcase| %>
-      <tr>
-        <td><%= yfcase.case_number %></td>
-        <td><%= link_to 'Show', yfcase %></td>
-        <td><%= link_to 'Edit', edit_yfcase_path(yfcase) %></td>
-        <td><%= link_to 'Destroy', yfcase, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+    <thead>
+        <tr>
+            <th>案號</th>
+            <th colspan="6">項目</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @yfcases.each do |yfcase| %>
+        <tr>
+            <td>
+                <%= yfcase.case_number %>
+            </td>
+            <td>
+                <%= link_to 'YF評量表', yfcase %>
+            </td>
+            <td>
+                <%= link_to '契稅申請書', {} %>
+            </td>
+            <td>
+                <%= link_to '不動產登記', {} %>
+            </td>
+            <td>
+                <%= link_to '起訴狀', {} %>
+            </td>
+            <% if yfcase.editable_by?(current_user) %>
+            <td>
+                <%= link_to '編輯', edit_yfcase_path(yfcase) %>
+            </td>
+            <td>
+                <%= link_to '刪除', yfcase, method: :delete, data: { confirm: '你(妳)確定要刪除嗎?' } %>
+            </td>
+            <% end %>
+        </tr>
+        <% end %>
+    </tbody>
 </table>
-
 <br>
-
-<%= link_to 'New Yfcase', new_yfcase_path %>

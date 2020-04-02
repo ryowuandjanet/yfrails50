@@ -426,22 +426,18 @@
                 <table class="table table-bordered">
                     <tr class="danger">
                         <th>附件</th>
-                        <th>地址</th>
+                        <th>地址(屋齡)</th>
                         <th>總價(萬)</th>
                         <th>建坪(坪)</th>
                         <th>單價(萬)</th>
-                        <th>屋齡(年)</th>
-                        <th>單位</th>
                         <th>樓高</th>
                         <% if user_signed_in? %>
                             <th>勘查員A</th>
                         <% end %>
-                        <th>人員A</th>
                         <th>加成A</th>
                         <% if user_signed_in? %>
                             <th>勘查員B</th>
                         <% end %>
-                        <th>人員B</th>
                         <th>加成B</th>
                         <th>計算</th>
                     </tr>
@@ -456,6 +452,11 @@
                         </td>
                         <td>
                             <%= objectbuild.address %>
+                            <% if objectbuild.house_age.present? %>
+                                <br>(<%= objectbuild.house_age %>年)
+                            <% else %>
+                                <%= ' ' %>
+                            <% end %>
                         </td>
                         <td>
                             <%= objectbuild.total_price %>
@@ -466,42 +467,32 @@
                         <td>
                             <%= holdingpoint(objectbuild.total_price,objectbuild.build_area).round(2) %>
                         </td>
-                        <td>
-                            <%= objectbuild.house_age %>
-                        </td>
 
                         <td>
                             <%= objectbuild.floor_height %>
                         </td>
-                            <% if user_signed_in? %>
-                                <td>
-                                    <% if objectbuild.plusa == nil %>
-                                        <%= link_to "勘查員A", editplusratea_yfcase_objectbuild_path(@yfcase,objectbuild),class: "btn btn-primary bt-sm" %>
-                                    <% else %>
-                                        <%= link_to "勘查員A","#", disabled: true,class: "btn btn-default bt-sm", style: "color:#777;border:1px solid #777;" %>
-                                    <% end %>
-                                </td>
-                            <% end %>  
-
-                        <td>
-                           <%= objectbuild.surveyora %>
-                        </td>
+                        <% if user_signed_in? %>
+                            <td>
+                                <% if objectbuild.plusa.blank? %>
+                                    <%= link_to "待評分", editplusratea_yfcase_objectbuild_path(@yfcase,objectbuild),class: "btn btn-primary btn-sm" %>
+                                <% else %>
+                                    <%= objectbuild.surveyora %>
+                                <% end %>
+                            </td>
+                        <% end %>  
                         <td>
                             <% @plusa=objectbuild.plusa %>
                             <%= @plusa %>
                         </td>
-                            <% if user_signed_in? %>
-                                <td>
-                                    <% if objectbuild.plusb == nil %>
-                                        <%= link_to "勘查員B", editplusrateb_yfcase_objectbuild_path(@yfcase,objectbuild),class: "btn btn-primary bt-sm" %>
-                                    <% else %>
-                                        <%= link_to "勘查員B","#", disabled: true,class: "btn btn-default bt-sm", style: "color:#777;border:1px solid #777;" %>
-                                    <% end %>
-                                </td>
-                            <% end %>
-                        <td>
-                            <%= objectbuild.surveyorb %>
-                        </td>
+                        <% if user_signed_in? %>
+                            <td>
+                                <% if objectbuild.plusb.blank? %>
+                                    <%= link_to "待評分", editplusrateb_yfcase_objectbuild_path(@yfcase,objectbuild),class: "btn btn-primary btn-sm" %>
+                                <% else %>
+                                    <%= objectbuild.surveyorb %>
+                                <% end %>
+                            </td>
+                        <% end %>
                         <td>
                             <% @plusb=objectbuild.plusb %>
                             <%= @plusb %>
@@ -718,7 +709,7 @@
             </td>
             <td>
                 <% if @yfcase.subsigntruebs.first == nil %>
-                    <%= ' ' %
+                    <%= ' ' %>
                 <% else %>
                     <%= @yfcase.subsigntruebs.first.signtrueb %>
                 <% end %>
@@ -734,9 +725,10 @@
     </table>
 </div>
 <br>
-
+<% if @yfcase.editable_by?(current_user) %>
 <div id="showitem">
 	<%= link_to '編輯', edit_yfcase_path(@yfcase),class: "btn btn-primary" %> |
 	<%= link_to '返回', yfcases_path,class: "btn btn-info" %>
 </div>
+<% end %>
 

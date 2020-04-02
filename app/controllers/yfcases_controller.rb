@@ -1,6 +1,7 @@
 class YfcasesController < ApplicationController
   include ApplicationHelper
-  before_action :set_yfcase, only: [:show, :edit, :update, :destroy]
+  before_action :set_yfcase, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /yfcases
   # GET /yfcases.json
@@ -11,6 +12,7 @@ class YfcasesController < ApplicationController
   # GET /yfcases/1
   # GET /yfcases/1.json
   def show
+    @yfcase = Yfcase.find(params[:id])
     # 地坪總面積 (平方公尺)
     @landtotalarea = @yfcase.lands.map{ |n| [n.land_area.to_f * (n.land_holding_point_personal.to_f / n.land_holding_point_all.to_f)] }.flatten.sum
     # 建坪總面積 (平方公尺)
