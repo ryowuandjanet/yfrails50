@@ -19,20 +19,29 @@
                 <%= link_to 'YF評量表', yfcase %>
             </td>
             <td>
-                <%= link_to '契稅申請書', {} %>
+                <%= link_to '契稅申請書', yfcase_deedtax_index_path(yfcase) %>
             </td>
             <td>
                 <%= link_to '不動產登記', {} %>
             </td>
-            <td>
+            <td>        
                 <%= link_to '起訴狀', {} %>
+            </td>
+            <td>
+                <%= link_to yfcases_path(format: "pdf") do %>
+                    <%= fab_icon "product-hunt",class: "fa-2x" %>
+                <% end %>
             </td>
             <% if yfcase.editable_by?(current_user) %>
             <td>
-                <%= link_to '編輯', edit_yfcase_path(yfcase) %>
+                <%= link_to edit_yfcase_path(yfcase) do %>
+                    <%= fa_icon "edit",class: "fa-2x" %>
+                 <% end %>
             </td>
             <td>
-                <%= link_to '刪除', yfcase, method: :delete, data: { confirm: '你(妳)確定要刪除嗎?' } %>
+                <%= link_to yfcase, method: :delete, data: { confirm: '你(妳)確定要刪除嗎?' } do %>
+                    <%= fa_icon "window-close",class: "fa-2x" %>
+                <% end %>
             </td>
             <% end %>
         </tr>

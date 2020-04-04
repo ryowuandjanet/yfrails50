@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 	<meta charset="UTF-8"> -->
+	<title>Document</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<%= wicked_pdf_stylesheet_link_tag 'pdf' %>
+</head>
+<body>
+	<% @yfcases.each do |yfcase| %>
+		<li>
+			<%= yfcase.case_number %>
+		</li>
+	<% end %>
+	<table style="border:1px solid red;">
+		<tr>
+			<th>test</th>
+			<th>leowu</th>
+		</tr>
+		<tr>
+			<td>hello</td>
+			<td>world</td>
+		</tr>
+	</table>
+</body>
+</html>

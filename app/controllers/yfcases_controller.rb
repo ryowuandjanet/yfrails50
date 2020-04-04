@@ -7,6 +7,11 @@ class YfcasesController < ApplicationController
   # GET /yfcases.json
   def index
     @yfcases = Yfcase.all
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template:'yfcases/reporte', pdf: 'Reporte'}
+    end
   end
 
   # GET /yfcases/1
@@ -29,6 +34,16 @@ class YfcasesController < ApplicationController
     marketpricecount = @yfcase.objectbuilds.count
     marketpricesum=@yfcase.objectbuilds.map { |n| [(testvalue(n.total_price.to_f / n.build_area.to_f ,n.plusa,n.plusb))] }.flatten
     @marketprice = marketpricesum.map!{|e| e.to_f}.sum.fdiv(marketpricesum.size) * 10000
+    respond_to do |format|
+    format.html
+      format.pdf do 
+        pdf = YfcasePdf.new(@yfcase)
+        send_data pdf.render, 
+        filename: "yfcase_#{@yfcase.case_number}.pdf",
+        type: "application/pdf",
+        disposition: "inline"
+      end
+    end 
   end
 
   # GET /yfcases/new

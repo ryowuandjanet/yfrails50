@@ -2,6 +2,11 @@
 
 <!-- YF評量表 -->
 <h1 class="x110000">YF評量表</h1>
+<% if @yfcase.personnals.present? %>
+    <%= @yfcase.personnals.first.identity_card.split(//)[2] %>
+<% else %>
+    <%= "" %>
+<% end %>
 
 
 <!-- 基本資料 -->
@@ -727,6 +732,7 @@
 <br>
 <% if @yfcase.editable_by?(current_user) %>
 <div id="showitem">
+    <%= link_to '轉換成(PDF)', yfcase_path(@yfcase, format: "pdf"),class: "btn btn-success" %>
 	<%= link_to '編輯', edit_yfcase_path(@yfcase),class: "btn btn-primary" %> |
 	<%= link_to '返回', yfcases_path,class: "btn btn-info" %>
 </div>
