@@ -9,10 +9,12 @@ require("@rails/activestorage").start()
 require("channels")
 require('bootstrap');
 require("cocoon");
+
  
 // require('controllers');
 
 import "@fortawesome/fontawesome-free/js/all";
+
 
 
 (function() {

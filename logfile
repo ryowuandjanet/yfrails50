@@ -1,0 +1,17 @@
+2020-04-05 18:38:08.151 CST [28224] LOG:  starting PostgreSQL 12.1, compiled by Visual C++ build 1914, 64-bit
+2020-04-05 18:38:08.161 CST [28224] LOG:  listening on IPv6 address "::1", port 5432
+2020-04-05 18:38:08.162 CST [28224] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2020-04-05 18:38:08.303 CST [23340] LOG:  database system was shut down at 2020-04-05 18:36:48 CST
+2020-04-05 18:38:08.368 CST [28224] LOG:  database system is ready to accept connections
+2020-04-05 21:10:20.269 CST [41396] ERROR:  database "yangfurails6_development" already exists
+2020-04-05 21:10:20.269 CST [41396] STATEMENT:  CREATE DATABASE "yangfurails6_development" ENCODING = 'unicode'
+2020-04-05 21:10:20.397 CST [1640] ERROR:  database "yangfurails6_test" already exists
+2020-04-05 21:10:20.397 CST [1640] STATEMENT:  CREATE DATABASE "yangfurails6_test" ENCODING = 'unicode'
+2020-04-05 21:17:13.197 CST [33632] ERROR:  database "yangfurails6_development" already exists
+2020-04-05 21:17:13.197 CST [33632] STATEMENT:  CREATE DATABASE "yangfurails6_development" ENCODING = 'unicode'
+2020-04-05 21:17:13.316 CST [25256] ERROR:  database "yangfurails6_test" already exists
+2020-04-05 21:17:13.316 CST [25256] STATEMENT:  CREATE DATABASE "yangfurails6_test" ENCODING = 'unicode'
+2020-04-05 21:18:40.988 CST [36196] ERROR:  database "yangfurails6_development" already exists
+2020-04-05 21:18:40.988 CST [36196] STATEMENT:  CREATE DATABASE "yangfurails6_development" ENCODING = 'unicode'
+2020-04-05 21:18:41.120 CST [38636] ERROR:  database "yangfurails6_test" already exists
+2020-04-05 21:18:41.120 CST [38636] STATEMENT:  CREATE DATABASE "yangfurails6_test" ENCODING = 'unicode'

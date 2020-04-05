@@ -5,7 +5,7 @@ class Yfcase < ApplicationRecord
 	has_many :personnals,dependent: :delete_all
 	has_many :lands,dependent: :delete_all
 	has_many :builds,dependent: :delete_all
-	has_many :buildchecklists,dependent: :delete_all
+	# has_many :buildchecklists,dependent: :delete_all
 	has_many :objectbuilds,dependent: :delete_all
 	has_many :subsigntrueas,dependent: :delete_all
 	has_many :subsigntruebs,dependent: :delete_all

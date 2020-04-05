@@ -113,6 +113,8 @@ GEM
     orm_adapter (0.5.0)
     pdf-core (0.7.0)
     pg (1.2.3-x64-mingw32)
+    pickadate-rails (3.5.6.0)
+      railties (>= 3.1.0)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
@@ -232,6 +234,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-ui-rails
   pg (>= 0.18, < 2.0)
+  pickadate-rails
   prawn
   prawn-table
   puma (~> 4.1)

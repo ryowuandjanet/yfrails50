@@ -2,36 +2,17 @@
     <%= notice %>
 </p>
 <h1>YF評量表</h1>
-<table>
-    <thead>
+<table class="table">
+    <thead class="thead-dark">
         <tr>
+            <th colspan="2">操作</th>
             <th>案號</th>
-            <th colspan="6">項目</th>
+            <th colspan="4">項目</th>
         </tr>
     </thead>
     <tbody>
         <% @yfcases.each do |yfcase| %>
         <tr>
-            <td>
-                <%= yfcase.case_number %>
-            </td>
-            <td>
-                <%= link_to 'YF評量表', yfcase %>
-            </td>
-            <td>
-                <%= link_to '契稅申請書', yfcase_deedtax_index_path(yfcase) %>
-            </td>
-            <td>
-                <%= link_to '不動產登記', {} %>
-            </td>
-            <td>        
-                <%= link_to '起訴狀', {} %>
-            </td>
-            <td>
-                <%= link_to yfcases_path(format: "pdf") do %>
-                    <%= fab_icon "product-hunt",class: "fa-2x" %>
-                <% end %>
-            </td>
             <% if yfcase.editable_by?(current_user) %>
             <td>
                 <%= link_to edit_yfcase_path(yfcase) do %>
@@ -44,6 +25,23 @@
                 <% end %>
             </td>
             <% end %>
+            <td>
+                <%= link_to yfcase_path(yfcase) do %>
+                    <%= yfcase.case_number %>
+                <% end %>
+            </td>
+            <td>
+                <%= link_to 'YF評量表', yfratingscale_yfcase_path(yfcase,format: "pdf") %>
+            </td>
+            <td>
+                <%= link_to '契稅申請書', deedtax_yfcase_path(yfcase,format: "pdf") %>
+            </td>
+            <td>
+                <%= link_to '不動產登記', realestateregistration_yfcase_path(yfcase,format: "pdf") %>
+            </td>
+            <td>        
+                <%= link_to '起訴狀', complaint_yfcase_path(yfcase,format: "pdf") %>
+            </td>
         </tr>
         <% end %>
     </tbody>

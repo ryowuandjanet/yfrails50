@@ -1,6 +1,6 @@
 class YfcasesController < ApplicationController
   include ApplicationHelper
-  before_action :set_yfcase, only: [:edit, :update, :destroy]
+  before_action :set_yfcase, only: [:edit, :update, :destroy, :deedtax, :yfratingscale, :realestateregistration, :complaint]
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /yfcases
@@ -35,15 +35,20 @@ class YfcasesController < ApplicationController
     marketpricesum=@yfcase.objectbuilds.map { |n| [(testvalue(n.total_price.to_f / n.build_area.to_f ,n.plusa,n.plusb))] }.flatten
     @marketprice = marketpricesum.map!{|e| e.to_f}.sum.fdiv(marketpricesum.size) * 10000
     respond_to do |format|
-    format.html
-      format.pdf do 
-        pdf = YfcasePdf.new(@yfcase)
-        send_data pdf.render, 
-        filename: "yfcase_#{@yfcase.case_number}.pdf",
-        type: "application/pdf",
-        disposition: "inline"
-      end
-    end 
+      format.html
+      format.json
+      format.pdf {render template:'yfcases/deedtax', pdf: 'Deedtax'}
+    end
+    # respond_to do |format|
+    # format.html
+    #   format.pdf do 
+    #     pdf = YfcasePdf.new(@yfcase)
+    #     send_data pdf.render, 
+    #     filename: "yfcase_#{@yfcase.case_number}.pdf",
+    #     type: "application/pdf",
+    #     disposition: "inline"
+    #   end
+    # end 
   end
 
   # GET /yfcases/new
@@ -92,6 +97,38 @@ class YfcasesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to yfcases_url, notice: 'Yfcase was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def yfratingscale
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template:'yfcases/yfratingscale', pdf: 'Yfratingscale'}
+    end
+  end
+
+  def deedtax
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template:'yfcases/deedtax', pdf: 'Deedtax'}
+    end
+  end
+
+  def realestateregistration
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template:'yfcases/realestateregistration', pdf: 'Realestateregistration'}
+    end
+  end
+
+  def complaint
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template:'yfcases/complaint', pdf: 'Complaint'}
     end
   end
 

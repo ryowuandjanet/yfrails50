@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 	resources :subsigntrueas, :controller => "yfcase_subsigntruea"
 	resources :subsigntruebs, :controller => "yfcase_subsigntrueb"
 	resources :subsigntruecs, :controller => "yfcase_subsigntruec"
-	resources :deedtax, :controller => "yfcase_deedtaxs"
   	resources :objectbuilds do 
 		resources :plusrateas, :controller => "objectbuild_plusrateas"
 		resources :plusratebs, :controller => "objectbuild_plusratebs"
@@ -14,6 +13,12 @@ Rails.application.routes.draw do
 			patch :updateplusratea , :controller => "yfcase_objectbuilds"
 			patch :updateplusrateb , :controller => "yfcase_objectbuilds"
 		end
+	end
+	member do
+		get :yfratingscale #YF評量表
+		get :deedtax #契稅申請書
+		get :realestateregistration #不動產登記
+		get :complaint #訴訟狀
 	end
   end
   root to: "yfcases#index"
