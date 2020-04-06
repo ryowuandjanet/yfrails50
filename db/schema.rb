@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_28_132626) do
+ActiveRecord::Schema.define(version: 2020_04_06_083014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,13 +72,22 @@ ActiveRecord::Schema.define(version: 2020_03_28_132626) do
     t.string "name"
     t.string "identity_card"
     t.datetime "birthday"
-    t.string "other_address"
     t.string "local_phone"
     t.string "mobile_phone"
     t.string "personnal_notes"
     t.bigint "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "person_country"
+    t.string "person_township"
+    t.string "person_village"
+    t.string "person_neighbor"
+    t.string "person_street"
+    t.string "person_section"
+    t.string "person_lane"
+    t.string "person_alley"
+    t.string "person_number"
+    t.string "person_floor"
     t.index ["yfcase_id"], name: "index_personnals_on_yfcase_id"
   end
 

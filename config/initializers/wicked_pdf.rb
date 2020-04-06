@@ -7,7 +7,7 @@ else
   # OS X
   # wkhtmltopdf_path = "#{Rails.root}/bin/wkhtmltopdf-0.9.9-OS-X.i386"            
   # Windows
-  wkhtmltopdf_path = 'D:\ProgramFiles\wkhtmltox\bin\wkhtmltopdf.exe'
+  wkhtmltopdf_path = 'D:\OQC\Program_Area\wkhtmltox\bin\wkhtmltopdf.exe'
   # exe_path: 'D:\ProgramFiles\wkhtmltox\bin\wkhtmltopdf.exe'
 end
 

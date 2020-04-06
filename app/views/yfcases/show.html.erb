@@ -8,6 +8,9 @@
     <%= "" %>
 <% end %>
 
+<% @yfcase.personnals.each do |p| %>
+    <%= address(p.person_country,p.person_township,p.person_village,p.person_neighbor,p.person_street,p.person_section,p.person_lane,p.person_alley,p.person_number,p.person_floor) %>
+<% end %>
 
 <!-- 基本資料 -->
 <div class="basedata">
@@ -514,36 +517,14 @@
                 <%= link_to @yfcase.net_price_registration_market_price_title, @yfcase.net_price_registration_market_price_link, target: "_blank" %>
             </td>
         </tr>
-        <tr>
-            <th>實價登錄地圖(證物五)</th>
-            <td>
-                <%= link_to @yfcase.net_price_registration_map_title, @yfcase.net_price_registration_map_link, target: "_blank" %>
-            </td>
-        </tr>
-        <tr>
-            <th>實價登錄照片(證物六)</th>
-            <td>
-                <%= link_to @yfcase.net_price_registration_photo_title, @yfcase.net_price_registration_photo_link, target: "_blank" %>
-            </td>
-        </tr>
+
         <tr>
             <th>法拍記錄(證物七)</th>
             <td>
                 <%= link_to @yfcase.auction_record_title, @yfcase.auction_record_link, target: "_blank" %>
             </td>
         </tr>
-        <tr>
-            <th>備註</th>
-            <td>
-                <%= link_to @yfcase.other_notes %>
-            </td>
-        </tr>
-        <tr>
-            <th>會勘決議</th>
-            <td>
-                <%= @yfcase.survey_resolution %>
-            </td>
-        </tr>
+
     </table>
 </div>
 <br>

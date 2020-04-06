@@ -1,6 +1,7 @@
 class YfcasesController < ApplicationController
   include ApplicationHelper
   before_action :set_yfcase, only: [:edit, :update, :destroy, :deedtax, :yfratingscale, :realestateregistration, :complaint]
+  before_action :show_helper, only: [:edit, :update, :destroy, :deedtax, :yfratingscale, :realestateregistration, :complaint]
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /yfcases
@@ -35,9 +36,9 @@ class YfcasesController < ApplicationController
     marketpricesum=@yfcase.objectbuilds.map { |n| [(testvalue(n.total_price.to_f / n.build_area.to_f ,n.plusa,n.plusb))] }.flatten
     @marketprice = marketpricesum.map!{|e| e.to_f}.sum.fdiv(marketpricesum.size) * 10000
     respond_to do |format|
-      format.html
-      format.json
-      format.pdf {render template:'yfcases/deedtax', pdf: 'Deedtax'}
+    format.html
+    format.json
+    format.pdf {render template:'yfcases/deedtax', pdf: 'Deedtax'}
     end
     # respond_to do |format|
     # format.html
@@ -138,6 +139,26 @@ class YfcasesController < ApplicationController
       @yfcase = current_user.yfcases.find(params[:id])
     end
 
+    def show_helper
+      @yfcase = Yfcase.find(params[:id])
+      # 地坪總面積 (平方公尺)
+      @landtotalarea = @yfcase.lands.map{ |n| [n.land_area.to_f * (n.land_holding_point_personal.to_f / n.land_holding_point_all.to_f)] }.flatten.sum
+      # 建坪總面積 (平方公尺)
+      @buildtotalarea = @yfcase.builds.map { |n| [n.build_area.to_f * (n.build_holding_point_personal.to_f / n.build_holding_point_all.to_f)] }.flatten.sum 
+
+      # 坪價(萬)
+      @pingprice1 = @yfcase.floor_price_1.to_f / (@buildtotalarea*0.3025).to_f
+      @pingprice2 = @yfcase.floor_price_2.to_f / (@buildtotalarea*0.3025).to_f
+      @pingprice3 = @yfcase.floor_price_3.to_f / (@buildtotalarea*0.3025).to_f
+      @pingprice4 = @yfcase.floor_price_4.to_f / (@buildtotalarea*0.3025).to_f
+
+      # 時價(萬)
+
+      marketpricecount = @yfcase.objectbuilds.count
+      marketpricesum=@yfcase.objectbuilds.map { |n| [(testvalue(n.total_price.to_f / n.build_area.to_f ,n.plusa,n.plusb))] }.flatten
+      @marketprice = marketpricesum.map!{|e| e.to_f}.sum.fdiv(marketpricesum.size) * 10000
+    end
+
     # Only allow a list of trusted parameters through.
     def yfcase_params
       params.require(:yfcase).permit(:case_number, \
@@ -153,7 +174,7 @@ class YfcasesController < ApplicationController
         :net_price_registration_market_price_title,:net_price_registration_market_price_link,:net_price_registration_map_title,:net_price_registration_map_link,:net_price_registration_photo_title,:net_price_registration_photo_link, \
         :auction_record_title,:auction_record_link,:other_notes,:survey_resolution,:final_decision, \
         :occupy,:register,:parking_space,:management_fee,:rent,:leak,:easy_parking,:railway,:vegetable_market,:supermarket,:school,:park,:post_office,:main_road,:water_and_power_failure,:good_vision, \
-        personnals_attributes: [:id, :is_debtor, :is_creditor, :is_land_owner, :is_build_owner, :name, :identity_card, :birthday, :other_address, :local_phone, :mobile_phone, :personnal_notes, :_destroy], \
+        personnals_attributes: [:id, :is_debtor, :is_creditor, :is_land_owner, :is_build_owner, :name, :identity_card, :birthday,:person_country ,:person_township ,:person_village ,:person_neighbor ,:person_street ,:person_section ,:person_lane ,:person_alley ,:person_number ,:person_floor , :local_phone, :mobile_phone, :personnal_notes, :_destroy], \
         lands_attributes: [:id, :land_number, :land_url, :land_area, :land_holding_point_personal, :land_holding_point_all, :_destroy], \
         objectbuilds_attributes: [:id, :address, :total_price, :build_area, :house_age, :floor_height, :surveyora, :surveyorb, :plusa, :plusb, :objectbuild_url, :_destroy], \
         builds_attributes: [:id, :build_number,:build_url,:build_area, :build_holding_point_personal, :build_holding_point_all, :build_type_use,:use_partition, :_destroy] )

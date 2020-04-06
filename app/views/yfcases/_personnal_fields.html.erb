@@ -22,29 +22,63 @@
                     <td scope="col" style="width:85%;">
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <%= f.text_field :name, label: "姓名" %>
+                                <%= f.text_field :name, class: "form-control",placeholder: "請輸入姓名" %>
                             </div>
                             <div class="form-group col-md-3">
-                                <%= f.text_field :identity_card, label: "身分証(統一編號)" %>
+
+                                <%= f.text_field :identity_card, class: "form-control",placeholder: "請輸入身分証(統一編號)" %>
                             </div>
                             <div class="form-group col-md-6">
-                                <%= f.date_field :birthday, label: "生日" %>
+
+                                <%= f.date_field :birthday, class: "form-control",placeholder: "請輸入生日" %>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <%= f.text_field :local_phone, label: "市內電話" %>
+
+                                <%= f.text_field :local_phone, class: "form-control",placeholder: "請輸入市內電話" %>
                             </div>
                             <div class="form-group col-md-4">
-                                <%= f.text_field :mobile_phone, label: "手機號碼" %>
+
+                                <%= f.text_field :mobile_phone, class: "form-control",placeholder: "請輸入手機號碼" %>
                             </div>
                             <div class="form-group col-md-4">
-                                <%= f.text_field :personnal_notes, label: "備註" %>
+
+                                <%= f.text_field :personnal_notes, class: "form-control",placeholder: "請輸入備註" %>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group col-md-12">
-                                <%= f.text_field :other_address, label: '地址' %>
+                            <div class="form-group col-md-2">
+                                <%= f.text_field :person_country, class: "form-control",placeholder: "縣市" %>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <%= f.text_field :person_township, class: "form-control",placeholder: "鄉鎮" %>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <%= f.text_field :person_village, class: "form-control",placeholder: "村里" %>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <%= f.text_field :person_neighbor, class: "form-control",placeholder: "鄰" %>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <%= f.text_field :person_street, class: "form-control",placeholder: "街路" %>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <%= f.text_field :person_section, class: "form-control",placeholder: "段" %>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <%= f.text_field :person_lane, class: "form-control",placeholder: "巷" %>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <%= f.text_field :person_alley, class: "form-control",placeholder: "弄" %>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <%= f.text_field :person_number, class: "form-control",placeholder: "號" %>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <%= f.text_field :person_floor, class: "form-control",placeholder: "樓" %>
                             </div>
                         </div>
                     </td>
@@ -53,3 +87,4 @@
         </table>
     </div>
 </div>
+
