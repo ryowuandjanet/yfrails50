@@ -51,7 +51,16 @@ module ApplicationHelper
 		return result
 	end
 
-
+	#在網址加上https://前綴字
+	def add_https(str)
+		if str.blank?
+			return ""
+		elsif str[0..3] != 'http'
+			return "https://"+str
+		else
+			return str
+		end
+	end
 
 
 	def testvalue(x,a,b)
@@ -65,6 +74,8 @@ module ApplicationHelper
 			x * ((a+b)/2)
 		end
 	end
+
+
 
 	# def all_tags
 	#   tags.map(&:totalpriced)

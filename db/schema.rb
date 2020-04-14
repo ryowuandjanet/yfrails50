@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_06_083014) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 2020_04_14_033548) do
 
   create_table "builds", force: :cascade do |t|
     t.string "build_number"
@@ -23,7 +20,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_083014) do
     t.integer "build_holding_point_all"
     t.string "build_type_use"
     t.string "use_partition"
-    t.bigint "yfcase_id", null: false
+    t.integer "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["yfcase_id"], name: "index_builds_on_yfcase_id"
@@ -41,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_083014) do
     t.decimal "land_area", precision: 5, scale: 2
     t.integer "land_holding_point_personal"
     t.integer "land_holding_point_all"
-    t.bigint "yfcase_id", null: false
+    t.integer "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["yfcase_id"], name: "index_lands_on_yfcase_id"
@@ -58,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_083014) do
     t.string "surveyorb"
     t.decimal "plusa", precision: 3, scale: 2
     t.decimal "plusb", precision: 3, scale: 2
-    t.bigint "yfcase_id", null: false
+    t.integer "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["yfcase_id"], name: "index_objectbuilds_on_yfcase_id"
@@ -75,7 +72,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_083014) do
     t.string "local_phone"
     t.string "mobile_phone"
     t.string "personnal_notes"
-    t.bigint "yfcase_id", null: false
+    t.integer "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "person_country"
@@ -94,7 +91,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_083014) do
   create_table "plusrateas", force: :cascade do |t|
     t.string "persona"
     t.decimal "plusa", precision: 4, scale: 2
-    t.bigint "objectbuild_id", null: false
+    t.integer "objectbuild_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["objectbuild_id"], name: "index_plusrateas_on_objectbuild_id"
@@ -103,7 +100,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_083014) do
   create_table "plusratebs", force: :cascade do |t|
     t.string "personb"
     t.decimal "plusb", precision: 4, scale: 2
-    t.bigint "objectbuild_id", null: false
+    t.integer "objectbuild_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["objectbuild_id"], name: "index_plusratebs_on_objectbuild_id"
@@ -111,25 +108,34 @@ ActiveRecord::Schema.define(version: 2020_04_06_083014) do
 
   create_table "subsigntrueas", force: :cascade do |t|
     t.string "signtruea"
-    t.bigint "yfcase_id", null: false
+    t.integer "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "signtruea_first_name"
+    t.string "signtruea_last_name"
+    t.date "signtruea_date"
     t.index ["yfcase_id"], name: "index_subsigntrueas_on_yfcase_id"
   end
 
   create_table "subsigntruebs", force: :cascade do |t|
     t.string "signtrueb"
-    t.bigint "yfcase_id", null: false
+    t.integer "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "signtrueb_first_name"
+    t.string "signtrueb_last_name"
+    t.date "signtrueb_date"
     t.index ["yfcase_id"], name: "index_subsigntruebs_on_yfcase_id"
   end
 
   create_table "subsigntruecs", force: :cascade do |t|
     t.string "signtruec"
-    t.bigint "yfcase_id", null: false
+    t.integer "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "signtruec_first_name"
+    t.string "signtruec_last_name"
+    t.date "signtruec_date"
     t.index ["yfcase_id"], name: "index_subsigntruecs_on_yfcase_id"
   end
 
@@ -225,6 +231,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_083014) do
     t.boolean "water_and_power_failure"
     t.boolean "good_vision"
     t.integer "user_id"
+    t.date "final_decision_date"
     t.index ["country_id"], name: "index_yfcases_on_country_id"
     t.index ["township_id"], name: "index_yfcases_on_township_id"
     t.index ["user_id"], name: "index_yfcases_on_user_id"

@@ -14,14 +14,12 @@
 
 <!-- 基本資料 -->
 <div class="basedata">
-    <table class="table">
-        <tr>
-            <th style="border-bottom:1px dashed #000;">案號</th>
-            <td style="border-bottom:1px dashed #000;">
-                <%= @yfcase.case_number %>
-            </td>
-            <th style="border-bottom:1px dashed #000;">債務人</th>
-            <td>
+    <div class="container">
+        <div class="row">
+            <div class="xa1100 col-md-1 bd-th-50">案號</div>
+            <div class="xa1200 col-md-5 bd-td-50"><%= @yfcase.case_number %></div>
+            <div class="xa1300 col-md-1 bd-th-50">債務人</div>
+            <div class="xa1400 col-md-2">
             	<% if @yfcase.personnals.where(is_debtor: true).count > 1 %>
                     <%= @yfcase.personnals.where(is_debtor: true).first.name %> ...共<%= @yfcase.personnals.where(is_debtor: true).count %>名<br>
                     <%= (@yfcase.co_owner == true ) ? '土地/建物共有人一致' : ' ' %>
@@ -31,9 +29,9 @@
                 <% else %>
                     <%= ' ' %>
                 <% end %>
-            </td>
-            <th class="x110002" style="border-bottom:1px dashed #000;">債權人</th>
-            <td class="x120002" style="border-bottom:1px dashed #000;">
+            </div>
+            <div class="xa1500 col-md-1 bd-th-50">債權人</div>
+            <div class="xa1600 col-md-2 ">
                 <% if @yfcase.personnals.where(is_creditor: true).count > 1 %>
                     <%= @yfcase.personnals.where(is_creditor: true).first.name %> ...共<%= @yfcase.personnals.where(is_creditor: true).count %>名
                 <% elsif @yfcase.personnals.where(is_creditor: true).count == 1 %>
@@ -41,86 +39,79 @@
                 <% else %>
                     <%= ' ' %>
                 <% end %>
-            </td>
-        </tr>
-        <tr>
-            <th class="x110003">地址</th>
-            <td class="x120003">
-                <%= @yfcase.township.try(:zip_code) %> <%= @yfcase.country.try(:name) %><%= \
-                @yfcase.township.try(:name) %><%= @yfcase.other_address %>
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="xa2100 col-md-1 bd-th-30">地址</div>
+            <div class="xa2200 col-md-11 bd-td-30">
+                    <%= @yfcase.township.try(:zip_code) %> <%= @yfcase.country.try(:name) %><%= \
+                    @yfcase.township.try(:name) %><%= @yfcase.other_address %>
+            </div>
+        </div>
+    </div>
 </div>
 <br>
 
 <!-- 土地 -->
 <div class="land">
-    <table class="table">
-        <tr>
-            <th>地號</th>
-            <th>地號謄本</th>
-            <th>地坪(面積)<br>平方公尺(坪)</th>
-            <th>持分</th>
-            <th>地坪(持分)<br>平方公尺(坪)</th>
-            <td></td>
-            <th>地坪(面積)<br>平方公尺(坪)</th>
-            <td></td>
-            <th>建坪(面積)<br>平方公尺(坪)</th>
-        </tr>
-        <tr>
-            <td>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="xb1100 col-md-4 xb-th-color-cornsilk">地號</div>
+                    <div class="xb1200 col-md-1 xb-th-color-cornsilk">地號<br>謄本</div>
+                    <div class="xb1300 col-md-3 xb-th-color-cornsilk">地坪(面積)<br>平方公尺(坪)</div>
+                    <div class="xb1400 col-md-1 xb-th-color-cornsilk">持分</div>
+                    <div class="xb1500 col-md-2 xb-th-color-cornsilk">地坪(持分)<br>平方公尺(坪)</div>
+                </div>
                 <% @yfcase.lands.each do |land| %>
-                <%= land.land_number %><br>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <%= land.land_number %>
+                        </div>
+
+                        <div class="col-md-1">
+                            <%= land.land_url == "" ? ' ' : (link_to "連結", land.land_url, target: "_blank") %>
+                        </div>
+
+                        <div class="col-md-3">
+                            <%= area(land.land_area,1,1,1).round(2) %>(<%= area(land.land_area,1,1,0.3025).round(2) %>)
+                            
+                        </div>
+
+                        <div class="col-md-1">
+                            <%= land.land_holding_point_personal %>/<%= land.land_holding_point_all %> 
+                        </div>
+
+                        <div class="col-md-2">
+                            <%= area(land.land_area,land.land_holding_point_personal,land.land_holding_point_all,1).round(2) %>(<%= area(land.land_area,land.land_holding_point_personal,land.land_holding_point_all,0.3025).round(2) %>)
+                            
+                        </div>
+                    </div>
                 <% end %>
-            </td>
-            <td>
-                <% @yfcase.lands.each do |land| %>
-                <% if land.land_url == "" %>
-                <%= link_to " " %> <br>
-                <% else%>
-                <%= link_to "連結", land.land_url, target: "_blank" %>　<br>
-                <% end %>
-                <% end %>
-            </td>
-            <td>
-                <% @yfcase.lands.each do |land| %>
-                <%= area(land.land_area,1,1,1).round(2) %> (
-                <%= area(land.land_area,1,1,0.3025).round(2) %>) <br>
-                <% end %>
-            </td>
-            <td>
-                <% @yfcase.lands.each do |land| %>
-                <%= land.land_holding_point_personal %>/
-                <%= land.land_holding_point_all %> <br>
-                <% end %>
-            </td>
-            <td>
-                <% @yfcase.lands.each do |land| %>
-                <%= area(land.land_area,land.land_holding_point_personal,land.land_holding_point_all,1).round(2) %> (
-                <%= area(land.land_area,land.land_holding_point_personal,land.land_holding_point_all,0.3025).round(2) %>) <br>
-                <% end %>
-            </td>
-            <td></td>
-            <td>
-                <% if @yfcase.lands.count ==0 %>
-                <%= " " %>
-                <% else %>
-                <%= number_to_currency(@landtotalarea, unit: "", precision: 2) %> (
-                <%= number_to_currency(@landtotalarea * 0.3025, unit: "", precision: 2) %>)
-                <% end %>
-            </td>
-            <td></td>
-            <td>
-                <% if @yfcase.builds.count ==0 %>
-                <%= " " %>
-                <% else %>
-                <%= number_to_currency(@buildtotalarea, unit: "", precision: 2) %> (
-                <%= number_to_currency(@buildtotalarea * 0.3025, unit: "", precision: 2) %>)
-                <% end %>
-            </td>
-        </tr>
-    </table>
+        
+            </div>
+
+            <div class="col-md-3">
+                <div class="row">
+                    <div class="xb2100 col-md-6 xb-th-color-cornsilk">地坪(面積)<br>平方公尺(坪)</div>
+                    <div class="xb2200 col-md-6 xb-th-color-cornsilk">建坪(面積)<br>平方公尺(坪)</div>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <%= @yfcase.lands.count == 0 ? ' ' : (number_to_currency(@landtotalarea, unit: "", precision: 2)+"("+number_to_currency(@landtotalarea * 0.3025, unit: "", precision: 2)+")")  %>
+                    </div>
+                    <div class="col-md-6">
+                        <%= @yfcase.builds.count == 0 ? ' ' : (number_to_currency(@buildtotalarea, unit: "", precision: 2)+"("+number_to_currency(@buildtotalarea * 0.3025, unit: "", precision: 2)+")") %>
+                    </div>  
+
+                </div>   
+            </div> 
+
+        </div>
+    </div>
 </div>
 <br>  
 
@@ -419,13 +410,13 @@
         <tr>
             <th>法拍公告(證物三)</th>
             <td>
-                <%= link_to @yfcase.foreclosure_announcement_title, @yfcase.foreclosure_announcement_link, target: "_blank" %>
+                <%= link_to @yfcase.foreclosure_announcement_title, add_https(@yfcase.foreclosure_announcement_link), target: "_blank" %>
             </td>
         </tr>
         <tr>
             <th>物件照片(證物四)</th>
             <td>
-                <%= link_to @yfcase.object_photo_title, @yfcase.object_photo_link, target: "_blank" %>
+                <%= link_to @yfcase.object_photo_title, add_https(@yfcase.object_photo_link) , target: "_blank" %>
             </td>
         </tr>
         <tr>
@@ -441,13 +432,13 @@
                         <th>樓高</th>
                         <% if user_signed_in? %>
                             <th>勘查員A</th>
-                        <% end %>
-                        <th>加成A</th>
-                        <% if user_signed_in? %>
+
+                            <th>加成A</th>
+
                             <th>勘查員B</th>
-                        <% end %>
                         <th>加成B</th>
                         <th>計算</th>
+                        <% end %>
                     </tr>
                     <% @yfcase.objectbuilds.each do |objectbuild| %>
                     <tr>
@@ -481,34 +472,36 @@
                         </td>
                         <% if user_signed_in? %>
                             <td>
-                                <% if objectbuild.plusa.blank? %>
-                                    <%= link_to "待評分", editplusratea_yfcase_objectbuild_path(@yfcase,objectbuild),class: "btn btn-primary btn-sm" %>
-                                <% else %>
+                                <% if objectbuild.surveyora.present? %>
                                     <%= objectbuild.surveyora %>
+                                <% elsif objectbuild.surveyorb == (current_user.first_name + current_user.last_name) %>
+                                    已評
+                                <% else %>
+                                    <%= link_to "待評分", editplusratea_yfcase_objectbuild_path(@yfcase,objectbuild),class: "btn btn-primary btn-sm" %>
                                 <% end %>
                             </td>
-                        <% end %>  
-                        <td>
-                            <% @plusa=objectbuild.plusa %>
-                            <%= @plusa %>
-                        </td>
-                        <% if user_signed_in? %>
                             <td>
-                                <% if objectbuild.plusb.blank? %>
-                                    <%= link_to "待評分", editplusrateb_yfcase_objectbuild_path(@yfcase,objectbuild),class: "btn btn-primary btn-sm" %>
-                                <% else %>
+                                <% @plusa=objectbuild.plusa %>
+                                <%= @plusa %>
+                            </td>
+                            <td>
+                                <% if objectbuild.surveyorb.present? %>
                                     <%= objectbuild.surveyorb %>
+                                <% elsif objectbuild.surveyora == (current_user.first_name + current_user.last_name) %>
+                                    已評
+                                <% else %>
+                                    <%= link_to "待評分", editplusrateb_yfcase_objectbuild_path(@yfcase,objectbuild),class: "btn btn-primary btn-sm" %>
                                 <% end %>
+                            </td>
+                            <td>
+                                <% @plusb=objectbuild.plusb %>
+                                <%= @plusb %>
+                            </td>
+                            <td>
+                                <% @totalmesa = testvalue(objectbuild.total_price.to_f/objectbuild.build_area.to_f,@plusa,@plusb)*10000 %>
+                                <%= number_to_currency(@totalmesa, unit: "", precision: 0 ) %>
                             </td>
                         <% end %>
-                        <td>
-                            <% @plusb=objectbuild.plusb %>
-                            <%= @plusb %>
-                        </td>
-                        <td>
-                            <% @totalmesa = testvalue(objectbuild.total_price.to_f/objectbuild.build_area.to_f,@plusa,@plusb)*10000 %>
-                            <%= number_to_currency(@totalmesa, unit: "", precision: 0 ) %>
-                        </td>
                     </tr>
                     <% end %>
                 </table>
@@ -521,7 +514,7 @@
         <tr>
             <th>法拍記錄(證物七)</th>
             <td>
-                <%= link_to @yfcase.auction_record_title, @yfcase.auction_record_link, target: "_blank" %>
+                <%= link_to @yfcase.auction_record_title, add_https(@yfcase.auction_record_link), target: "_blank" %>
             </td>
         </tr>
 
@@ -680,42 +673,113 @@
         </tr>
         <tr>
             <td>
-                <%= @yfcase.final_decision %>
+                <% if @yfcase.final_decision == "3拍進場" %>
+                    <div class="final_decision_style_3">
+                        <%= @yfcase.final_decision %>
+                    </div>
+                <% elsif @yfcase.final_decision == "4拍進場" %>
+                    <div class="final_decision_style_4">
+                        <%= @yfcase.final_decision %>
+                    </div>
+                <% elsif @yfcase.final_decision == "放棄" %>
+                    <div class="final_decision_style_giveup">
+                        <%= @yfcase.final_decision %>
+                    </div>
+                <% else %>
+                    <%= "" %>
+                <% end %>
             </td>
             <td>
+                  <div class="printcss">
+                    <div class="printcss-head">
+                      <%= @yfcase.user.first_name %>
+                    </div>
+                    <div class="printcss-body">
+                      <%= @yfcase.final_decision_date %>
+                    </div>
+                    <div class="printcss-footer">
+                      <%= @yfcase.user.last_name %>
+                    </div>    
+                  </div>
+
+                <!--
                 <%= @yfcase.user.first_name %>
                 <%= @yfcase.user.last_name %>
+                -->
             </td>
             <td>
                 <% if @yfcase.subsigntrueas.first == nil %>
                     <%= ' ' %>
                 <% else %>
+                    <!--
                     <%= @yfcase.subsigntrueas.first.signtruea %>
+                    -->
+                    <div class="printcss">
+                        <div class="printcss-head">
+                            <%= @yfcase.subsigntrueas.first.signtruea_first_name %>
+                        </div>
+                        <div class="printcss-body">
+                            <%= @yfcase.subsigntrueas.first.signtruea_date %>
+                        </div>
+                        <div class="printcss-footer">
+                            <%= @yfcase.subsigntrueas.first.signtruea_last_name %>
+                        </div>    
+                    </div>
                 <% end %>
             </td>
             <td>
                 <% if @yfcase.subsigntruebs.first == nil %>
                     <%= ' ' %>
                 <% else %>
+                    <!--
                     <%= @yfcase.subsigntruebs.first.signtrueb %>
+                    -->
+                    <div class="printcss">
+                        <div class="printcss-head">
+                            <%= @yfcase.subsigntruebs.first.signtrueb_first_name %>
+                        </div>
+                        <div class="printcss-body">
+                            <%= @yfcase.subsigntruebs.first.signtrueb_date %>
+                        </div>
+                        <div class="printcss-footer">
+                            <%= @yfcase.subsigntruebs.first.signtrueb_last_name %>
+                        </div>    
+                    </div>
                 <% end %>
             </td>
             <td>
                 <% if @yfcase.subsigntruecs.first == nil %>
                     <%= ' ' %>
                 <% else %>
+                    <!--
                     <%= @yfcase.subsigntruecs.first.signtruec %>
+                    -->
+                    <div class="printcss">
+                        <div class="printcss-head">
+                            <%= @yfcase.subsigntruecs.first.signtruec_first_name %>
+                        </div>
+                        <div class="printcss-body">
+                            <%= @yfcase.subsigntruecs.first.signtruec_date %>
+                        </div>
+                        <div class="printcss-footer">
+                            <%= @yfcase.subsigntruecs.first.signtruec_last_name %>
+                        </div>    
+                    </div>
                 <% end %>
             </td>
         </tr>
     </table>
 </div>
 <br>
-<% if @yfcase.editable_by?(current_user) %>
-<div id="showitem">
-    <%= link_to '轉換成(PDF)', yfcase_path(@yfcase, format: "pdf"),class: "btn btn-success" %>
-	<%= link_to '編輯', edit_yfcase_path(@yfcase),class: "btn btn-primary" %> |
-	<%= link_to '返回', yfcases_path,class: "btn btn-info" %>
-</div>
+<% if @yfcase.editable_by?(current_user) && @yfcase.subsigntrueas.blank? %>
+    <div id="showitem">
+        <%= link_to '轉換成(PDF)', yfcase_path(@yfcase, format: "pdf"),class: "btn btn-success" %>
+    	<%= link_to '編輯', edit_yfcase_path(@yfcase),class: "btn btn-primary" %> |
+        <%= link_to '返回', yfcases_path,class: "btn btn-info" %>
+    </div>
+<% else %>
+    <div id="showitem">
+        <%= link_to '返回', yfcases_path,class: "btn btn-info" %>
+    </div>
 <% end %>
 

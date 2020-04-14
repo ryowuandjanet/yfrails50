@@ -23,6 +23,6 @@ class YfcaseSubsigntrueaController < ApplicationController
 	end
 
 	def signtruea_params
-		params.require(:subsigntruea).permit(:signtruea)
+		params.require(:subsigntruea).permit(:signtruea,:signtruea_first_name,:signtruea_last_name,:signtruea_date)
 	end
 end

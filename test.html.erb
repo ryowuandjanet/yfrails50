@@ -1,0 +1,10 @@
+<!-- 確認字串的前4是否不為"http"，是：在字串前面加入"https://"，否:直接輸出 -->
+def add_https(str)
+	if str.blank?
+		return ""
+	elsif str[0..3] != 'http'
+		return "https://"+str
+	else
+		return str
+	end
+end

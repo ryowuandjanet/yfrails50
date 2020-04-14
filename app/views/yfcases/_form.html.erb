@@ -278,7 +278,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-2">
-                        勘查項目
+                        法拍公告(證物三)
                     </div>
                     <div class="form-group col-md-3">
                         <%= f.text_field :foreclosure_announcement_title,class: "form-control",placeholder: "請輸入勘查項目標題" %>
@@ -364,6 +364,7 @@
                 <table id="finaldecision">
                     <tr>
                         <th>
+                            <%= f.hidden_field :final_decision_date, :value => "#{Time.now.strftime('%Y-%m-%d')}" %>
                             <%= f.label :final_decision,"結論" %>
                         </th>
                         <td>
@@ -377,12 +378,14 @@
     <br>
     <div class="form-group">
         <%= f.submit "更新YF評量表", class: "btn btn-outline-dark" %>
-        <%= link_to "返回", root_path, class: "btn btn-outline-secondary" %>
+        <%= link_to "返回", @yfcase, class: "btn btn-outline-secondary" %>
     </div>
 </div>
 <script>
     $(function() {
-        $('.datepicker').datepicker();
+        $('.datepicker').datepicker({
+            dateFormat: "yy-mm-dd"
+        });
     });
 </script>
 <% end %>

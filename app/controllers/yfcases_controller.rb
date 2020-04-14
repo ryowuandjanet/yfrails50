@@ -173,7 +173,7 @@ class YfcasesController < ApplicationController
         :foreclosure_announcement_title,:foreclosure_announcement_link,:object_photo_title,:object_photo_link, \
         :net_price_registration_market_price_title,:net_price_registration_market_price_link,:net_price_registration_map_title,:net_price_registration_map_link,:net_price_registration_photo_title,:net_price_registration_photo_link, \
         :auction_record_title,:auction_record_link,:other_notes,:survey_resolution,:final_decision, \
-        :occupy,:register,:parking_space,:management_fee,:rent,:leak,:easy_parking,:railway,:vegetable_market,:supermarket,:school,:park,:post_office,:main_road,:water_and_power_failure,:good_vision, \
+        :occupy,:register,:parking_space,:management_fee,:rent,:leak,:easy_parking,:railway,:vegetable_market,:supermarket,:school,:park,:post_office,:main_road,:water_and_power_failure,:good_vision, :final_decision_date, \
         personnals_attributes: [:id, :is_debtor, :is_creditor, :is_land_owner, :is_build_owner, :name, :identity_card, :birthday,:person_country ,:person_township ,:person_village ,:person_neighbor ,:person_street ,:person_section ,:person_lane ,:person_alley ,:person_number ,:person_floor , :local_phone, :mobile_phone, :personnal_notes, :_destroy], \
         lands_attributes: [:id, :land_number, :land_url, :land_area, :land_holding_point_personal, :land_holding_point_all, :_destroy], \
         objectbuilds_attributes: [:id, :address, :total_price, :build_area, :house_age, :floor_height, :surveyora, :surveyorb, :plusa, :plusb, :objectbuild_url, :_destroy], \

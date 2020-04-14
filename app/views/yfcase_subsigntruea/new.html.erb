@@ -3,6 +3,9 @@
 <%= form_for @signtruea , :url => yfcase_subsigntrueas_path( @yfcase ) do |f| %>
 <div class="form-group">
     <%= f.hidden_field :signtruea, :value => "#{current_user.first_name}#{current_user.last_name}" %>
+    <%= f.hidden_field :signtruea_first_name, :value => "#{current_user.first_name}" %>
+    <%= f.hidden_field :signtruea_last_name, :value => "#{current_user.last_name}" %>
+    <%= f.hidden_field :signtruea_date, :value => "#{Time.now.strftime('%Y-%m-%d')}" %>
 </div>
 
 <div class="form-group">

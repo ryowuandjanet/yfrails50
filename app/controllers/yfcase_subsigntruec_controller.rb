@@ -23,6 +23,6 @@ class YfcaseSubsigntruecController < ApplicationController
 	end
 
 	def signtruec_params
-		params.require(:subsigntruec).permit(:signtruec)
+		params.require(:subsigntruec).permit(:signtruec,:signtruec_first_name,:signtruec_last_name,:signtruec_date)
 	end
 end
