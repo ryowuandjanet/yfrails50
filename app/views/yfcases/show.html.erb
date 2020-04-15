@@ -12,14 +12,15 @@
     <%= address(p.person_country,p.person_township,p.person_village,p.person_neighbor,p.person_street,p.person_section,p.person_lane,p.person_alley,p.person_number,p.person_floor) %>
 <% end %>
 
+
 <!-- 基本資料 -->
-<div class="basedata">
-    <div class="container">
-        <div class="row">
-            <div class="xa1100 col-md-1 bd-th-50">案號</div>
-            <div class="xa1200 col-md-5 bd-td-50"><%= @yfcase.case_number %></div>
-            <div class="xa1300 col-md-1 bd-th-50">債務人</div>
-            <div class="xa1400 col-md-2">
+<div class="basedata" style="width:1000px;">
+    <table style="border:3px solid black;">
+        <tr>
+            <th class="xa1100 font-th">案號</th>
+            <td class="xa1200 font-td"><%= @yfcase.case_number %></td>
+            <th class="xa1300 font-th">債務人</th>
+            <td class="xa1400 font-td">
             	<% if @yfcase.personnals.where(is_debtor: true).count > 1 %>
                     <%= @yfcase.personnals.where(is_debtor: true).first.name %> ...共<%= @yfcase.personnals.where(is_debtor: true).count %>名<br>
                     <%= (@yfcase.co_owner == true ) ? '土地/建物共有人一致' : ' ' %>
@@ -29,9 +30,9 @@
                 <% else %>
                     <%= ' ' %>
                 <% end %>
-            </div>
-            <div class="xa1500 col-md-1 bd-th-50">債權人</div>
-            <div class="xa1600 col-md-2 ">
+            </td>
+            <th class="xa1500 font-th">債務人</th>
+            <td class="xa1600 font-td">
                 <% if @yfcase.personnals.where(is_creditor: true).count > 1 %>
                     <%= @yfcase.personnals.where(is_creditor: true).first.name %> ...共<%= @yfcase.personnals.where(is_creditor: true).count %>名
                 <% elsif @yfcase.personnals.where(is_creditor: true).count == 1 %>
@@ -39,126 +40,129 @@
                 <% else %>
                     <%= ' ' %>
                 <% end %>
-            </div>
-        </div>
-        <div class="row">
-            <div class="xa2100 col-md-1 bd-th-30">地址</div>
-            <div class="xa2200 col-md-11 bd-td-30">
-                    <%= @yfcase.township.try(:zip_code) %> <%= @yfcase.country.try(:name) %><%= \
-                    @yfcase.township.try(:name) %><%= @yfcase.other_address %>
-            </div>
-        </div>
-    </div>
+            </td>
+        </tr>
+        <tr>
+            <th class="xa2100 font-th">住址</th>
+            <td class="xa2200 font-td" colspan="5">
+                <%= @yfcase.township.try(:zip_code) %> <%= @yfcase.country.try(:name) %><%= \
+                @yfcase.township.try(:name) %><%= @yfcase.other_address %>
+            </td>
+        </tr>
+    </table>
 </div>
 <br>
 
 <!-- 土地 -->
-<div class="land">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-9">
-                <div class="row">
-                    <div class="xb1100 col-md-4 xb-th-color-cornsilk">地號</div>
-                    <div class="xb1200 col-md-1 xb-th-color-cornsilk">地號<br>謄本</div>
-                    <div class="xb1300 col-md-3 xb-th-color-cornsilk">地坪(面積)<br>平方公尺(坪)</div>
-                    <div class="xb1400 col-md-1 xb-th-color-cornsilk">持分</div>
-                    <div class="xb1500 col-md-2 xb-th-color-cornsilk">地坪(持分)<br>平方公尺(坪)</div>
-                </div>
+<div class="land" style="width:1000px;">
+    <table>
+        <tr>
+            <th class="xb1100 font-th">地號</th>
+            <th class="xb1200 font-th">地號謄本</th>
+            <th class="xb1300 font-th">地坪(面積)<br>平方公尺(坪)</th>
+            <th class="xb1400 font-th">持分</th>
+            <th class="xb1500 font-th">地坪(持分)<br>平方公尺(坪)</th>
+            <td class="xb1600 font-th"></td>
+            <th class="xb1700 font-th">地坪(面積)<br>平方公尺(坪)</th>
+            <td class="xb1800 font-th"></td>
+            <th class="xb1900 font-th">建坪(面積)<br>平方公尺(坪)</th>
+        </tr>
+        <tr>
+            <td class="xb2100 font-td">
                 <% @yfcase.lands.each do |land| %>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <%= land.land_number %>
-                        </div>
-
-                        <div class="col-md-1">
-                            <%= land.land_url == "" ? ' ' : (link_to "連結", land.land_url, target: "_blank") %>
-                        </div>
-
-                        <div class="col-md-3">
-                            <%= area(land.land_area,1,1,1).round(2) %>(<%= area(land.land_area,1,1,0.3025).round(2) %>)
-                            
-                        </div>
-
-                        <div class="col-md-1">
-                            <%= land.land_holding_point_personal %>/<%= land.land_holding_point_all %> 
-                        </div>
-
-                        <div class="col-md-2">
-                            <%= area(land.land_area,land.land_holding_point_personal,land.land_holding_point_all,1).round(2) %>(<%= area(land.land_area,land.land_holding_point_personal,land.land_holding_point_all,0.3025).round(2) %>)
-                            
-                        </div>
-                    </div>
+                    <%= land.land_number %><br>
                 <% end %>
-        
-            </div>
-
-            <div class="col-md-3">
-                <div class="row">
-                    <div class="xb2100 col-md-6 xb-th-color-cornsilk">地坪(面積)<br>平方公尺(坪)</div>
-                    <div class="xb2200 col-md-6 xb-th-color-cornsilk">建坪(面積)<br>平方公尺(坪)</div>
-                </div>
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <%= @yfcase.lands.count == 0 ? ' ' : (number_to_currency(@landtotalarea, unit: "", precision: 2)+"("+number_to_currency(@landtotalarea * 0.3025, unit: "", precision: 2)+")")  %>
-                    </div>
-                    <div class="col-md-6">
-                        <%= @yfcase.builds.count == 0 ? ' ' : (number_to_currency(@buildtotalarea, unit: "", precision: 2)+"("+number_to_currency(@buildtotalarea * 0.3025, unit: "", precision: 2)+")") %>
-                    </div>  
-
-                </div>   
-            </div> 
-
-        </div>
-    </div>
+            </td>
+            <td class="xb2200 font-td">
+                <% @yfcase.lands.each do |land| %>
+                    <%= land.land_url == "" ? ' ' : (link_to "連結", land.land_url, target: "_blank") %><br>
+                <% end %>
+            </td>
+            <td class="xb2300 font-td">
+                <% @yfcase.lands.each do |land| %>
+                    <%= area(land.land_area,1,1,1).round(2) %>(<%= area(land.land_area,1,1,0.3025).round(2) %>)<br>
+                <% end %>
+            </td>
+            <td class="xb2400 font-td">
+                <% @yfcase.lands.each do |land| %>
+                    <%= land.land_holding_point_personal %>/<%= land.land_holding_point_all %><br>
+                <% end %>
+            </td>
+            <td class="xb2500 font-td">
+                <% @yfcase.lands.each do |land| %>
+                    <%= area(land.land_area,land.land_holding_point_personal,land.land_holding_point_all,1).round(2) %>(<%= area(land.land_area,land.land_holding_point_personal,land.land_holding_point_all,0.3025).round(2) %>)<br>
+                <% end %>
+            </td>
+            <td class="xb2600 font-td"></td>
+            <td class="xb2700 font-td">
+                <%= @yfcase.lands.count == 0 ? ' ' : (number_to_currency(@landtotalarea, unit: "", precision: 2)+"("+number_to_currency(@landtotalarea * 0.3025, unit: "", precision: 2)+")") %><br>
+            </td>
+            <td class="xb2800 font-td"></td>
+            <td class="xb2900 font-td">
+                <%= @yfcase.builds.count == 0 ? ' ' : (number_to_currency(@buildtotalarea, unit: "", precision: 2)+"("+number_to_currency(@buildtotalarea * 0.3025, unit: "", precision: 2)+")") %><br>
+            </td>
+        </tr>
+    </table>
 </div>
 <br>  
 
+
 <!-- 建物 -->
-<div class="build">
-    <table class="table">
+<div class="build" style="width:1000px;">
+    <table>
         <tr>
-            <th>建號</th>
-            <th>建號謄本</th>
-            <th>建坪(面積)<br>平方公尺(坪)</th>
-            <th>持分</th>
-            <th>建坪(持分)<br>平方公尺(坪)</th>
-            <th>建物型/使用</th>
-            <th>使用分區</th>
+            <th class="xc1100 font-th">建號</th>
+            <th class="xc1200 font-th">建號謄本</th>
+            <th class="xc1300 font-th">建坪(面積)<br>平方公尺(坪)</th>
+            <th class="xc1400 font-th">持分</th>  
+            <th class="xc1500 font-th">建坪(持分)<br>平方公尺(坪)</th>
+            <th class="xc1600 font-th">建物型/使用</th>
+            <th class="xc1700 font-th">使用分區</th>
         </tr>
-        <% @yfcase.builds.each do |build| %>
         <tr>
-            <td>
-                <%= build.build_number %>
+            <td class="xc2100 font-td">
+        <% @yfcase.builds.each do |build| %>
+                <%= build.build_number %><br>
+        <% end %>
             </td>
-            <td>
+            <td class="xc2200 font-td">
+        <% @yfcase.builds.each do |build| %>
                 <% if build.build_url == "" %>
                 <%= link_to " " %> <br>
                 <% else%>
-                <%= link_to "連結", build.build_url, target: "_blank" %>
+                <%= link_to "連結", build.build_url, target: "_blank" %><br>
                 <% end %>
+        <% end %>
             </td>
-            <td>
+            <td class="xc2300 font-td">
+        <% @yfcase.builds.each do |build| %>
                 <%= area(build.build_area,1,1,1).round(2) %> (
-                <%= area(build.build_area,1,1,0.3025).round(2) %>)
+                <%= area(build.build_area,1,1,0.3025).round(2) %>)<br>
+        <% end %>
             </td>
-            <td>
+            <td class="xc2400 font-td">
+        <% @yfcase.builds.each do |build| %>
                 <%= build.build_holding_point_personal %>/
-                <%= build.build_holding_point_all %>
+                <%= build.build_holding_point_all %><br>
+        <% end %>
             </td>
-            <td>
+            <td class="xc2500 font-td">
+        <% @yfcase.builds.each do |build| %>
                 <%= area(build.build_area,build.build_holding_point_personal,build.build_holding_point_all,1).round(2) %> (
-                <%= area(build.build_area,build.build_holding_point_personal,build.build_holding_point_all,0.3025).round(2) %>)
+                <%= area(build.build_area,build.build_holding_point_personal,build.build_holding_point_all,0.3025).round(2) %>)<br>
+        <% end %>
             </td>
-            <td>
-                <%= build.build_type_use %>
+            <td class="xc2600 font-td">
+        <% @yfcase.builds.each do |build| %>
+                <%= build.build_type_use %><br>
+        <% end %>
             </td>
-            <td>
-                <%= build.use_partition %>
+            <td class="xc2700 font-td">
+        <% @yfcase.builds.each do |build| %>
+                <%= build.use_partition %><br>
+        <% end %>
             </td>
         </tr>
-        <% end %>
     </table>
 </div>
 <br>

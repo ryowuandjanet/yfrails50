@@ -3,201 +3,272 @@ body{
 }
 
 
+/*字型*/
+
+.font-th {
+	font-size: 14pt;
+	font-family: Arial,標楷體,sans-serif;
+	font-width:bold;
+	color:black;
+	text-align: center;	
+}
+
+.font-td {
+	font-size: 12pt;
+	font-family: Arial,微軟正黑體,sans-serif;
+	font-width:bold;
+	color:blue;	
+}
+
 /*基本資料*/
-.basedata {
-	border:1px solid black;
-}
-.bd-th-50 {
-	font-weight: bold;
-	height:50px;
-	text-align: center;
-	line-height:50px;
-	background-color:Bisque;
-}
-
-.bd-th-30 {
-	font-weight: bold;
-	height:30px;
-	text-align: center;
-	line-height:30px;
-	background-color:Bisque;
-}
-
-.bd-td-50 {
-	height:50px;
-	line-height:50px;
-}
-
-.bd-td-30 {
-	height:30px;
-	line-height:30px;
-}
-
-.xa1100 {
-	border-color: black;
-	border-width: 1px;
-	border-style:  none dotted dashed none;
-}
-
-.xa1200 {
-	border-color: black;
-	border-width: 1px;
-	border-style: none dotted dashed none;
-}
-
-.xa1300 {
-	background-color:Bisque;
-	border-color: black;
-	border-width: 1px;
-	border-style: none dotted dashed none;
-}
-
-.xa1400 {
-	border-color: black;
-	border-width: 1px;
-	border-style: none dotted dashed none;
-}
-
-.xa1500 {
-	background-color:Bisque;
-	border-color: black;
-	border-width: 1px;
-	border-style: none dotted dashed none;
-}
-.xa1600 {
-	border-color: black;
-	border-width: 1px;
-	border-style: none none dashed dotted;
-}
-
-.xa1100 {
-	border-color: black;
-	border-width: 1px;
-	border-style: none dotted dashed none;
-}
-
-.xa2100 {
-	border-color: black;
-	border-width: 1px;
-	border-style: none dotted none none;
-}
-
-.no-gutters {
-  margin-right: 0;
-  margin-left: 0;
-
-  > .col,
-  > [class*="col-"] {
-    padding-right: 0;
-    padding-left: 0;
-  }
-}
-
-
-.xb-th-color-cornsilk {
-	background-color:Cornsilk;
-}
-
-.xb-td {
-
-}
-
-.xb1100 {
-
-} 
-
-
-/*.table{
-	margin-bottom: 0px;
-}
-
-.basedata, .land, .build, .auction, .attachment, .finaldecision, .buildchecklist{
-	border:1px solid #000;
-	margin: 0px;
-	padding: 0px;
-}
-
-.basedata th, .land th, .build th, .auction th, .attachment th, .finaldecision th, .buildchecklist th{
-	background-color: #ccc;;
-}
-
-
-
-.x110000 {
-	color:red;
-	text-align:center;
-}
-
-.basedata th {
-	margin: 3px;
-	padding: 3px;
-	width: 100px;
-	text-align: center;
-}
-
-.basedata td {
-	margin: 3px;
-	padding: 3px;
-}
-
-.land th {
-	margin: 3px;
-	padding: 3px;
-	width: 170px;
-	text-align: center;
-}
-
-.land td {
-	margin: 3px;
-	padding: 3px;
-}
-
-.build th {
-	margin: 3px;
-	padding: 3px;
-	width: 170px;
-	text-align: center;
-}
-
-.build td {
-	margin: 3px;
-	padding: 3px;
-}
-
-
-
-.attachment th {
-	margin: 3px;
-	padding: 3px;
-	width: 170px;
-	text-align: center;
-}
-
-.attachment td {
-	margin: 3px;
-	padding: 3px;
-}
-
-.auction th {
-	margin: 3px;
-	padding: 3px;
-	text-align: center;
-}
-
-.auction td {
-	margin: 3px;
-	padding: 3px;
-}
-
-.buildchecklist th {
-	margin: 3px;
-	padding: 3px;
+.xa1100{
+	background-color: pink;
+	border-right:1px dotted black;
+	border-bottom:1px double black;
+	background-color: AntiqueWhite;
 	width: 100px;
 }
 
-.buildchecklist td {
-	margin: 3px;
-	padding: 3px;
-	text-align: center;
-}*/
+.xa1200{
+	border-right:1px dotted black;
+	border-bottom:1px double black;
+	width: 300px;
+	text-align: left;
+}
 
+.xa1300{
+	border-right:1px dotted black;
+	border-bottom:1px double black;
+	background-color: AntiqueWhite;
+	width: 100px;
+}
+.xa1400{
+	border-right:1px dotted black;
+	border-bottom:1px double black;
+	width: 200px;
+}
+
+.xa1500{
+	border-right:1px dotted black;
+	border-bottom:1px double black;
+	background-color: AntiqueWhite;
+	width: 100px;
+}
+.xa1600{
+	border-bottom:1px double black;
+	width: 200px;
+}
+
+.xa2100{
+	border-right:1px dotted black;
+	background-color: AntiqueWhite;
+	width: 100px;
+}
+
+.xa2200{
+	width: 900px;
+}
+
+.xb1100{
+	border-top:3px solid black;
+	border-right:1px dotted black;
+	border-bottom:1px double black;
+	border-left:3px solid black;
+	background-color: Aquamarine;
+	width: 250px;
+}
+.xb1200{
+	border-top:3px solid black;
+	border-right:1px dotted black;
+	border-bottom:1px double black;	
+	background-color: Aquamarine;
+	width: 50px;
+}
+.xb1300{
+	border-top:3px solid black;
+	border-right:1px dotted black;
+	border-bottom:1px double black;	
+	background-color: Aquamarine;
+	width: 150px;
+}
+.xb1400{
+	border-top:3px solid black;
+	border-right:1px dotted black;
+	border-bottom:1px double black;	
+	background-color: Aquamarine;
+	width: 100px;
+}
+.xb1500{
+	border-top:3px solid black;
+	border-right:3px solid black;
+	border-bottom:1px double black;	
+	background-color: Aquamarine;
+	width: 150px;
+}
+.xb1600{
+	border-top:none;
+	border-bottom:none;
+	width: 25px;
+}
+.xb1700{
+	border-top:3px solid black;
+	border-right:3px solid black;
+	border-bottom:double;
+	border-left:3px solid black;
+	background-color: Aquamarine;
+	width: 125px;
+}
+.xb1800{
+	border-top:none;
+	border-bottom:none;
+	width: 25px;
+}
+.xb1900{
+	border-top:3px solid black;
+	border-right:3px solid black;
+	border-bottom:double;
+	border-left:3px solid black;
+	background-color: DeepSkyBlue;
+	width: 125px;
+}
+
+.xb2100{
+	border-right:1px dotted black;
+	border-bottom:3px solid black;
+	border-left:3px solid black;
+	width: 250px;
+}
+.xb2200{
+	border-right:1px dotted black;
+	border-bottom:3px solid black;		
+	width: 50px;
+}
+.xb2300{
+	border-right:1px dotted black;
+	border-bottom:3px solid black;	
+	width: 150px;
+}
+.xb2400{
+	border-right:1px dotted black;
+	border-bottom:3px solid black;	
+	width: 100px;
+}
+.xb2500{
+	border-right:3px solid black;
+	border-bottom:3px solid black;	
+	width: 150px;
+}
+.xb2600{
+	border-top:none;
+	border-bottom:none;
+	width: 25px;
+}
+.xb2700{
+	border-right:3px solid black;
+	border-bottom:3px solid black;
+	border-left:3px solid black;
+	width: 125px;
+	text-align: center;
+}
+.xb2800{
+	border-top:none;
+	border-bottom:none;
+	width: 25px;
+}
+.xb2900{
+	border-right:3px solid black;
+	border-bottom:3px solid black;
+	border-left:3px solid black;
+	width: 125px;
+	text-align: center;
+}
+
+.xc1100{
+	border-top:3px solid black;
+	border-right:1px dotted black;
+	border-bottom:1px double black;
+	border-left:3px solid black;
+	background-color: DeepSkyBlue;
+	width: 250px;
+}
+.xc1200{
+	border-top:3px solid black;
+	border-right:1px dotted black;
+	border-bottom:double;
+	background-color: DeepSkyBlue;
+	width: 50px;
+}
+.xc1300{
+	border-top:3px solid black;
+	border-right:1px dotted black;
+	border-bottom:double;
+	background-color: DeepSkyBlue;
+	width: 150px;
+}
+.xc1400{
+	border-top:3px solid black;
+	border-right:1px dotted black;
+	border-bottom:double;
+	background-color: DeepSkyBlue;
+	width: 100px;
+}
+.xc1500{
+	border-top:3px solid black;
+	border-right:1px dotted black;
+	border-bottom:double;
+	background-color: DeepSkyBlue;
+	width: 150px;
+}
+.xc1600{
+	border-top:3px solid black;
+	border-right:1px dotted black;
+	border-bottom:double;
+	background-color: DeepSkyBlue;
+	width: 150px;
+}
+.xc1700{
+	border-top:3px solid black;
+	border-right:3px solid black;
+	border-bottom:double;
+	background-color: DeepSkyBlue;
+	width: 150px;
+}
+
+.xc2100{
+	border-right:1px dotted black;
+	border-bottom:3px solid black;
+	border-left:3px solid black;
+	width: 250px;
+}
+.xc2200{
+	border-right:1px dotted black;
+	border-bottom:3px solid black;		
+	width: 50px;
+}
+.xc2300{
+	border-right:1px dotted black;
+	border-bottom:3px solid black;	
+	width: 150px;
+}
+.xc2400{
+	border-right:1px dotted black;
+	border-bottom:3px solid black;	
+	width: 100px;
+}
+.xc2500{
+	border-right:1px dotted black;
+	border-bottom:3px solid black;	
+	width: 150px;
+}
+.xc2600{
+	border-right:1px dotted black;
+	border-bottom:3px solid black;
+	width: 150px;
+	text-align: center;
+}
+.xc2700{
+	border-right:3px solid black;
+	border-bottom:3px solid black;
+	width: 150px;
+	text-align: center;
+}
