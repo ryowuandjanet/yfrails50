@@ -5,11 +5,7 @@
 <table class="table">
     <thead class="thead-dark">
         <tr>
-            <% @yfcases.each do |yfcase| %>
-                <% if yfcase.editable_by?(current_user) %>
-                    <th colspan="2">操作</th>
-                <% end %>
-            <% end %>
+            <th>操作</th>
             <th>案號</th>
             <th colspan="4">項目</th>
         </tr>
@@ -27,13 +23,13 @@
             -->
             <td>
                 <%= link_to yfcase, method: :delete, data: { confirm: '你(妳)確定要刪除嗎?' } do %>
-                    <%= fa_icon "window-close",class: "fa-2x" %>
+                <%= fa_icon "window-close",class: "fa-2x" %>
                 <% end %>
             </td>
             <% end %>
             <td>
                 <%= link_to yfcase_path(yfcase) do %>
-                    <%= yfcase.case_number %>
+                <%= yfcase.case_number %>
                 <% end %>
             </td>
             <td>
@@ -45,7 +41,7 @@
             <td>
                 <%= link_to '不動產登記', realestateregistration_yfcase_path(yfcase,format: "pdf") %>
             </td>
-            <td>        
+            <td>
                 <%= link_to '起訴狀', complaint_yfcase_path(yfcase,format: "pdf") %>
             </td>
         </tr>

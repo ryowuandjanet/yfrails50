@@ -39,9 +39,9 @@ module ApplicationHelper
 		result=((((click.to_f-100)/100).abs.ceil)*(monitor.to_f/100*3))
 		
 		if result > 0.15
-			return  "(#{0.15*100}%)/#{currency_helper(floorprice*(1+0.15),0)}"
+			return  "(100% + "+"#{0.15*100}%)"+"\n"+"#{currency_helper(floorprice*(1+0.15),0)}"
 		else
-			return "(#{result*100}%)/#{currency_helper(floorprice*(1+result),0)}"
+			return "(100% + "+"#{result*100}%)"+"\n"+"#{currency_helper(floorprice*(1+result),0)}"
 		end
 	end	
 

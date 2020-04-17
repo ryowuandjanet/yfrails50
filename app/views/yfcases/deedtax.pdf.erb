@@ -5,8 +5,454 @@
 	<title>契稅申請書</title>
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
 	<%= wicked_pdf_stylesheet_link_tag 'pdf' %>
+
 </head>
 <body>
-	<%= @yfcase.case_number %>
+	<!-- 前導資料 -->
+	<table style="border-collapse: collapse;font-size:12px;text-align: center;">
+		<tr style="height:25px;">
+			<td style="border:1px solid black;letter-spacing:40px;" colspan="15">※檔案編號</td>
+			<td style="width:270px;font-size:20pt;" rowspan="4">契稅申報書</td>
+			<td style="border:1px solid black;width:20px;" rowspan="4">※總收文</td>
+			<td style="border:1px solid black;width:20px;" rowspan="2">日期</td>
+			<td style="border:1px solid black;width:240px;" rowspan="2">年　　月　　日</td>
+		</tr>
+		<tr style="height:25px;">
+			<td style="border:1px solid black;" colspan="5" rowspan="2">年　 月</td>
+			<td style="border:1px solid black;letter-spacing:20px;" colspan="10">資料編號</td>
+		</tr>
+		<tr style="height:25px;">
+			<td style="border:1px solid black;" colspan="2">服務區</td>
+			<td style="border:1px solid black;" colspan="2">總分局</td>
+			<td style="border:1px solid black;letter-spacing:10px;" colspan="6">流水號</td>
+			<td style="border:1px solid black;" rowspan="2">字號</td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+		</tr>
+		<tr style="height:25px;">
+			<td style="border:1px solid black;width:18px;">1</td>
+			<td style="border:1px solid black;width:18px;">2</td>
+			<td style="border:1px solid black;width:18px;">3</td>
+			<td style="border:1px solid black;width:18px;">4</td>
+			<td style="border:1px solid black;width:18px;">5</td>
+			<td style="border:1px solid black;width:18px;">6</td>
+			<td style="border:1px solid black;width:18px;">7</td>
+			<td style="border:1px solid black;width:18px;">8</td>
+			<td style="border:1px solid black;width:18px;">9</td>
+			<td style="border:1px solid black;width:18px;">A</td>
+			<td style="border:1px solid black;width:18px;">B</td>
+			<td style="border:1px solid black;width:18px;">C</td>
+			<td style="border:1px solid black;width:18px;">D</td>
+			<td style="border:1px solid black;width:18px;">E</td>
+			<td style="border:1px solid black;width:18px;">F</td>
+		</tr>
+	</table>
+
+	<!-- (1)房屋稅籍編號/(2)建號/(3)移轉房屋坐落 -->
+	<table style="border-collapse: collapse;font-size:12px;text-align: center;">
+		<tr>
+			<td style="border:1px solid black;width:102px;text-align:left;" rowspan="2">(1)房　　屋<br>&nbsp;&nbsp;&nbsp;稅籍編號</td>
+			<td style="border:1px solid black;" colspan="2">鄉鎮<br>市區</td>
+			<td style="border:1px solid black;" colspan="2">村里</td>
+			<td style="border:1px solid black;" colspan="4">冊頁(棟)</td>
+			<td style="border:1px solid black;" colspan="3">分戶號</td>
+			<td style="border:1px solid black;width:54px;" rowspan="2">(2)建號</td>
+			<td style="border:1px solid black;width:140px;" rowspan="2">海北段 205建號</td>
+			<td style="border:1px solid black;width:70px;" rowspan="2">(3)移　　轉<br>&nbsp;&nbsp;&nbsp;房屋坐落</td>
+			<td style="border:1px solid black;width:288px;" rowspan="2">台南市安南區海佃路二段766巷8弄23號</td>
+		</tr>
+		<tr style="height:25px;">
+			<td style="border:1px solid black;width:18px;">1</td>
+			<td style="border:1px solid black;width:18px;">2</td>
+			<td style="border:1px solid black;width:18px;">3</td>
+			<td style="border:1px solid black;width:18px;">4</td>
+			<td style="border:1px solid black;width:15px;">5</td>
+			<td style="border:1px solid black;width:15px;">6</td>
+			<td style="border:1px solid black;width:15px;">7</td>
+			<td style="border:1px solid black;width:15px;">8</td>
+			<td style="border:1px solid black;width:15px;">9</td>
+			<td style="border:1px solid black;width:15px;">A</td>
+			<td style="border:1px solid black;width:15px;">B</td>
+		</tr>
+	</table>
+
+
+	<!-- (4)立契日期或使用執照核發日期（限房屋建造完成前取得所有權案件）/(5)申報日期 -->
+	<table style="border-collapse: collapse;font-size:12px;text-align: center;">
+		<tr style="height:25px;">
+			<td style="border:1px solid black;width:258px;text-align: left;" rowspan="2">(4)立契日期或使用執照核發日期（限房<br>&nbsp;&nbsp;&nbsp;屋建造完成前取得所有權案件）</td>
+			<td style="border:1px solid black;" colspan="3">年</td>
+			<td style="border:1px solid black;" colspan="2">月</td>
+			<td style="border:1px solid black;" colspan="2">日</td>
+			<td style="border:1px solid black;width:310px;text-align: left;" rowspan="2">▉1.一般申報案件<br> □ 2.房屋建造完成前取得所有權案件</td>
+			<td style="border:1px solid black;width:80px;" rowspan="2">(5)申報日期</td>
+			<td style="border:1px solid black;" colspan="3">年</td>
+			<td style="border:1px solid black;" colspan="2">月</td>
+			<td style="border:1px solid black;" colspan="2">日</td>
+		</tr>
+		<tr style="height:25px;">
+			<td style="border:1px solid black;width:12px;">1</td>
+			<td style="border:1px solid black;width:13px;">0</td>
+			<td style="border:1px solid black;width:13px;">9</td>
+			<td style="border:1px solid black;width:13px;">0</td>
+			<td style="border:1px solid black;width:13px;">4</td>
+			<td style="border:1px solid black;width:13px;">1</td>
+			<td style="border:1px solid black;width:13px;">7</td>
+			<td style="border:1px solid black;width:12px;">1</td>
+			<td style="border:1px solid black;width:13px;">0</td>
+			<td style="border:1px solid black;width:13px;">9</td>
+			<td style="border:1px solid black;width:13px;">0</td>
+			<td style="border:1px solid black;width:13px;">4</td>
+			<td style="border:1px solid black;width:13px;">1</td>
+			<td style="border:1px solid black;width:13px;">7</td>
+		</tr>
+	</table>
+
+	<!-- (6)移轉價格(新臺幣) -->
+	<table style="border-collapse: collapse;font-size:12px;text-align: center;">
+		<tr style="height:70px;">
+			<td style="border:1px solid black;width:102px;text-align: left;">(6)移轉價格<br>(新臺幣)</td>
+			<td style="border:1px solid black;width:13px;">*</td>
+			<td style="border:1px solid black;width:13px;">*</td>
+			<td style="border:1px solid black;width:13px;">*</td>
+			<td style="border:1px solid black;width:13px;">*</td>
+			<td style="border:1px solid black;width:13px;">1</td>
+			<td style="border:1px solid black;width:13px;">2</td>
+			<td style="border:1px solid black;width:12px;">2</td>
+			<td style="border:1px solid black;width:12px;">0</td>
+			<td style="border:1px solid black;width:12px;">0</td>
+			<td style="border:1px solid black;width:12px;">0</td>
+			<td style="border:1px solid black;width:12px;">元</td>
+			<td style="border:1px solid black;width:600px;text-align: left;">1.□請按照評定標準價格核課契稅。<br>2.▉本件係領買標購公產或法院拍賣案件請按照評定標準價格或申報移轉價格從低核課契稅。</td>
+		</tr>
+	</table>
+
+	<!-- (7)茲委託 -->
+	<table style="border-collapse: collapse;font-size:12px;text-align: center;">
+		<tr style="height:25px;">
+			<td style="border-width:1px;border-style:none none none solid;width:70px;text-align: left;" rowspan="2">(7)茲委託</td>
+			<td style="width:102px;" rowspan="2">曾小和</td>
+			<td style="width:25px;">先生</td>
+			<td style="border-width:1px;border-style:none solid none none;width:675px;" rowspan="2">代辦契稅申報、領取契稅繳款書或免稅證明書、前業主應繳未繳之房屋稅繳款書及領回證件等事項。</td>
+		</tr>
+		<tr style="height:25px;">
+			<td style="width:13px;">女士</td>
+		</tr>
+	</table>
+
+
+	<!-- (8)原所有權人 -->
+	<table style="border-collapse: collapse;font-size:12px;text-align:center;">
+		<tr>
+			<td style="border:1px solid black;width:102px;text-align:left;" rowspan="6">(8)原所有權人</td>
+			<td style="border:1px solid black;width:70px;" rowspan="2">姓名或名稱</td>
+			<td style="border:1px solid black;width:35px;" rowspan="2">蓋章</td>
+			<td style="border:1px solid black;width:120px;" rowspan="2" colspan="2">國民身分證或事業<br>機關團體統一編號</td>
+			<td style="border:1px solid black;width:30px;" rowspan="2">身分<br>代號</th>
+			<td style="border:1px solid black;width:30px;" rowspan="2">公私<br>有別</th>
+			<td style="border:1px solid black;" colspan="10">通訊地址/<small>新所有權人請填移轉後房屋稅繳款書送單地址</small></td>
+			<td style="border:1px solid black;width:59px;" rowspan="2">權利範圍<br>持分比例</td>
+			<td style="border:1px solid black;width:104px;" rowspan="2">※房屋稅查欠情形</td>
+		</tr>
+			
+		<tr>
+			<td style="border:1px solid black;width:30px;">縣市</td>
+			<td style="border:1px solid black;width:45px;">鄉鎮區</td>
+			<td style="border:1px solid black;width:30px;">村里</td>
+			<td style="border:1px solid black;width:20px;">鄰</td>
+			<td style="border:1px solid black;width:35px;">街路</td>
+			<td style="border:1px solid black;width:25px;">段</td>
+			<td style="border:1px solid black;width:25px;">巷</td>
+			<td style="border:1px solid black;width:20px;">弄</td>
+			<td style="border:1px solid black;width:25px;">號</td>
+			<td style="border:1px solid black;width:20px;">樓</td>
+		</tr>
+
+		<tr style="height:20px;">
+			<td style="border:1px solid black;" rowspan="2">尤玟雅</td>
+			<td style="border:1px solid black;" rowspan="2">kk</td>
+			<td style="border:1px solid black;" colspan="2">A123456789</td>
+			<td style="border:1px solid black;" rowspan="2">B</td>
+			<td style="border:1px solid black;" rowspan="2">私</td>
+			<td style="border:1px solid black;" rowspan="2">台南</td>
+			<td style="border:1px solid black;" rowspan="2">東</td>
+			<td style="border:1px solid black;" rowspan="2">阿里</td>
+			<td style="border:1px solid black;" rowspan="2">29</td>
+			<td style="border:1px solid black;" rowspan="2">安西</td>
+			<td style="border:1px solid black;" rowspan="2">一</td>
+			<td style="border:1px solid black;" rowspan="2">169</td>
+			<td style="border:1px solid black;" rowspan="2">29</td>
+			<td style="border:1px solid black;" rowspan="2">999</td>
+			<td style="border:1px solid black;" rowspan="2">15</td>
+			<td style="border:1px solid black;" rowspan="2">23/223</td>
+			<td style="border:1px solid black;" rowspan="12">一般案件</td>
+		</tr>
+		<tr style="height:20px;">
+			<td style="border:1px solid black;">電話</td>
+			<td style="border:1px solid black;">06-12345671</td>
+		</tr>
+		<tr style="height:20px;">
+			<td style="border:1px solid black;" rowspan="2">閃電俠</td>
+			<td style="border:1px solid black;" rowspan="2">gg</td>
+			<td style="border:1px solid black;" colspan="2">B987654321</td>
+			<td style="border:1px solid black;" rowspan="2">A</td>
+			<td style="border:1px solid black;" rowspan="2">公</td>
+			<td style="border:1px solid black;" rowspan="2">高雄</td>
+			<td style="border:1px solid black;" rowspan="2">仁武</td>
+			<td style="border:1px solid black;" rowspan="2">阿蓮</td>
+			<td style="border:1px solid black;" rowspan="2">35</td>
+			<td style="border:1px solid black;" rowspan="2">德東</td>
+			<td style="border:1px solid black;" rowspan="2">四</td>
+			<td style="border:1px solid black;" rowspan="2">875</td>
+			<td style="border:1px solid black;" rowspan="2">66</td>
+			<td style="border:1px solid black;" rowspan="2">777</td>
+			<td style="border:1px solid black;" rowspan="2">23</td>
+			<td style="border:1px solid black;" rowspan="2">2/117</td>
+		</tr>
+		<tr style="height:20px;">
+			<td style="border:1px solid black;">電話</td>
+			<td style="border:1px solid black;">07-87654321</td>
+		</tr>
+
+		<!-- (9)新所有權人 -->
+		<tr style="height:20px;">
+			<td style="border:1px solid black;text-align:left;" rowspan="4">(9)新所有權人<br>(如為持分共有<br>房屋，請另填寫<br>第(16)欄)</td>
+			<td style="border:1px solid black;" rowspan="2">尤玟雅</td>
+			<td style="border:1px solid black;" rowspan="2">kk</td>
+			<td style="border:1px solid black;" colspan="2">A123456789</td>
+			<td style="border:1px solid black;" rowspan="2">B</td>
+			<td style="border:1px solid black;" rowspan="2">私</td>
+			<td style="border:1px solid black;" rowspan="2">台南</td>
+			<td style="border:1px solid black;" rowspan="2">東</td>
+			<td style="border:1px solid black;" rowspan="2">阿里</td>
+			<td style="border:1px solid black;" rowspan="2">29</td>
+			<td style="border:1px solid black;" rowspan="2">安西</td>
+			<td style="border:1px solid black;" rowspan="2">一</td>
+			<td style="border:1px solid black;" rowspan="2">169</td>
+			<td style="border:1px solid black;" rowspan="2">29</td>
+			<td style="border:1px solid black;" rowspan="2">999</td>
+			<td style="border:1px solid black;" rowspan="2">15</td>
+			<td style="border:1px solid black;" rowspan="2">23/223</td>
+
+		</tr>
+		<tr style="height:20px;">
+			<td style="border:1px solid black;">電話</td>
+			<td style="border:1px solid black;">06-12345671</td>
+		</tr>
+		<tr style="height:20px;">
+			<td style="border:1px solid black;" rowspan="2">閃電俠</td>
+			<td style="border:1px solid black;" rowspan="2">gg</td>
+			<td style="border:1px solid black;" colspan="2">B987654321</td>
+			<td style="border:1px solid black;" rowspan="2">A</td>
+			<td style="border:1px solid black;" rowspan="2">公</td>
+			<td style="border:1px solid black;" rowspan="2">高雄</td>
+			<td style="border:1px solid black;" rowspan="2">仁武</td>
+			<td style="border:1px solid black;" rowspan="2">阿蓮</td>
+			<td style="border:1px solid black;" rowspan="2">35</td>
+			<td style="border:1px solid black;" rowspan="2">德東</td>
+			<td style="border:1px solid black;" rowspan="2">四</td>
+			<td style="border:1px solid black;" rowspan="2">875</td>
+			<td style="border:1px solid black;" rowspan="2">66</td>
+			<td style="border:1px solid black;" rowspan="2">777</td>
+			<td style="border:1px solid black;" rowspan="2">23</td>
+			<td style="border:1px solid black;" rowspan="2">2/117</td>
+
+		</tr>
+		<tr style="height:20px;">
+			<td style="border:1px solid black;">電話</td>
+			<td style="border:1px solid black;">07-87654321</td>
+		</tr>
+
+		<!-- (10)契稅代理人 -->
+		<tr style="height:20px;">
+			<td style="border:1px solid black;text-align:left;" rowspan="2">(10)契稅代理人</td>
+			<td style="border:1px solid black;" rowspan="2">尤玟雅</td>
+			<td style="border:1px solid black;" rowspan="2">kk</td>
+			<td style="border:1px solid black;" colspan="2">A123456789</td>
+			<td style="border:1px solid black;" rowspan="2">B</td>
+			<td style="border:1px solid black;" rowspan="2">私</td>
+			<td style="border:1px solid black;" rowspan="2">台南</td>
+			<td style="border:1px solid black;" rowspan="2">東</td>k
+			<td style="border:1px solid black;" rowspan="2">29</td>
+			<td style="border:1px solid black;" rowspan="2">安西</td>
+			<td style="border:1px solid black;" rowspan="2">一</td>
+			<td style="border:1px solid black;" rowspan="2">169</td>
+			<td style="border:1px solid black;" rowspan="2">29</td>
+			<td style="border:1px solid black;" rowspan="2">999</td>
+			<td style="border:1px solid black;" rowspan="2">15</td>
+			<td style="border:1px solid black;" rowspan="2">23/223</td>
+		</tr>
+		<tr style="height:25px;">
+			<td style="border:1px solid black;">電話</td>
+			<td style="border:1px solid black;">06-12345671</td>
+		</tr>
+
+		<!-- (11)在國內房屋稅納稅代理人 -->
+		<tr style="height:20px;">
+			<td style="border:1px solid black;text-align:left;" rowspan="2">(11)在國內房屋<br>&nbsp;&nbsp;&nbsp;稅納稅代理人</td>
+			<td style="border:1px solid black;" rowspan="2">尤玟雅</td>
+			<td style="border:1px solid black;" rowspan="2">kk</td>
+			<td style="border:1px solid black;" colspan="2">A123456789</td>
+			<td style="border:1px solid black;" rowspan="2">B</td>
+			<td style="border:1px solid black;" rowspan="2">私</td>
+			<td style="border:1px solid black;" rowspan="2">台南</td>
+			<td style="border:1px solid black;" rowspan="2">東</td>
+			<td style="border:1px solid black;" rowspan="2">阿里</td>
+			<td style="border:1px solid black;" rowspan="2">29</td>
+			<td style="border:1px solid black;" rowspan="2">安西</td>
+			<td style="border:1px solid black;" rowspan="2">一</td>
+			<td style="border:1px solid black;" rowspan="2">169</td>
+			<td style="border:1px solid black;" rowspan="2">29</td>
+			<td style="border:1px solid black;" rowspan="2">999</td>
+			<td style="border:1px solid black;" rowspan="2">15</td>
+			<td style="border:1px solid black;" rowspan="2">23/223</td>
+		</tr>
+		<tr style="height:20px;">
+			<td style="border:1px solid black;">電話</td>
+			<td style="border:1px solid black;">06-12345671</td>
+		</tr>
+	</table>
+
+	<!-- (12)案件類型 -->
+	<table style="border-collapse: collapse;font-size:12px;">
+		<tr>
+			<td style="border-width:1px;border-style:none solid;width:102px;">(12)案件類型</td>
+			<td style="border-style:none;width:150px;" colspan="17">□1.買賣□2.典權□3.交換</td>
+			<td style="border-style:none;width:90px;" colspan="17">□4.0贈與<br>□4.1夫妻贈與</td>
+			<td style="border-style:none;width:200px;" colspan="17">□5.分割□6.占有□7.二親等間買賣</td>
+			<td style="border-style:none;width:70px;" colspan="17">□8.1標購<br>▉8.2拍賣<br>□8.3領買</td>
+			<td style="border-style:none;width:150px;" colspan="17">□9.1判決<br>□9.2調解<br>□9.3和解</td>
+			<td style="border-width:1px;border-style:none solid;width:104px;text-align:center;">※查欠人員<br>&nbsp;&nbsp;蓋　　章</td>
+		</tr>
+	</table>
+	
+	<!-- (13)移轉情形 -->
+	<table style="border-collapse: collapse;font-size:12px;">
+		<tr style="height:25px;">
+			<td style="border:1px solid black;width:102px;" rowspan="3">(13)移轉情形</td>
+			<td style="border:1px solid black;width:70px;">層次</td>
+			<td style="border:1px solid black;width:38px;"></td>
+			<td style="border:1px solid black;width:38px;"></td>
+			<td style="border:1px solid black;width:38px;"></td>
+			<td style="border:1px solid black;width:38px;"></td>
+			<td style="border:1px solid black;width:38px;"></td>
+			<td style="border:1px solid black;width:38px;"></td>
+			<td style="border:1px solid black;width:38px;"></td>
+			<td style="border:1px solid black;width:68px;">公設建號</td>
+			<td style="border:1px solid black;width:38px;"></td>
+			<td style="border:1px solid black;width:38px;"></td>
+			<td style="border:1px solid black;width:38px;"></td>
+			<td style="border:1px solid black;width:38px;"></td>
+			<td style="border:1px solid black;width:69px;" rowspan="3">▉未辦保<br>存登記部<br>分一併移<br>轉</td>
+			<td style="border:1px solid black;width:104px;" rowspan="3">我是空白</td>
+		</tr>
+		<tr style="height:25px;">
+			<td style="border:1px solid black;">構造</td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;">面積（m2）</td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+		</tr>
+		<tr style="height:25px;">
+			<td style="border:1px solid black;font-size:9px;">面積(平方公尺)</td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;">持分比例</td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+			<td style="border:1px solid black;"></td>
+		</tr>
+	</table>
+	
+	<!-- (14)申請減免項目 -->
+	<table style="border-collapse: collapse;font-size:12px;">
+		<tr style="height:50px;">
+			<td style="border:1px solid black;width:102px;">(14)申請減免<br>項目</td>
+			<td style="border:1px solid black;width:70px;">□ 1.全免<br>□ 2.減徵</td>
+			<td style="border:1px solid black;width:570px;" colspan="12">合於契稅條例第(　　   )條規定。<br>合於(　　              )條例第(　　  )條(　　  )款規定。</td>
+			<td style="border:1px solid black;width:69px;">*□准<br>*□不准</td>
+			<td style="border:1px solid black;width:104px;text-align:center;">※房屋稅承辦<br>人員蓋章</td>
+		</tr>
+	</table>
+	
+	<!-- (15)檢　　附 -->
+	<table style="margin:0px;border-collapse: collapse;font-size:12px;">
+		<tr style="height:80px;">
+			<td style="border:1px solid black;width:102px;">(15)檢　　附</td>
+			<td style="border:1px solid black;width:708px;"" colspan="5">
+				□契約書正本(查驗後退還)、影本（貼印花部分）1份，　□所有權狀影本共(　　)份。<br>
+				□不動產權利移轉證明書影本1份，□法院判決書及判決確定證明書影本( 　 )份。<br>
+				□身分證明文件影本(   　)份，□該移轉房屋已納房屋稅繳款書影本1份　□其他文件(　　　) 份。<br>
+				<b>
+					□納稅者如有依納稅者權利保護法第7條第8項但書規定，為重要事項陳述者，請另填報「聲明事項表」並檢附相關證明文件。
+				</b>
+			</td>
+			<td style="border:1px solid black;width:104px;"" rowspan="4"></td>
+		</tr>
+
+		<!-- (16)持分共有房屋繳款書填發方式		 -->
+		<tr style="height:70px;">
+			<td style="border:1px solid black;">(16)持分共有房屋繳款書填發方式</td>
+			<td style="border:1px solid black;" colspan="5">
+				□本房屋為持分共有，已推定共有人           為管理人繳納房屋稅。<br>
+				▉本房屋為持分共有，請依稅捐稽徵法第12條規定，按持分比例分別發單課徵房屋稅。
+			</td style="border:1px solid black;">
+		</tr>
+
+		<!-- (17)契稅繳款書領回方式 -->
+		<tr style="height:25px;">
+			<td style="border:1px solid black;" colspan="6">(17)契稅繳款書領回方式  ▉親領　□郵寄　   請寄：</td>
+		</tr>
+		
+		<!-- (18)結案簡訊通知 -->
+		<tr style="height:40px;">
+			<td style="border:1px solid black;">(18)結案簡訊<br>&nbsp;&nbsp;&nbsp;&nbsp;通&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;知</td>
+			<td style="border:1px solid black;width:120px;">▉需要 □不需要</td>
+			<td style="border:1px solid black;width:100px;">(19)※怠報日數</td>
+			<td style="border:1px solid black;width:70px;"></td>
+			<td style="border:1px solid black;width:70px;">(20)備註：</td>
+			<td style="border:1px solid black;"></td>
+		</tr>
+
+	</table>
+
+	<table style="margin:0px;border-collapse: collapse;font-size:12px;">
+	    <tr style="height:120px;">
+	        <td style="border:1px solid black;width:900px;">茲依照契稅條例第14條、第15條、第16條規定填具契稅申報書，請依法核定應納契稅，並依照房屋稅條例第7條之規定申請變更房屋稅<br>
+	            納稅義務人名義。　　　　 此　　致<br>
+	            （稽徵機關全銜）<br>
+	            　　　　鄉（鎮、市）公所<br>
+	            　　　　 申報人 揚富開發有限公司 法定代理人陳美純
+	        </td>
+	    </tr>
+	</table>
+
+	<div style="margin:0px;border-collapse: collapse;font-size:12px;">
+
+		說明：<br>
+			一、本表有※之欄位請免填。<br>
+			二、申報人取得房屋，請依附聯填報不動產移轉後使用情形，供自住使用者，可申請按自住房屋稅率課徵房屋稅及自用住宅用地稅率課徵地價稅，以維護您的權益。<br>
+			<b>
+				三、依據納稅者權利保護法第7條規定，納稅者基於獲得租稅利益，違背稅法之立法目的，濫用法律形式，以非常規交易規避租稅構成要件之該當，以達<br>
+				&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;成與交易常規相當之經濟效果，為租稅規避。稅捐稽徵機關仍根據與實質上經濟利益相當之法律形式，成立租稅上請求權，並加徵滯納金及利息，不<br>
+				&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;得另課予逃漏稅捐之處罰。但納稅者於申報或調查時，對重要事項隱匿或為虛偽不實陳述或提供不正確資料，致使稅捐稽徵機關短漏核定稅捐者，不<br>
+				&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;在此限
+			</b>
+	</div>								
+
+
 </body>
 </html>
