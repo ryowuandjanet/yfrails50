@@ -10,6 +10,7 @@ else
   # 公司
   # wkhtmltopdf_path = 'D:\OQC\Program_Area\wkhtmltox\bin\wkhtmltopdf.exe'
   #自家
+  # wkhtmltopdf_path = '#{Rails.root}/bin/wkhtmltopdf.exe'
   wkhtmltopdf_path = 'D:\ProgramFiles\wkhtmltox\bin\wkhtmltopdf.exe'
   # exe_path: 'D:\ProgramFiles\wkhtmltox\bin\wkhtmltopdf.exe'
 end

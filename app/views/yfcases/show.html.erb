@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <!-- YF評量表 -->
-<h1 class="x110000"><%= @yfcase.case_number %> YF評量表</h1>
 <% if @yfcase.personnals.present? %>
     <%= @yfcase.personnals.first.identity_card.split(//)[2] %>
 <% else %>
@@ -12,9 +11,11 @@
     <%= address(p.person_country,p.person_township,p.person_village,p.person_neighbor,p.person_street,p.person_section,p.person_lane,p.person_alley,p.person_number,p.person_floor) %>
 <% end %>
 
-
 <!-- 基本資料 -->
 <div class="basedata" style="width:1000px;">
+    <h1 class="x110000" style="text-align: center;font-family: Arial,標楷體;font-weight: bold;">
+        <%= @yfcase.case_number %> YF評量表
+    </h1>
     <table style="border:3px solid black;">
         <tr>
             <th class="xa1100 font-th">案號</th>
@@ -111,7 +112,7 @@
 <div class="build" style="width:1000px;">
     <table>
         <tr>
-            <th class="xc1100 font-th">建號</th>
+            <th class="xc1100 font-th;">建號</th>
             <th class="xc1200 font-th">建號謄本</th>
             <th class="xc1300 font-th">建坪(面積)<br>平方公尺(坪)</th>
             <th class="xc1400 font-th">持分</th>  
@@ -632,12 +633,15 @@
 <div class="finaldecision" style="width:1000px;">
     <table>
         <tr>
+            <% yfcasefullname = @yfcase.user.first_name + @yfcase.user.last_name %>
+            <% currentfullname = current_user.first_name + current_user.last_name %>
             <th class="xg1100 font-th">結論</th>
             <th class="xg1200 font-th">區域負責人</th>
             <th class="xg1300 font-th">
-                副署人員1
-                <% if @yfcase.final_decision == " " %>
-                    <%= ' ' %>
+                <% if @yfcase.final_decision.blank? %>
+                    <%= '副署人員1' %>
+                <% elsif yfcasefullname == currentfullname %>
+                    <div style="color:red;font-size:12pt;vertical-align:middle;">負責人不可為副署人員1</div>
                 <% else %>
                     <% if @yfcase.subsigntrueas.first == nil && %>
                          <%= link_to "副署人員1", new_yfcase_subsigntruea_path(@yfcase),class: "btn btn-primary btn-sm" %>
@@ -690,7 +694,7 @@
                 <% end %>
             </td>
             <td  class="xg2200 font-td">
-                  <div class="printcss" style="margin-left:35px">
+                  <div class="printcss" style="margin-left:35px;margin-top:0px;">
                     <div class="printcss-head">
                       <%= @yfcase.user.first_name %>
                     </div>
@@ -714,7 +718,7 @@
                     <!--
                     <%= @yfcase.subsigntrueas.first.signtruea %>
                     -->
-                    <div class="printcss" style="margin-left:35px">
+                    <div class="printcss" style="margin-left:35px;margin-top:0px;">
                         <div class="printcss-head">
                             <%= @yfcase.subsigntrueas.first.signtruea_first_name %>
                         </div>
@@ -734,7 +738,7 @@
                     <!--
                     <%= @yfcase.subsigntruebs.first.signtrueb %>
                     -->
-                    <div class="printcss" style="margin-left:35px">
+                    <div class="printcss" style="margin-left:35px;margin-top:0px;">
                         <div class="printcss-head">
                             <%= @yfcase.subsigntruebs.first.signtrueb_first_name %>
                         </div>
@@ -754,7 +758,7 @@
                     <!--
                     <%= @yfcase.subsigntruecs.first.signtruec %>
                     -->
-                    <div class="printcss" style="margin-left:35px">
+                    <div class="printcss" style="margin-left:35px;margin-top:0px;">
                         <div class="printcss-head">
                             <%= @yfcase.subsigntruecs.first.signtruec_first_name %>
                         </div>
@@ -771,6 +775,7 @@
     </table>
 </div>
 <br>
+
 <% if @yfcase.editable_by?(current_user) && @yfcase.subsigntrueas.blank? %>
     <div id="showitem">
         <%= link_to '轉換成(PDF)', yfcase_path(@yfcase, format: "pdf"),class: "btn btn-success" %>
