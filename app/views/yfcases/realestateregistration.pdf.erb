@@ -1,12 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<!-- 	<meta charset="UTF-8"> -->
-	<title>不動產登記</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8">
-	<%= wicked_pdf_stylesheet_link_tag 'pdf' %>
+    <!-- 	<meta charset="UTF-8"> -->
+    <title>不動產登記</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <%= wicked_pdf_stylesheet_link_tag 'pdf' %>
+    <style type="text/css">
+    	.firstdata:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+    </style>
 </head>
+
 <body>
-	<%= @yfcase.case_number %>
+    <!-- 前導資料 -->
+    <div class="firstdata">
+    	<div style="float: left;width: 33.33%;">
+    		<table style="border-collapse: collapse;font-size:20px;text-align: center;">
+                    <tr>
+                        <td style="border:1px solid black;width:4%;text-align:center;height:102px;" rowspan="2">收<br><br><br>件</td>
+                        <td style="border:1px solid black;width:3%;height:51px;">日期</td>
+                        <td style="border:1px solid black;width:19%;height:51px;text-align: right;">年&nbsp;月&nbsp;日&nbsp;時&nbsp;分</td>
+                        <td style="border:1px solid black;width:5%;" rowspan="2">收件<br><br><br>者章</td>
+                        <td style="border:1px solid black;width:7%;" rowspan="2"></td>
+                        <td style="border-style:none;width:1%;" rowspan="2"></td>
+                    </tr>
+                    <tr style="height:28px;">
+                        <td style="border:1px solid black;">字號</td>
+                        <td style="border:1px solid black;"> 字第		號</td>
+                    </tr>
+                </table>
+    	</div>
+    	<div style="float: left;width: 33.33%;">
+                <table style="border-collapse: collapse;font-size:20px;text-align: center;">
+                    <tr>
+                        <td style="border:1px solid black;width:9%;height:102px;">連件序別<br>（非連件<br>者免填）</td>
+                        <td style="border:1px solid black;width:7%;">共 件</td>
+                        <td style="border:1px solid black;width:7%;">第 件</td>
+                        <td style="border-style:none;width:1%;"></td>
+                    </tr>
+                </table>
+    	</div>
+    	<div style="float: left;width: 33.33%;">
+                <table style="border-collapse: collapse;font-size:20px;text-align: center;">
+                    <tr>
+                        <td style="border:1px solid black;width:8%;height:32px;">登記費</td>
+                        <td style="border:1px solid black;width:10%;">元</td>
+                        <td style="border:1px solid black;width:7%;">合 計</td>
+                        <td style="border:1px solid black;width:12%;">元</td>
+                    </tr>
+                    <tr>
+                        <td style="border:1px solid black;height:32px;">書狀費</td>
+                        <td style="border:1px solid black;">元</td>
+                        <td style="border:1px solid black;">收 據</td>
+                        <td style="border:1px solid black;"> 字 號</td>
+                    </tr>
+                    <tr>
+                        <td style="border:1px solid black;height:32px;">罰 鍰</td>
+                        <td style="border:1px solid black;">元</td>
+                        <td style="border:1px solid black;">核算者</td>
+                        <td style="border:1px solid black;"></td>
+                    </tr>
+                </table>
+    	</div>
+
+    </div>
+	<br>
+    <!-- 土地登記申請書標題 -->
+    <table style="border:1px solid black;font-size:28px;text-align: center;width:100%">
+    	<tr>
+    		<td>土        地        登        記        申        請        書</td>
+    	</tr>
+    </table>
+    <!-- (1)受理機關 / (2)原因發生日期 -->
+    <table style="border-collapse: collapse;font-size:20px;text-align:center;width:100%">
+        <tr>
+            <td style="border:1px solid black;width:9%;height:90px;" rowspan="2">(1)<br>受理<br>機關</td>
+            <td style="border-top:1px solid black;width:10%;text-align:right;height:45px;">縣</td>
+            <td style="border-top:1px solid black;width:17%;text-align:right;">地政事務所</td>
+            <td style="border:1px solid black;width:6%;" rowspan="2">資料管<br>轄機關</td>
+            <td style="border:1px solid black;width:21%;text-align:right;" rowspan="2">縣<br>市<br>地政事務所</td>
+            <td style="border:1px solid black;width:10%;" rowspan="2">(2)原因發生<br>日    期</td>
+            <td style="border:1px solid black;width:26%;" rowspan="2">中華民國    年    月    日</td>
+        </tr>
+        <tr style="height:28px;">
+            <td style="border-style:none;text-align:right;height:45px;">市</td>
+            <td style="border-style:none;text-align:right;">□跨所申請</td>
+        </tr>
+    </table>
+    <!-- (3)申請登記事由 /(4)登記原因 -->
+    <table style="border-collapse: collapse;font-size:20px;text-align:left;width:100%;">
+        <tr style="height:28px;">
+            <td style="border:1px solid black;width:32%;height:28px;">(3)申請登記事由（選擇打ˇ一項）</td>
+            <td style="border:1px solid black;width:68%;height:28px;">(4)登記原因（選擇打ˇ一項）</td>
+        </tr>
+
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:28px;">□ 所有權第一次登記</td>
+            <td style="border:1px solid black;height:28px;">□ 第一次登記</td>
+        </tr>
+
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:28px;">□ 所有權移轉登記</td>
+            <td style="border:1px solid black;height:28px;">□ 買賣  □ 贈與  □ 繼承  □ 分割繼承  □ 拍賣  □ 共有物分割  □ </td>
+        </tr>
+
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:28px;">□ 抵押權登記</td>
+            <td style="border:1px solid black;height:28px;">□ 設定  □ 法定  □ </td>
+        </tr>
+
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:28px;">□ 抵押權塗銷登記</td>
+            <td style="border:1px solid black;height:28px;">□ 清償  □ 拋棄  □ 混同  □ 判決塗銷  □ </td>
+        </tr>
+
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:28px;">□ 抵押權內容變更登記</td>
+            <td style="border:1px solid black;height:28px;">□ 權利價值變更   □ 權利內容等變更  □ </td>
+        </tr>
+
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:28px;">□ 標示變更登記</td>
+            <td style="border:1px solid black;height:28px;">□ 分割  □ 合併  □ 地目變更  □ </td>
+        </tr>
+
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:28px;">□ </td>
+            <td style="border:1px solid black;height:28px;">□ </td>
+        </tr>
+        
+    </table>
+    <!-- (5)標示及申請權利內容 -->
+    <table style="border-collapse: collapse;font-size:20px;text-align:left;width:100%">
+        <tr style="height:28px;">
+            <td style="border:1px solid black;width:21%;height:28px;">(5)標示及申請權利內容</td>
+            <td style="border:1px solid black;">詳如  □ 契約書  □ 登記清冊  □ 複丈結果通知書  □ 建物測量成果圖  □</td>
+        </tr>
+    </table>
+    <!-- (6)附繳證件 -->
+    <table style="border-collapse: collapse;font-size:20px;text-align:left;width:100%">
+        <tr style="height:28px;">
+            <td style="border:1px solid black;width:5%;text-align:center;" rowspan="3">(6)<br>附繳<br>證件</td>
+            <td style="border:1px solid black;width:31%;height:28px;">1.                           份</td>
+            <td style="border:1px solid black;width:32%;height:28px;">4.                           份</td>
+            <td style="border:1px solid black;width:32%;height:28px;">7.                           份</td>
+
+        </tr>
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:28px;">2.                           份</td>
+            <td style="border:1px solid black;height:28px;">5.                           份</td>
+            <td style="border:1px solid black;height:28px;">8.                           份</td>
+        </tr>
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:28px;">3.                           份</td>
+            <td style="border:1px solid black;height:28px;">6.                           份</td>
+            <td style="border:1px solid black;height:28px;">9.                           份</td>
+        </tr>
+    </table>
+    <!-- (7)委任關係 /(8)聯絡方式 /(9)備註-->
+    <table style="border-collapse: collapse;font-size:20px;text-align:center;width:100%">
+        <tr>
+            <td style="border:1px solid black;width:8%;" rowspan="3">(7)<br>委任<br>關係</td>
+            <td style="border:1px solid black;width:60%;text-align:left;" rowspan="3">
+            	本土地登記案之申請委託              代理。              複代理。<br>委託人確為登記標的物之權利人或權利關係人，並經核對身分無誤，如有虛偽不實，本代理人(複代理人)願負法律責任。 
+			</td>
+            <td style="border:1px solid black;width:3%;" rowspan="8">(8)<br>聯<br>絡<br>方<br>式</td>
+            <td style="border:1px solid black;width:14%;height:28px;">權利人電話</td>
+            <td style="border:1px solid black;width:15%;"></td>
+        </tr>
+        <tr>
+            <td style="border:1px solid black;height:28px;">義務人電話</td>
+            <td style="border:1px solid black;"></td>        	
+        </tr>
+        <tr>
+            <td style="border:1px solid black;height:28px;">代理人聯絡電話</td>
+            <td style="border:1px solid black;"></td>        	
+        </tr>
+        <tr>
+            <td style="border:1px solid black;width:5%;" rowspan="4">(9)<br>備<br><br>註</td>
+            <td style="border:1px solid black;width:63%;" rowspan="4"></td>
+            <td style="border:1px solid black;height:28px;">傳真電話</td>
+            <td style="border:1px solid black;"></td>
+        </tr>
+        <tr style="height:20px;">
+            <td style="border:1px solid black;height:28px;">電子郵件信箱</td>
+            <td style="border:1px solid black;"></td>
+        </tr>
+        <tr style="height:20px;">
+            <td style="border:1px solid black;height:28px;">不動產經紀人姓名</td>
+            <td style="border:1px solid black;"></td>
+        </tr>
+        <tr style="height:20px;">
+            <td style="border:1px solid black;height:28px;">不動產經紀人電話</td>
+            <td style="border:1px solid black;"></td>
+        </tr>
+       
+    </table>
+    <br>
+    <!-- (10)-(16) -->
+    <table style="border-collapse: collapse;font-size:20px;width:100%;text-align:center;">
+        <tr>
+            <td style="border:1px solid black;width:4%" rowspan="7">(10)<br>申<br><br>請<br><br>人</td>
+            <td style="border:1px solid black;width:9%;" rowspan="2">(11)<br>權利人<br>或<br>義務人</td>
+            <td style="border:1px solid black;width:9%;" rowspan="2">(12)<br>姓  名<br>或<br>名  稱</td>
+            <td style="border:1px solid black;width:13%;" rowspan="2">(13)<br>出  生<br><br>年月日</td>
+            <td style="border:1px solid black;width:11%;" rowspan="2">(14)<br>統一編號</td>
+            <td style="border:1px solid black;width:150px;" colspan="11">(15)   住    所</td>
+            <td style="border:1px solid black;width:7%;text-align:center;" rowspan="2">(16)<br>簽　章</td>
+        </tr>
+        <tr style="height:28px;">
+
+            <td style="border:1px solid black;width:6%;">縣市</td>
+            <td style="border:1px solid black;width:6%;">鄉鎮<br>市區</td>
+            <td style="border:1px solid black;width:6%;">村里</td>
+            <td style="border:1px solid black;width:5%;">鄰</td>
+            <td style="border:1px solid black;width:5%;">街路</td>
+            <td style="border:1px solid black;width:3%;">段</td>
+            <td style="border:1px solid black;width:4%;">巷</td>
+            <td style="border:1px solid black;width:3%;">弄</td>
+            <td style="border:1px solid black;width:5%;">號</td>
+            <td style="border:1px solid black;width:3%;">樓</td>
+            <td style="border:1px solid black;width:2%;"></td>
+        </tr>
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:50px;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;" rowspan="6"></td>
+        </tr>
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:50px;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+        </tr>
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:50px;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+        </tr>
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:50px;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+        </tr>
+
+    </table>
+    <!-- 本案處理經過情形 -->
+    <table style="border-collapse: collapse;font-size:24px;width:100%;text-align:center;">
+        <tr style="height:28px;">
+            <td style="border:1px solid black;width:4%;font-size:20px;" rowspan="4">本案處理經過情形︵<br>以下各欄<br>申請人請勿填寫<br>︶</td>
+            <td style="border:1px solid black;width:16%;height:110px;">初           審</td>
+            <td style="border:1px solid black;width:16%;">複            審</td>
+            <td style="border:1px solid black;width:17%;">核           定</td>
+            <td style="border:1px solid black;width:9%;">登  簿</td>
+            <td style="border:1px solid black;width:10%;">校  簿</td>
+            <td style="border:1px solid black;width:9%;">書  狀<br>列  印</td>
+            <td style="border:1px solid black;width:9%;">校  狀</td>
+            <td style="border:1px solid black;width:9%;">書  狀<br>用  印</td>
+        </tr>
+        <tr style="height:28px;">
+            <td style="border:1px solid black;" rowspan="3"></td>
+            <td style="border:1px solid black;" rowspan="3"></td>
+            <td style="border:1px solid black;" rowspan="3"></td>
+            <td style="border:1px solid black;height:110px;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+        </tr>
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:110px;">地  價<br>異  動</td>
+            <td style="border:1px solid black;">通  知<br>領  狀</td>
+            <td style="border:1px solid black;">異  動<br>通  知</td>
+            <td style="border:1px solid black;">交  付<br>發  狀</td>
+            <td style="border:1px solid black;">歸  檔</td>
+        </tr>
+        <tr style="height:28px;">
+            <td style="border:1px solid black;height:110px;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+            <td style="border:1px solid black;"></td>
+        </tr>
+    </table>
 </body>
+
 </html>

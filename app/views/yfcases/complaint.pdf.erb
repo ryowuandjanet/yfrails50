@@ -1,95 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<!-- 	<meta charset="UTF-8"> -->
-	<title>訴訟狀</title>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8">
-	<%= wicked_pdf_stylesheet_link_tag 'pdf' %>
+    <!-- 	<meta charset="UTF-8"> -->
+    <title>訴訟狀</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <%= wicked_pdf_stylesheet_link_tag 'pdf' %>
+    <style type="text/css">
+    body {
+        font-family: 標楷體;
+        font-size: 24px;
+    }
+
+    .page-break {
+        page-break-before: always;
+    }
+    </style>
 </head>
+
 <body>
-	<h1>民事起訴狀（裁判分割共有物）</h1>	
-	<h3>訴訟標的：新臺幣(以下同)<%= @yfcase.floor_price_1 %>元</h3>
-	<h3>
-		<% if @yfcase.personnals.where(is_creditor: true).count >= 1 %>
-			<% @yfcase.personnals.where(is_creditor: true).each do |creditor| %>
-				原告：<%= creditor.name %>住：<%= address(creditor.person_country,creditor.person_township,creditor.person_village,creditor.person_neighbor,creditor.person_street,creditor.person_section,creditor.person_lane,creditor.person_alley,creditor.person_number,creditor.person_floor) %>、電話：<%= @yfcase.personnals.where(is_creditor: true).count >= 1 ? @yfcase.personnals.where(is_creditor: true).first.mobile_phone : ' ' %></h3><br>
-			<% end %>
-		<% else %>
-			<%= ' ' %>
-		<% end %>
-	</h3>
-	<h3>
-		<% if @yfcase.personnals.where(is_debtor: true).count >= 1 %>
-			<% @yfcase.personnals.where(is_debtor: true).each do |debtor| %>
-				被告：<%= debtor.name %>住：<%= address(debtor.person_country,debtor.person_township,debtor.person_village,debtor.person_neighbor,debtor.person_street,debtor.person_section,debtor.person_lane,debtor.person_alley,debtor.person_number,debtor.person_floor) %><br>
-			<% end %>
-		<% else %>
-			<%= ' ' %>
-		<% end %>
-	</h3>
-	<h4>【煩鈞院函諭原告調閱1.系爭土地建物第一類謄本及2.被告全部最新戶籍資料(當事人欄勿省略)】</h4>
-	<h3>為分割共有物依法起訴事：</h3>
-	<h3>請求之事項</h3>
-	<h3>請求判決將原告與被告所有<% @yfcase.lands.each do |land|%>
-					<%= land.land_number %>
-				<% end %>地號土地及座落其上				<% @yfcase.builds.each do |build|%>
-					<%= build.build_number %>
-				<% end %>建號建物及其未辦保存登記部份建物予以變價分割，所得價金由兩造按附表所示比例分配取得。</h3>
-	<h3>訴訟費用由兩造按附表所示比例負擔。</h3>
-	<h3>事實及理由</h3>
-	<h3>按訴訟標的之價額，由法院核定。核定訴訟標的之價額，以起訴時之交易價額為準。分割共有物涉訟，以原告因分割所受利益之價額為準，民事訴訟法第77條之1 第1 項、第2 項前段及第77條之11分別定有明文。本件原告起訴請求分割兩造共有坐落臺南市中西區南門段901地號之土地（下稱「系爭土地」）及其上同段774建號建物（門牌號碼臺南市中西區西門路1段702巷17號之房屋，下稱「系爭房屋」）。從而本件訴訟標的價額應以原告因分割所受利益之價額為準。又系爭土地之公告現值為每平方公尺新臺幣（下同）30,500元，此有系爭土地土地登記謄本在卷可稽。另系爭房屋課稅現值為36,200元是，本件訴訟標的價額核定應為380,522.5 元【計算式：（系爭土地公告現值30,500元/ ㎡×土地面積73.67㎡×原告應有部分1/6）＋（系爭房屋課稅現值36,200元【證物1】×原告應有部分1/6 ）＝380,522.5元】，應繳裁判費4,190元。</h3>
-	<h3>系爭房地兩造持分如附表所示，土地面積為73.67平方公尺(面寬約8公尺、深約9公尺)，建物總面積70.58平方公尺(此為謄本面積，未保存登記部份，請鈞院調取107年度司執更一字第5號執行卷)【證物2】。</h3>
-	<h3>查系爭房地並無使用目的不能分割之情形，二造就附表所示房地並無不分割協議及共管契約，經原告於108年8月9日通知被告協議分割未果【證物4】，故有訴訟請求判決分割共有物之必要，爰依民法第823、824條規定請求 </h3>
-	<h3>鈞院裁判分割變賣系爭房地，所得價金由兩造按附表所示比例分配，理由臚陳如下：<br>系爭房地倘採原物分割，二造最大持分六分之一，最小持分十二分之一，共有人所得土地面積僅12.28及6.14平方公尺，臨路面寬僅最小不足1米，顯然過於狹小不利使用，又系爭建物對外僅有單一出入口，並無個別出入口【證物3】，如就系爭房地採取原物分割，將導致分割後房地之使用欠缺效益，性質上難以分割，且兩造間並無任何親屬關係及信任基礎可言，若共同生活實有害各自間日常生活隱私。</h3>
-	<h3>原告曾試圖與被告等人協議共同出售系爭房地，各按持分比例分配價金，惟部分被告聯絡不易致無法達成協議【證物4】。被告等人於前述強制執行程序原告標買時，均未主張優先購買系爭房地標售之應有部分，顯可見渠等或無意願或無資力購買，故實不宜採取將系爭房地全部分配予兩造其中一方之分割方式，俾免補償金錢資生糾紛。綜前，原物分配實有困難，據此，採變價分割實符合公平原則，而發揮系爭土地及建物之經濟效用，兼顧公共利益，且符合全體共有人之利益。狀請鈞院鑒核，准予判決如訴之聲明，實感德便。</h3>
-	<br>
-	<h2>謹        狀</h2>
-	<h3>臺灣臺南地方法院民事庭  公鑒</h3>
-	<br>
-	<br>
-	<h2>附表：</h2>
-	<table class="table">
-		<tr>
-			<th rowspan="2">共有人設籍</th>
-			<th colspan="2">系爭房地應有部分比例</th>
-		</tr>
-		<tr>
-			<th>
-				<% @yfcase.lands.each do |land|%>
-					<%= land.land_number %><br>
-				<% end %>
-			</th>
-			<th>
-				<% @yfcase.builds.each do |build|%>
-					<%= build.build_number %><br>
-				<% end %>
-			</th>
-		</tr>
-		<% if @yfcase.personnals.where(is_debtor: true).count >= 1 %>
-			<% @yfcase.personnals.where(is_debtor: true).each do |debtor| %>
-				<tr>
-					<td><%= debtor.name %><br><%= address(debtor.person_country,debtor.person_township,debtor.person_village,debtor.person_neighbor,debtor.person_street,debtor.person_section,debtor.person_lane,debtor.person_alley,debtor.person_number,debtor.person_floor) %></td>
-					<td>待填入土地持分</td>
-					<td>待填入建物持分</td>
-				</tr>
-			<% end %>
-		<% end %>
-		<tr>
-			<th>合計</th>
-			<th>全部</th>
-			<th>全部</th>
-		</tr>
-	</table>
-	<h2>證物名稱及數量</h2>
-	<h3>【證物1】契稅單影本1張。</h3>
-	<h3>【證物2】臺南市中西區西門路1段702巷17號房地土地及建物登記謄本1份、地籍圖1張、建物平面圖1張。</h3>
-	<h3>【證物3】訴訟標的108年7月30日近況照片1張。</h3>
-	<h3>【證物4】108年8月1日臺南虎尾寮郵局第000156號存證信函及回執影本共4張。</h3>
-	<h2>中 　華 　民  國　   108 　年　9 　月　      　日</h2>
-	<h2>具  狀  人　<%= @yfcase.personnals.where(is_creditor: true).count >= 1 ? @yfcase.personnals.where(is_creditor: true).first.name : ' ' %></h2>
-
-
-　　　　　　　　　　　　　　
-
+    <h1>民事起訴狀（裁判分割共有物）</h1>
+    <h3>訴訟標的：新臺幣(以下同)
+        <%= @yfcase.floor_price_1 %>元</h3>
+    <h3>
+        <% if @yfcase.personnals.where(is_creditor: true).count >= 1 %>
+        <% @yfcase.personnals.where(is_creditor: true).each do |creditor| %>
+        原告：<%= creditor.name %><br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;住：
+        <%= address(creditor.person_country,creditor.person_township,creditor.person_village,creditor.person_neighbor,creditor.person_street,creditor.person_section,creditor.person_lane,creditor.person_alley,creditor.person_number,creditor.person_floor) %><br>
+        &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;電話：
+        <%= @yfcase.personnals.where(is_creditor: true).count >= 1 ? @yfcase.personnals.where(is_creditor: true).first.mobile_phone : ' ' %>
+    </h3><br>
+    <% end %>
+    <% else %>
+    <%= ' ' %>
+    <% end %>
+    </h3>
+    <h3>
+        <% if @yfcase.personnals.where(is_debtor: true).count >= 1 %>
+        <% @yfcase.personnals.where(is_debtor: true).each do |debtor| %>
+        被告：
+        <%= debtor.name %> 住：
+        <%= address(debtor.person_country,debtor.person_township,debtor.person_village,debtor.person_neighbor,debtor.person_street,debtor.person_section,debtor.person_lane,debtor.person_alley,debtor.person_number,debtor.person_floor) %><br>
+        <% end %>
+        <% else %>
+        <%= ' ' %>
+        <% end %>
+    </h3>
+    <h4>【煩鈞院函諭原告調閱1.系爭土地建物第一類謄本及2.被告全部最新戶籍資料(當事人欄勿省略)】</h4>
+    <h3>為分割共有物依法起訴事：</h3>
+    <h3>請求之事項</h3>
+    <h3>請求判決將原告與被告所有
+        <% @yfcase.lands.each do |land|%>
+        <%= land.land_number %>
+        <% end %>地號土地及座落其上
+        <% @yfcase.builds.each do |build|%>
+        <%= build.build_number %>
+        <% end %>建號建物及其未辦保存登記部份建物予以變價分割，所得價金由兩造按附表所示比例分配取得。</h3>
+    <h3>訴訟費用由兩造按附表所示比例負擔。</h3>
+    <h3>事實及理由</h3>
+    <h3>按訴訟標的之價額，由法院核定。核定訴訟標的之價額，以起訴時之交易價額為準。分割共有物涉訟，以原告因分割所受利益之價額為準，民事訴訟法第77條之1 第1 項、第2 項前段及第77條之11分別定有明文。本件原告起訴請求分割兩造共有坐落臺南市中西區南門段901地號之土地（下稱「系爭土地」）及其上同段774建號建物（門牌號碼臺南市中西區西門路1段702巷17號之房屋，下稱「系爭房屋」）。從而本件訴訟標的價額應以原告因分割所受利益之價額為準。又系爭土地之公告現值為每平方公尺新臺幣（下同）30,500元，此有系爭土地土地登記謄本在卷可稽。另系爭房屋課稅現值為36,200元是，本件訴訟標的價額核定應為380,522.5 元【計算式：（系爭土地公告現值30,500元/ ㎡×土地面積73.67㎡×原告應有部分1/6）＋（系爭房屋課稅現值36,200元【證物1】×原告應有部分1/6 ）＝380,522.5元】，應繳裁判費4,190元。</h3>
+    <h3>系爭房地兩造持分如附表所示，土地面積為73.67平方公尺(面寬約8公尺、深約9公尺)，建物總面積70.58平方公尺(此為謄本面積，未保存登記部份，請鈞院調取107年度司執更一字第5號執行卷)【證物2】。</h3>
+    <h3>查系爭房地並無使用目的不能分割之情形，二造就附表所示房地並無不分割協議及共管契約，經原告於108年8月9日通知被告協議分割未果【證物4】，故有訴訟請求判決分割共有物之必要，爰依民法第823、824條規定請求 </h3>
+    <h3>鈞院裁判分割變賣系爭房地，所得價金由兩造按附表所示比例分配，理由臚陳如下：<br>系爭房地倘採原物分割，二造最大持分六分之一，最小持分十二分之一，共有人所得土地面積僅12.28及6.14平方公尺，臨路面寬僅最小不足1米，顯然過於狹小不利使用，又系爭建物對外僅有單一出入口，並無個別出入口【證物3】，如就系爭房地採取原物分割，將導致分割後房地之使用欠缺效益，性質上難以分割，且兩造間並無任何親屬關係及信任基礎可言，若共同生活實有害各自間日常生活隱私。</h3>
+    <h3>原告曾試圖與被告等人協議共同出售系爭房地，各按持分比例分配價金，惟部分被告聯絡不易致無法達成協議【證物4】。被告等人於前述強制執行程序原告標買時，均未主張優先購買系爭房地標售之應有部分，顯可見渠等或無意願或無資力購買，故實不宜採取將系爭房地全部分配予兩造其中一方之分割方式，俾免補償金錢資生糾紛。綜前，原物分配實有困難，據此，採變價分割實符合公平原則，而發揮系爭土地及建物之經濟效用，兼顧公共利益，且符合全體共有人之利益。狀請鈞院鑒核，准予判決如訴之聲明，實感德便。</h3>
+    <br>
+    <h2>謹 狀</h2>
+    <h3>臺灣臺南地方法院民事庭 公鑒</h3>
+    <br>
+    <br>
+    <!-- 附表 -->
+    <div class="page-break">
+        <table style="border-collapse: collapse;width:100%;font-size:30px;">
+            <tr>
+                <td colspan="2" style="font-size:48px;">附表：</td>
+                <td></td>
+            </tr>
+            <tr style="background-color: #ccc;">
+                <th style="border:1px solid black;" rowspan="2">共有人設籍</th>
+                <th style="border:1px solid black;" colspan="2">系爭房地應有部分比例</th>
+            </tr>
+            <tr>
+                <th style="border:1px solid black;background-color: LightGoldenRodYellow;">
+                    <% @yfcase.lands.each do |land|%>
+                    <%= land.land_number %><br>
+                    <% end %>
+                </th>
+                <th style="border:1px solid black;background-color: PaleGreen;">
+                    <% @yfcase.builds.each do |build|%>
+                    <%= build.build_number %><br>
+                    <% end %>
+                </th>
+            </tr>
+            <% if @yfcase.personnals.where(is_debtor: true).count >= 1 %>
+            <% @yfcase.personnals.where(is_debtor: true).each do |debtor| %>
+            <tr>
+                <td style="border:1px solid black;text-align:center;">
+                    <%= debtor.name %><br>
+                    <%= address(debtor.person_country,debtor.person_township,debtor.person_village,debtor.person_neighbor,debtor.person_street,debtor.person_section,debtor.person_lane,debtor.person_alley,debtor.person_number,debtor.person_floor) %>
+                </td>
+                <td style="border:1px solid black;text-align:center;">待填入土地持分</td>
+                <td style="border:1px solid black;text-align:center;">待填入建物持分</td>
+            </tr>
+            <% end %>
+            <% end %>
+            <tr>
+                <th style="border:1px solid black;">合計</th>
+                <th style="border:1px solid black;">全部</th>
+                <th style="border:1px solid black;">全部</th>
+            </tr>
+        </table>
+    </div>
+    <!-- 證物名稱及數量 -->
+    <div class="page-break">
+        <table style="font-size:30px;width:100%">
+            <tr>
+                <td colspan="2" style="font-size:48px;">證物名稱及數量</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td style="width:20%;height:70px;">【證物1】</td>
+                <td style="width:80%;height:70px;">契稅單影本1張。</td>
+            </tr>
+            <tr>
+                <td style="width:20%;height:70px;">【證物2】</td>
+                <td style="width:80%;height:70px;">臺南市中西區西門路1段702巷17號房地土地及建物登記謄本1份、地籍圖1張、建物平面圖1張。</td>
+            </tr>
+            <tr>
+                <td style="width:20%;height:70px;">【證物3】</td>
+                <td style="width:80%;height:70px;">訴訟標的108年7月30日近況照片1張。</td>
+            </tr>
+            <tr>
+                <td style="width:20%;height:70px;">【證物4】</td>
+                <td style="width:80%;height:70px;">108年8月1日臺南虎尾寮郵局第000156號存證信函及回執影本共4張。</td>
+            </tr>
+        </table>
+        <table style="font-size:30px;width:100%">
+            <tr>
+                <td style="width:100%;height:200px;text-align:center;font-size:36px;" colspan="2">中 　華 　民 國　 108 　年　9 　月　 　日</td>
+            </tr>
+            <tr>
+                <td style="width:80%;height:70px;text-align:right;font-size:36px;">具 狀 人</td>
+                <td style="width:20%;height:70px;text-align:center;font-size:36px;">
+                    <%= @yfcase.personnals.where(is_creditor: true).count >= 1 ? @yfcase.personnals.where(is_creditor: true).first.name : ' ' %>
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
+
 </html>

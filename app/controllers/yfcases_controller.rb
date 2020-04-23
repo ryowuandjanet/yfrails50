@@ -121,7 +121,7 @@ class YfcasesController < ApplicationController
     respond_to do |format|
       format.html
       format.json
-      format.pdf {render template:'yfcases/realestateregistration', pdf: 'Realestateregistration'}
+      format.pdf {render template:'yfcases/realestateregistration', pdf: 'Realestateregistration',orientation: 'Landscape'}
     end
   end
 
