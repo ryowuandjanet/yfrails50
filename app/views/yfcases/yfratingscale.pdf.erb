@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- 	<meta charset="UTF-8"> -->
+    <!--    <meta charset="UTF-8"> -->
     <title>YF評量表</title>
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -10,19 +10,6 @@
 </head>
 
 <body>
-    <p id="notice">
-        <%= notice %>
-    </p>
-    <!-- YF評量表 -->
-    <% if @yfcase.personnals.present? %>
-    <%= @yfcase.personnals.first.identity_card.split(//)[2] %>
-    <% else %>
-    <%= "" %>
-    <% end %>
-    <% @yfcase.personnals.each do |p| %>
-    <%= address(p.person_country,p.person_township,p.person_village,p.person_neighbor,p.person_street,p.person_section,p.person_lane,p.person_alley,p.person_number,p.person_floor) %>
-    <% end %>
-    <!-- 基本資料 -->
     <div class="basedata" style="width:1000px;">
         <h1 class="x110000" style="text-align: center;font-family: Arial,標楷體;font-weight: bold;">
             <%= @yfcase.case_number %> YF評量表
@@ -643,47 +630,65 @@
     </div>
     <br>
     <!-- 最終判定 -->
+    <p style="color:red;margin-bottom: 0px;font-family:標楷體;">※區域負責人不可為副署人員</p>
     <div class="finaldecision" style="width:1000px;">
         <table>
             <tr>
+                <!-- 區域負責人 -->
                 <% yfcasefullname = @yfcase.user.first_name + @yfcase.user.last_name %>
+                <!-- 登入人員 -->
                 <% currentfullname = current_user.first_name + current_user.last_name %>
+                <!-- 副署人員1 -->
+                <% @yfcase.subsigntrueas.first.blank? ? ' ' : subsigntrueafullname = @yfcase.subsigntrueas.first.signtruea %>
+                <!-- 副署人員2 -->
+                <% @yfcase.subsigntruebs.first.blank? ? ' ' : subsigntruebfullname = @yfcase.subsigntruebs.first.signtrueb %>
+                <!-- 副署人員3 -->
+                <% @yfcase.subsigntruecs.first.blank? ? ' ' : subsigntruecfullname = @yfcase.subsigntruecs.first.signtruec %>
                 <th class="xg1100 font-th">結論</th>
                 <th class="xg1200 font-th">區域負責人</th>
                 <th class="xg1300 font-th">
-                    <% if @yfcase.final_decision.blank? %>
+                    <% if current_user.role == 1 %>
+                    副署人員1
+                    <%= link_to "刪除", delete_subsigntruea_yfcase_path(@yfcase),method: :delete,class: "btn btn-info btn-sm" %>
+                    <% elsif @yfcase.final_decision.blank? || (@yfcase.final_decision.present? && yfcasefullname == currentfullname) %>
                     <%= '副署人員1' %>
-                    <% elsif yfcasefullname == currentfullname %>
-                    <div style="color:red;font-size:12pt;vertical-align:middle;">負責人不可為副署人員1</div>
                     <% else %>
-                    <% if @yfcase.subsigntrueas.first == nil && %>
+                    <% if @yfcase.subsigntrueas.first.blank? %>
                     <%= link_to "副署人員1", new_yfcase_subsigntruea_path(@yfcase),class: "btn btn-primary btn-sm" %>
                     <% else %>
-                    <%= link_to "副署人員1", yfcase_path(@yfcase), :disabled => true,class: "btn btn-danger btn-sm", style: "border:1px solid gray;background-color:gray;" %>
+                    <%= "副署人員1" %>
                     <% end %>
                     <% end %>
                 </th>
                 <th class="xg1400 font-th">
+                    <% if current_user.role == 1 %>
                     副署人員2
-                    <% if @yfcase.final_decision == " " %>
-                    <%= ' ' %>
+                    <%= link_to "刪除", delete_subsigntrueb_yfcase_path(@yfcase),method: :delete,class: "btn btn-info btn-sm" %>
+                    <% elsif @yfcase.final_decision.blank? || (@yfcase.final_decision.present? && yfcasefullname == currentfullname) %>
+                    <%= '副署人員2' %>
+                    <% elsif @yfcase.final_decision.present? && yfcasefullname != currentfullname && subsigntrueafullname == currentfullname %>
+                    <%= '該員已副署' %>
                     <% else %>
-                    <% if @yfcase.subsigntruebs.first == nil %>
+                    <% if @yfcase.subsigntruebs.first.blank? && @yfcase.subsigntrueas.first.present? %>
                     <%= link_to "副署人員2", new_yfcase_subsigntrueb_path(@yfcase),class: "btn btn-primary btn-sm" %>
                     <% else %>
-                    <%= link_to "副署人員2", yfcase_path(@yfcase), :disabled => true,class: "btn btn-danger btn-sm", style: "border:1px solid gray;background-color:gray;" %>
+                    <%= "副署人員2" %>
                     <% end %>
                     <% end %>
                 </th>
                 <th class="xg1500 font-th">
+                    <% if current_user.role == 1 %>
                     副署人員3
-                    <% if @yfcase.final_decision == " " %>
-                    <%= ' ' %>
+                    <%= link_to "刪除", delete_subsigntruec_yfcase_path(@yfcase),method: :delete,class: "btn btn-info btn-sm" %>
+                    <% elsif  @yfcase.final_decision.blank? || (@yfcase.final_decision.present? && yfcasefullname == currentfullname) %>
+                    <%= '副署人員3' %>
+                    <% elsif @yfcase.final_decision.present? && yfcasefullname != currentfullname && ((subsigntrueafullname == currentfullname && subsigntruebfullname != currentfullname) || (subsigntrueafullname != currentfullname && subsigntruebfullname == currentfullname)) %>
+                    <%= '該員已副署' %>
                     <% else %>
-                    <% if @yfcase.subsigntruecs.first == nil %>
+                    <% if @yfcase.subsigntruecs.first.blank? && @yfcase.subsigntruebs.first.present? %>
                     <%= link_to "副署人員3", new_yfcase_subsigntruec_path(@yfcase),class: "btn btn-primary btn-sm" %>
                     <% else %>
-                    <%= link_to "副署人員3", yfcase_path(@yfcase), :disabled => true,class: "btn btn-danger btn-sm", style: "border:1px solid gray;background-color:gray;" %>
+                    <%= "副署人員3" %>
                     <% end %>
                     <% end %>
                 </th>
@@ -724,12 +729,9 @@
                 -->
                 </td>
                 <td class="xg2300 font-td">
-                    <% if @yfcase.subsigntrueas.first == nil %>
+                    <% if @yfcase.subsigntrueas.first.blank? %>
                     <%= ' ' %>
                     <% else %>
-                    <!--
-                    <%= @yfcase.subsigntrueas.first.signtruea %>
-                    -->
                     <div class="printcss" style="margin-left:35px;margin-top:0px;">
                         <div class="printcss-head">
                             <%= @yfcase.subsigntrueas.first.signtruea_first_name %>
@@ -744,12 +746,9 @@
                     <% end %>
                 </td>
                 <td class="xg2400 font-td">
-                    <% if @yfcase.subsigntruebs.first == nil %>
+                    <% if @yfcase.subsigntruebs.first.blank? %>
                     <%= ' ' %>
                     <% else %>
-                    <!--
-                    <%= @yfcase.subsigntruebs.first.signtrueb %>
-                    -->
                     <div class="printcss" style="margin-left:35px;margin-top:0px;">
                         <div class="printcss-head">
                             <%= @yfcase.subsigntruebs.first.signtrueb_first_name %>
@@ -764,7 +763,7 @@
                     <% end %>
                 </td>
                 <td class="xg2500 font-td">
-                    <% if @yfcase.subsigntruecs.first == nil %>
+                    <% if @yfcase.subsigntruecs.first.blank? %>
                     <%= ' ' %>
                     <% else %>
                     <!--
@@ -786,7 +785,6 @@
             </tr>
         </table>
     </div>
-    <br>
 </body>
 
 </html>

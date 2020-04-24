@@ -133,6 +133,27 @@ class YfcasesController < ApplicationController
     end
   end
 
+  def delete_subsigntruea
+    @yfcase = Yfcase.find(params[:id])
+    @subsigntruea_delete= @yfcase.subsigntrueas.first
+    @subsigntruea_delete.destroy
+    redirect_to @yfcase
+  end
+
+  def delete_subsigntrueb
+    @yfcase = Yfcase.find(params[:id])
+    @subsigntrueb_delete= @yfcase.subsigntruebs.first
+    @subsigntrueb_delete.destroy
+    redirect_to @yfcase
+  end
+
+  def delete_subsigntruec
+    @yfcase = Yfcase.find(params[:id])
+    @subsigntruec_delete= @yfcase.subsigntruecs.first
+    @subsigntruec_delete.destroy
+    redirect_to @yfcase
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_yfcase

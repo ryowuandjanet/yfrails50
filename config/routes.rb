@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 		get :deedtax #契稅申請書
 		get :realestateregistration #不動產登記
 		get :complaint #訴訟狀
+		delete :delete_subsigntruea #刪除副署人員1
+		delete :delete_subsigntrueb #刪除副署人員2
+		delete :delete_subsigntruec #刪除副署人員3
 	end
   end
   root to: "yfcases#index"
