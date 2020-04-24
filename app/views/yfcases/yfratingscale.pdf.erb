@@ -7,16 +7,19 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <%= wicked_pdf_stylesheet_link_tag 'pdf' %>
+    <style>
+        
+    </style>
 </head>
 
 <body>
     <div class="basedata" style="width:1000px;">
-        <h1 class="x110000" style="text-align: center;font-family: Arial,標楷體;font-weight: bold;">
+        <h1 class="x110000" style="text-align: center;font-family: 'Noto Sans TC', sans-serif;font-weight: bold;">
             <%= @yfcase.case_number %> YF評量表
         </h1>
         <table style="border:3px solid black;">
             <tr>
-                <th class="xa1100 font-th">案號</th>
+                <th class="xa1100 font-th" sytle="font-family: 'Noto Sans TC', sans-serif;">案號</th>
                 <td class="xa1200 font-td">
                     <%= @yfcase.case_number %>
                 </td>

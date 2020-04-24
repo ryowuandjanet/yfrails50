@@ -83,6 +83,7 @@ GEM
       responders
       warden (~> 1.2.3)
     erubi (1.9.0)
+    ffi (1.12.2)
     ffi (1.12.2-x64-mingw32)
     font_awesome5_rails (1.1.0)
       railties (>= 4.2)
@@ -106,13 +107,15 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
+    msgpack (1.3.3)
     msgpack (1.3.3-x64-mingw32)
     nio4r (2.5.2)
+    nokogiri (1.10.9)
+      mini_portile2 (~> 2.4.0)
     nokogiri (1.10.9-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pdf-core (0.7.0)
-    pg (1.2.3-x64-mingw32)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
@@ -165,6 +168,8 @@ GEM
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.2.1)
+      ffi (~> 1.9)
     sassc (2.2.1-x64-mingw32)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -221,6 +226,7 @@ GEM
     zeitwerk (2.3.0)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
@@ -232,7 +238,6 @@ DEPENDENCIES
   font_awesome5_rails
   jbuilder (~> 2.7)
   jquery-ui-rails
-  pg (>= 0.18, < 2.0)
   prawn
   prawn-table
   puma (~> 4.1)
@@ -253,4 +258,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

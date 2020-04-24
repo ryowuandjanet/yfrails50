@@ -5,7 +5,8 @@ class YfcasePdf < Prawn::Document
 		@yfcase = yfcase
 		font_families.update(
 			"msjh" => {
-				:normal => "#{Prawn::DATADIR}/fonts/msjh.ttf"
+				# :normal => "#{Prawn::DATADIR}/fonts/msjh.ttf"
+				:normal => "/assets/msjh.ttf"
 			}
 		)
 

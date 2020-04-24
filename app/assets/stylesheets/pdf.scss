@@ -4,23 +4,24 @@
 }
 
 @font-face {
-  font-family: '標楷體';
-  src: url('../fonts/bkai00mp.ttf'), format('ttf');
+  font-family:'標楷體';
+  src: url(/assets/msjh.ttf) format("truetype")
 }
 
 
 body {
-	font-family: 標楷體;
+	font-family: '標楷體';
 	font-size: 13px;
+	color:red;
 }
-
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+@import url('https://fonts.googleapis.com/earlyaccess/cwtexkai.css');
 
 /*字型*/
 
 .font-th {
 	font-size: 12pt;
-	font-family: Arial,標楷體,sans-serif;
+	font-family: 'Noto Sans TC', sans-serif;
 	font-width:bold;
 	color:black;
 	text-align: center;	
@@ -28,7 +29,7 @@ body {
 
 .font-td {
 	font-size: 12pt;
-	font-family: Arial,微軟正黑體,sans-serif;
+	font-family: 'cwTeXKai', serif;
 	font-width:bold;
 	color:blue;	
 }
