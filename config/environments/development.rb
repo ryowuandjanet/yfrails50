@@ -61,5 +61,5 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.assets.enabled=true
   config.assets.paths << Rails.root.join("app", "assets", "fonts")
-  config.hosts << "a6e73a9927244f14a6a8c45d81c41b2b.vfs.cloud9.ap-southeast-1.amazonaws.com"
+  config.hosts << "ae8a14fb48034b399f88585a40e43505.vfs.cloud9.ap-southeast-1.amazonaws.com"
 end

@@ -1,3 +1,18 @@
+@font-face{
+	font-family: "msjh";
+	src: url('msjh');
+}
+
+@font-face {
+  font-family:'標楷體';
+  src: asset-url('assets/fonts/bkai00mp.ttf') format("truetype")
+}
+
+@font-face {
+  font-family:'微軟正黑體';
+  src: asset-url('assets/fonts/msjh.ttf') format("truetype")
+}
+
 body{
 	font-family: 微軟正黑體;
 }

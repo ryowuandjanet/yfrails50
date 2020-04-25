@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_04_24_064629) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "builds", force: :cascade do |t|
     t.string "build_number"
     t.string "build_url"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_064629) do
     t.integer "build_holding_point_all"
     t.string "build_type_use"
     t.string "use_partition"
-    t.integer "yfcase_id", null: false
+    t.bigint "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["yfcase_id"], name: "index_builds_on_yfcase_id"
@@ -38,7 +41,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_064629) do
     t.decimal "land_area", precision: 5, scale: 2
     t.integer "land_holding_point_personal"
     t.integer "land_holding_point_all"
-    t.integer "yfcase_id", null: false
+    t.bigint "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["yfcase_id"], name: "index_lands_on_yfcase_id"
@@ -55,7 +58,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_064629) do
     t.string "surveyorb"
     t.decimal "plusa", precision: 3, scale: 2
     t.decimal "plusb", precision: 3, scale: 2
-    t.integer "yfcase_id", null: false
+    t.bigint "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["yfcase_id"], name: "index_objectbuilds_on_yfcase_id"
@@ -72,7 +75,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_064629) do
     t.string "local_phone"
     t.string "mobile_phone"
     t.string "personnal_notes"
-    t.integer "yfcase_id", null: false
+    t.bigint "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "person_country"
@@ -91,7 +94,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_064629) do
   create_table "plusrateas", force: :cascade do |t|
     t.string "persona"
     t.decimal "plusa", precision: 4, scale: 2
-    t.integer "objectbuild_id", null: false
+    t.bigint "objectbuild_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["objectbuild_id"], name: "index_plusrateas_on_objectbuild_id"
@@ -100,7 +103,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_064629) do
   create_table "plusratebs", force: :cascade do |t|
     t.string "personb"
     t.decimal "plusb", precision: 4, scale: 2
-    t.integer "objectbuild_id", null: false
+    t.bigint "objectbuild_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["objectbuild_id"], name: "index_plusratebs_on_objectbuild_id"
@@ -108,7 +111,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_064629) do
 
   create_table "subsigntrueas", force: :cascade do |t|
     t.string "signtruea"
-    t.integer "yfcase_id", null: false
+    t.bigint "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "signtruea_first_name"
@@ -119,7 +122,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_064629) do
 
   create_table "subsigntruebs", force: :cascade do |t|
     t.string "signtrueb"
-    t.integer "yfcase_id", null: false
+    t.bigint "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "signtrueb_first_name"
@@ -130,7 +133,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_064629) do
 
   create_table "subsigntruecs", force: :cascade do |t|
     t.string "signtruec"
-    t.integer "yfcase_id", null: false
+    t.bigint "yfcase_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "signtruec_first_name"
