@@ -5,14 +5,13 @@
 
 @font-face {
   font-family:'標楷體';
-  src: url(/assets/msjh.ttf) format("truetype")
+  src: asset-url('fonts/bkai00mp.ttf') format("truetype")
 }
 
 
 body {
 	font-family: '標楷體';
 	font-size: 13px;
-	color:red;
 }
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
 @import url('https://fonts.googleapis.com/earlyaccess/cwtexkai.css');
@@ -21,7 +20,7 @@ body {
 
 .font-th {
 	font-size: 12pt;
-	font-family: 'Noto Sans TC', sans-serif;
+	font-family: '標楷體', sans-serif;
 	font-width:bold;
 	color:black;
 	text-align: center;	

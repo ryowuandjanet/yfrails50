@@ -31,6 +31,7 @@ gem 'prawn'
 gem 'prawn-table'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'wkhtmltopdf-heroku'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
