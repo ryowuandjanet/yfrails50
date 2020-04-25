@@ -8,6 +8,10 @@
   src: asset-url('fonts/bkai00mp.ttf') format("truetype")
 }
 
+@font-face {
+  font-family:'黑體';
+  src: asset-url('fonts/msjh.ttf') format("truetype")
+}
 
 body {
 	font-family: '標楷體';
@@ -20,7 +24,7 @@ body {
 
 .font-th {
 	font-size: 12pt;
-	font-family: '標楷體', sans-serif;
+	font-family: '黑體', sans-serif;
 	font-width:bold;
 	color:black;
 	text-align: center;	
@@ -28,7 +32,7 @@ body {
 
 .font-td {
 	font-size: 12pt;
-	font-family: 'cwTeXKai', serif;
+	font-family: '標楷體', serif;
 	font-width:bold;
 	color:blue;	
 }
