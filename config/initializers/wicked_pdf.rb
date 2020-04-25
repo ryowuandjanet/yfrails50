@@ -1,6 +1,7 @@
 if Rails.env.production?
   # wkhtmltopdf_path = "/yangfurails6/bin/wkhtmltopdf-amd64"
-  wkhtmltopdf_path = "#{Rails.root}/bin/wkhtmltopdf-amd64"
+  wkhtmltopdf_path = "#{Rails.root}/bin/wkhtmltopdf"
+  
   
 else
   # Linux (check your processor for Intel x86 or AMD x64)
