@@ -8,8 +8,9 @@
 
 </head>
 <body>
+
 	<!-- 前導資料 -->
-	<table style="border-collapse: collapse;font-size:12px;text-align: center;">
+	<table style="border-collapse: collapse;font-family: 'cwTeXKai', serif;font-size:12px;text-align: center;">
 		<tr style="height:25px;">
 			<td style="border:1px solid black;letter-spacing:40px;" colspan="15">※檔案編號</td>
 			<td style="width:270px;font-size:20pt;" rowspan="4">契稅申報書</td>
@@ -56,9 +57,15 @@
 			<td style="border:1px solid black;" colspan="4">冊頁(棟)</td>
 			<td style="border:1px solid black;" colspan="3">分戶號</td>
 			<td style="border:1px solid black;width:54px;" rowspan="2">(2)建號</td>
-			<td style="border:1px solid black;width:140px;" rowspan="2">海北段 205建號</td>
+			<td style="border:1px solid black;width:140px;color:blue;" rowspan="2">        
+				<% @yfcase.builds.each do |build| %>
+                	<%= build.build_number %><br>
+        		<% end %>
+        	</td>
 			<td style="border:1px solid black;width:70px;" rowspan="2">(3)移　　轉<br>&nbsp;&nbsp;&nbsp;房屋坐落</td>
-			<td style="border:1px solid black;width:288px;" rowspan="2">台南市安南區海佃路二段766巷8弄23號</td>
+			<td style="border:1px solid black;width:288px;color:blue;" rowspan="2">
+				<%= @yfcase.township.try(:zip_code) %> <%= @yfcase.country.try(:name) %><%= @yfcase.township.try(:name) %><%= @yfcase.other_address %>
+			</td>
 		</tr>
 		<tr style="height:25px;">
 			<td style="border:1px solid black;width:18px;">1</td>
@@ -130,7 +137,7 @@
 	<table style="border-collapse: collapse;font-size:12px;text-align: center;">
 		<tr style="height:25px;">
 			<td style="border-width:1px;border-style:none none none solid;width:70px;text-align: left;" rowspan="2">(7)茲委託</td>
-			<td style="width:102px;" rowspan="2">曾小和</td>
+			<td style="width:102px;color:blue;" rowspan="2"><%= @yfcase.user.first_name + @yfcase.user.last_name %></td>
 			<td style="width:25px;">先生</td>
 			<td style="border-width:1px;border-style:none solid none none;width:675px;" rowspan="2">代辦契稅申報、領取契稅繳款書或免稅證明書、前業主應繳未繳之房屋稅繳款書及領回證件等事項。</td>
 		</tr>
@@ -167,147 +174,156 @@
 		</tr>
 
 		<tr style="height:20px;">
-			<td style="border:1px solid black;" rowspan="2">尤玟雅</td>
-			<td style="border:1px solid black;" rowspan="2">kk</td>
-			<td style="border:1px solid black;" colspan="2">A123456789</td>
-			<td style="border:1px solid black;" rowspan="2">B</td>
-			<td style="border:1px solid black;" rowspan="2">私</td>
-			<td style="border:1px solid black;" rowspan="2">台南</td>
-			<td style="border:1px solid black;" rowspan="2">東</td>
-			<td style="border:1px solid black;" rowspan="2">阿里</td>
-			<td style="border:1px solid black;" rowspan="2">29</td>
-			<td style="border:1px solid black;" rowspan="2">安西</td>
-			<td style="border:1px solid black;" rowspan="2">一</td>
-			<td style="border:1px solid black;" rowspan="2">169</td>
-			<td style="border:1px solid black;" rowspan="2">29</td>
-			<td style="border:1px solid black;" rowspan="2">999</td>
-			<td style="border:1px solid black;" rowspan="2">15</td>
-			<td style="border:1px solid black;" rowspan="2">23/223</td>
+
+			<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_original_owner: true).first.name %></td>
+			<td style="border:1px solid black;color:blue;" rowspan="2"></td>
+			<td style="border:1px solid black;color:blue;" colspan="2"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_original_owner: true).first.identity_card %></td>
+			<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_original_owner: true).first.identity_code %></td>
+			<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_original_owner: true).first.public_or_private %></td>
+			<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_original_owner: true).first.person_country %></td>
+			<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_original_owner: true).first.person_township %></td>
+			<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_original_owner: true).first.person_village %></td>
+			<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_original_owner: true).first.person_neighbor %></td>
+			<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_original_owner: true).first.person_street %></td>
+			<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_original_owner: true).first.person_section %></td>
+			<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_original_owner: true).first.person_lane %></td>
+			<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_original_owner: true).first.person_alley %></td>
+			<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_original_owner: true).first.person_number %></td>
+			<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_original_owner: true).first.person_floor %></td>
+			<td style="border:1px solid black;color:blue;" rowspan="2">
+				<%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' :  @yfcase.personnals.where(is_original_owner: true).first.right_share_person %>/<%= @yfcase.personnals.where(is_original_owner: true).first.right_share_all %>
+			</td>
 			<td style="border:1px solid black;" rowspan="12">一般案件</td>
+
 		</tr>
 		<tr style="height:20px;">
 			<td style="border:1px solid black;">電話</td>
-			<td style="border:1px solid black;">06-12345671</td>
+			<td style="border:1px solid black;font-size:7pt;color:blue;"><%= @yfcase.personnals.where(is_original_owner: true).blank? ? ' ' :  @yfcase.personnals.where(is_original_owner: true).first.mobile_phone %></td>
 		</tr>
 		<tr style="height:20px;">
-			<td style="border:1px solid black;" rowspan="2">閃電俠</td>
-			<td style="border:1px solid black;" rowspan="2">gg</td>
-			<td style="border:1px solid black;" colspan="2">B987654321</td>
-			<td style="border:1px solid black;" rowspan="2">A</td>
-			<td style="border:1px solid black;" rowspan="2">公</td>
-			<td style="border:1px solid black;" rowspan="2">高雄</td>
-			<td style="border:1px solid black;" rowspan="2">仁武</td>
-			<td style="border:1px solid black;" rowspan="2">阿蓮</td>
-			<td style="border:1px solid black;" rowspan="2">35</td>
-			<td style="border:1px solid black;" rowspan="2">德東</td>
-			<td style="border:1px solid black;" rowspan="2">四</td>
-			<td style="border:1px solid black;" rowspan="2">875</td>
-			<td style="border:1px solid black;" rowspan="2">66</td>
-			<td style="border:1px solid black;" rowspan="2">777</td>
-			<td style="border:1px solid black;" rowspan="2">23</td>
-			<td style="border:1px solid black;" rowspan="2">2/117</td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" colspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
 		</tr>
 		<tr style="height:20px;">
 			<td style="border:1px solid black;">電話</td>
-			<td style="border:1px solid black;">07-87654321</td>
+			<td style="border:1px solid black;font-size:7pt;"></td>
 		</tr>
 
 		<!-- (9)新所有權人 -->
 		<tr style="height:20px;">
 			<td style="border:1px solid black;text-align:left;" rowspan="4">(9)新所有權人<br>(如為持分共有<br>房屋，請另填寫<br>第(16)欄)</td>
-			<td style="border:1px solid black;" rowspan="2">尤玟雅</td>
-			<td style="border:1px solid black;" rowspan="2">kk</td>
-			<td style="border:1px solid black;" colspan="2">A123456789</td>
-			<td style="border:1px solid black;" rowspan="2">B</td>
-			<td style="border:1px solid black;" rowspan="2">私</td>
-			<td style="border:1px solid black;" rowspan="2">台南</td>
-			<td style="border:1px solid black;" rowspan="2">東</td>
-			<td style="border:1px solid black;" rowspan="2">阿里</td>
-			<td style="border:1px solid black;" rowspan="2">29</td>
-			<td style="border:1px solid black;" rowspan="2">安西</td>
-			<td style="border:1px solid black;" rowspan="2">一</td>
-			<td style="border:1px solid black;" rowspan="2">169</td>
-			<td style="border:1px solid black;" rowspan="2">29</td>
-			<td style="border:1px solid black;" rowspan="2">999</td>
-			<td style="border:1px solid black;" rowspan="2">15</td>
-			<td style="border:1px solid black;" rowspan="2">23/223</td>
+
+				<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.name %></td>
+				<td style="border:1px solid black;color:blue;" rowspan="2"></td>
+				<td style="border:1px solid black;color:blue;" colspan="2"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.identity_card %></td>
+				<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.identity_code %></td>
+				<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.public_or_private %></td>
+				<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.person_country %></td>
+				<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.person_township %></td>
+				<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.person_village %></td>
+				<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.person_neighbor %></td>
+				<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.person_street %></td>
+				<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.person_section %></td>
+				<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.person_lane %></td>
+				<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.person_alley %></td>
+				<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.person_number %></td>
+				<td style="border:1px solid black;color:blue;" rowspan="2"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.person_floor %></td>
+				<td style="border:1px solid black;color:blue;" rowspan="2">
+					<%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.right_share_person %>/<%= @yfcase.personnals.where(is_new_owner: true).first.right_share_all %>
+				</td>
 
 		</tr>
 		<tr style="height:20px;">
 			<td style="border:1px solid black;">電話</td>
-			<td style="border:1px solid black;">06-12345671</td>
+			<td style="border:1px solid black;font-size:7pt;"><%= @yfcase.personnals.where(is_new_owner: true).blank? ? ' ' : @yfcase.personnals.where(is_new_owner: true).first.mobile_phone %></td>
 		</tr>
 		<tr style="height:20px;">
-			<td style="border:1px solid black;" rowspan="2">閃電俠</td>
-			<td style="border:1px solid black;" rowspan="2">gg</td>
-			<td style="border:1px solid black;" colspan="2">B987654321</td>
-			<td style="border:1px solid black;" rowspan="2">A</td>
-			<td style="border:1px solid black;" rowspan="2">公</td>
-			<td style="border:1px solid black;" rowspan="2">高雄</td>
-			<td style="border:1px solid black;" rowspan="2">仁武</td>
-			<td style="border:1px solid black;" rowspan="2">阿蓮</td>
-			<td style="border:1px solid black;" rowspan="2">35</td>
-			<td style="border:1px solid black;" rowspan="2">德東</td>
-			<td style="border:1px solid black;" rowspan="2">四</td>
-			<td style="border:1px solid black;" rowspan="2">875</td>
-			<td style="border:1px solid black;" rowspan="2">66</td>
-			<td style="border:1px solid black;" rowspan="2">777</td>
-			<td style="border:1px solid black;" rowspan="2">23</td>
-			<td style="border:1px solid black;" rowspan="2">2/117</td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" colspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
 
 		</tr>
 		<tr style="height:20px;">
 			<td style="border:1px solid black;">電話</td>
-			<td style="border:1px solid black;">07-87654321</td>
+			<td style="border:1px solid black;font-size:7pt;"></td>
 		</tr>
 
 		<!-- (10)契稅代理人 -->
 		<tr style="height:20px;">
 			<td style="border:1px solid black;text-align:left;" rowspan="2">(10)契稅代理人</td>
-			<td style="border:1px solid black;" rowspan="2">尤玟雅</td>
-			<td style="border:1px solid black;" rowspan="2">kk</td>
-			<td style="border:1px solid black;" colspan="2">A123456789</td>
-			<td style="border:1px solid black;" rowspan="2">B</td>
-			<td style="border:1px solid black;" rowspan="2">私</td>
-			<td style="border:1px solid black;" rowspan="2">台南</td>
-			<td style="border:1px solid black;" rowspan="2">東</td>k
-			<td style="border:1px solid black;" rowspan="2">29</td>
-			<td style="border:1px solid black;" rowspan="2">安西</td>
-			<td style="border:1px solid black;" rowspan="2">一</td>
-			<td style="border:1px solid black;" rowspan="2">169</td>
-			<td style="border:1px solid black;" rowspan="2">29</td>
-			<td style="border:1px solid black;" rowspan="2">999</td>
-			<td style="border:1px solid black;" rowspan="2">15</td>
-			<td style="border:1px solid black;" rowspan="2">23/223</td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" colspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+
 		</tr>
 		<tr style="height:25px;">
 			<td style="border:1px solid black;">電話</td>
-			<td style="border:1px solid black;">06-12345671</td>
+			<td style="border:1px solid black;font-size:7pt;"></td>
 		</tr>
 
 		<!-- (11)在國內房屋稅納稅代理人 -->
 		<tr style="height:20px;">
 			<td style="border:1px solid black;text-align:left;" rowspan="2">(11)在國內房屋<br>&nbsp;&nbsp;&nbsp;稅納稅代理人</td>
-			<td style="border:1px solid black;" rowspan="2">尤玟雅</td>
-			<td style="border:1px solid black;" rowspan="2">kk</td>
-			<td style="border:1px solid black;" colspan="2">A123456789</td>
-			<td style="border:1px solid black;" rowspan="2">B</td>
-			<td style="border:1px solid black;" rowspan="2">私</td>
-			<td style="border:1px solid black;" rowspan="2">台南</td>
-			<td style="border:1px solid black;" rowspan="2">東</td>
-			<td style="border:1px solid black;" rowspan="2">阿里</td>
-			<td style="border:1px solid black;" rowspan="2">29</td>
-			<td style="border:1px solid black;" rowspan="2">安西</td>
-			<td style="border:1px solid black;" rowspan="2">一</td>
-			<td style="border:1px solid black;" rowspan="2">169</td>
-			<td style="border:1px solid black;" rowspan="2">29</td>
-			<td style="border:1px solid black;" rowspan="2">999</td>
-			<td style="border:1px solid black;" rowspan="2">15</td>
-			<td style="border:1px solid black;" rowspan="2">23/223</td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" colspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
+			<td style="border:1px solid black;" rowspan="2"></td>
 		</tr>
 		<tr style="height:20px;">
 			<td style="border:1px solid black;">電話</td>
-			<td style="border:1px solid black;">06-12345671</td>
+			<td style="border:1px solid black;font-size:7pt;"></td>
 		</tr>
 	</table>
 
@@ -342,7 +358,7 @@
 			<td style="border:1px solid black;width:38px;"></td>
 			<td style="border:1px solid black;width:38px;"></td>
 			<td style="border:1px solid black;width:69px;" rowspan="3">▉未辦保<br>存登記部<br>分一併移<br>轉</td>
-			<td style="border:1px solid black;width:104px;" rowspan="3">我是空白</td>
+			<td style="border:1px solid black;width:104px;" rowspan="3"></td>
 		</tr>
 		<tr style="height:25px;">
 			<td style="border:1px solid black;">構造</td>

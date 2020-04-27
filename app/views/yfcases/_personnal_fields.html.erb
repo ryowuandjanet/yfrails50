@@ -16,8 +16,28 @@
                         <div class="form-check">
                             <%= f.check_box :is_build_owner %> 建物共有人
                         </div>
-                        <div class="form-row">
+                        
+                        <div class="form-check">
+                            <%= f.check_box :is_original_owner %> 原所有權人
                         </div>
+                        <div class="form-check">
+                            <%= f.check_box :is_new_owner %> 新所有權人
+                        </div>
+                        <div class="form-check">
+                            <%= f.check_box :is_deed_tax_agent %> 契稅代理人
+                        </div>
+                        <div class="form-check">
+                            <%= f.check_box :is_tax_agent %> 納稅代理人
+                        </div>
+                        <div class="form-check">
+                            身分代號
+                            <%= f.select(:identity_code,Personnal::ID_CODE_LIST,{}, { :class => 'form-control' }) %>
+                        </div>
+                        <div class="form-check">
+                            公有/私人
+                            <%= f.select(:public_or_private,Personnal::PUBLIC_LIST,{}, { :class => 'form-control' }) %>
+                        </div>
+
                     </td>
                     <td scope="col" style="width:85%;">
                         <div class="form-row">
@@ -79,6 +99,15 @@
                             </div>
                             <div class="form-group col-md-2">
                                 <%= f.text_field :person_floor, class: "form-control",placeholder: "樓" %>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <%= f.text_field :right_share_person, class: "form-control",placeholder: "權利持分比例(個人)" %>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <%= f.text_field :right_share_all, class: "form-control",placeholder: "權利持分比例(所有)" %>
                             </div>
                         </div>
                     </td>
