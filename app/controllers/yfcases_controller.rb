@@ -102,6 +102,7 @@ class YfcasesController < ApplicationController
   end
 
   def yfratingscale
+
     respond_to do |format|
       format.html
       format.json
@@ -179,6 +180,8 @@ class YfcasesController < ApplicationController
       marketpricesum=@yfcase.objectbuilds.map { |n| [(testvalue(n.total_price.to_f / n.build_area.to_f ,n.plusa,n.plusb))] }.flatten
       @marketprice = marketpricesum.map!{|e| e.to_f}.sum.fdiv(marketpricesum.size) * 10000
     end
+
+
 
     # Only allow a list of trusted parameters through.
     def yfcase_params

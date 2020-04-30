@@ -9,48 +9,39 @@ def add_https(str)
 	end
 end
 
+def buttonyeson(bool)
+	if bool == true
+		data = "
+			<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span><span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+			<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+			<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+		"
+		data.html_safe
+	end
+end
 
 
-        <tr>
-            <% yfcasefullname = @yfcase.user.first_name + @yfcase.user.last_name %>
-            <% currentfullname = current_user.first_name + current_user.last_name %>
-            <th class="xg1100 font-th">結論</th>
-            <th class="xg1200 font-th">區域負責人</th>
-            <th class="xg1300 font-th">
-                <% if @yfcase.final_decision.blank? %>
-                    <%= '副署人員1' %>
-                <% elsif yfcasefullname == currentfullname %>
-                    <div style="color:red;font-size:12pt;vertical-align:middle;">負責人不可為副署人員1</div>
-                <% else %>
-                    <% if @yfcase.subsigntrueas.first == nil && %>
-                         <%= link_to "副署人員1", new_yfcase_subsigntruea_path(@yfcase),class: "btn btn-primary btn-sm" %>
-                    <% else %>
-                         <%= link_to "副署人員1", yfcase_path(@yfcase), :disabled => true,class: "btn btn-danger btn-sm", style: "border:1px solid gray;background-color:gray;" %>
-                    <% end %>
-                <% end %>    
-            </th>
-            <th class="xg1400 font-th">
-                副署人員2
-                <% if @yfcase.final_decision == " " %>
-                    <%= ' ' %>
-                <% else %>
-                    <% if @yfcase.subsigntruebs.first == nil %>
-                         <%= link_to "副署人員2", new_yfcase_subsigntrueb_path(@yfcase),class: "btn btn-primary btn-sm" %>
-                    <% else %>
-                         <%= link_to "副署人員2", yfcase_path(@yfcase), :disabled => true,class: "btn btn-danger btn-sm", style: "border:1px solid gray;background-color:gray;" %>
-                    <% end %>
-                <% end %>
-            </th>
-            <th class="xg1500 font-th">
-                副署人員3
-                <% if @yfcase.final_decision == " " %>
-                    <%= ' ' %>
-                <% else %>
-                    <% if @yfcase.subsigntruecs.first == nil %>
-                         <%= link_to "副署人員3", new_yfcase_subsigntruec_path(@yfcase),class: "btn btn-primary btn-sm" %>
-                    <% else %>
-                         <%= link_to "副署人員3", yfcase_path(@yfcase), :disabled => true,class: "btn btn-danger btn-sm", style: "border:1px solid gray;background-color:gray;" %>
-                    <% end %>
-                <% end %>
-            </th>
-        </tr>
+<p id="notice"><%= notice %></p>
+
+<% if <@yfcase class="personnals"></@yfcase>.present? %>
+    <%= @yfcase.personnals.first.identity_card.split(//)[2] %>
+<% else %>
+    <%= "" %>
+<% end %>
+
+<% @yfcase.personnals.each do |p| %>
+    <%= address(p.person_country,p.person_township,p.person_village,p.person_neighbor,p.person_street,p.person_section,p.person_lane,p.person_alley,p.person_number,p.person_floor) %>
+<% end %>
+
+
+<% if @yfcase.editable_by?(current_user) && @yfcase.subsigntrueas.blank? %>
+    <div id="showitem">
+        <%= link_to '轉換成(PDF)', yfcase_path(@yfcase, format: "pdf"),class: "btn btn-success" %>
+    	<%= link_to '編輯', edit_yfcase_path(@yfcase),class: "btn btn-primary" %> |
+        <%= link_to '返回', yfcases_path,class: "btn btn-info" %>
+    </div>
+<% else %>
+    <div id="showitem">
+        <%= link_to '返回', yfcases_path,class: "btn btn-info" %>
+    </div>
+<% end %>

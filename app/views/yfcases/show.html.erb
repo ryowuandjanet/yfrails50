@@ -1,16 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-<!-- YF評量表 -->
-<% if @yfcase.personnals.present? %>
-    <%= @yfcase.personnals.first.identity_card.split(//)[2] %>
-<% else %>
-    <%= "" %>
-<% end %>
-
-<% @yfcase.personnals.each do |p| %>
-    <%= address(p.person_country,p.person_township,p.person_village,p.person_neighbor,p.person_street,p.person_section,p.person_lane,p.person_alley,p.person_number,p.person_floor) %>
-<% end %>
-
 <!-- 基本資料 -->
 <div class="basedata" style="width:1000px;">
     <h1 class="x110000" style="text-align: center;font-family: Arial,標楷體;font-weight: bold;">
@@ -535,88 +522,184 @@
         <!-- 第一行 -->
         <tr>
             <td class="xf2100 font-td">
-                <%= buttonyeson(@yfcase.occupy) %>
+                <% if @yfcase.occupy %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf2200 font-th">01.建物坐落是否無占用鄰地</th>
             <td class="xf2300 font-td">
-                <%= buttonyeson(@yfcase.vegetable_market) %>
+                <% if @yfcase.vegetable_market %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf2400 font-th">09.是否鄰近菜市場</th>
         </tr>
         <!-- 第二行 -->
         <tr>
             <td class="xf3100 font-td">
-                <%= buttonyeson(@yfcase.register) %>
+                <% if @yfcase.register %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf3200 font-th">02.建物是否無未保存登記建物</th>
             <td class="xf3300 font-td">
-                <%= buttonyeson(@yfcase.supermarket) %>
+                <% if @yfcase.supermarket %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf3400 font-th">10.是否鄰近大賣場</th>
         </tr>
         <!-- 第三行 -->
         <tr>
             <td class="xf4100 font-td">
-                <%= buttonyeson(@yfcase.parking_space) %>
+                <% if @yfcase.parking_space %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf4200 font-th">03.大樓是否有停車位(機車/汽車)</th>
             <td class="xf4300 font-td">
-                <%= buttonyeson(@yfcase.school) %>
+                <% if @yfcase.school %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf4400 font-th">11.是否鄰近學校</th>
         </tr>
         <!-- 第四行 -->
         <tr>
             <td class="xf5100 font-td">
-                <%= buttonyeson(@yfcase.management_fee) %>
+                <% if @yfcase.management_fee %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf5200 font-th">04.大樓公寓是否有無積欠管理費</th>
             <td class="xf5300 font-td">
-                <%= buttonyeson(@yfcase.park) %>
+                <% if @yfcase.park %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf5400 font-th">12.是否鄰近公園</th>
         </tr>
         <!-- 第五行 -->
         <tr>
             <td class="xf6100 font-td">
-                <%= buttonyeson(@yfcase.rent) %>
+                <% if @yfcase.rent %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf6200 font-th">05.有無出租或出借或佔用</th>
             <td class="xf6300 font-td">
-                <%= buttonyeson(@yfcase.post_office) %>
+                <% if @yfcase.post_office %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf6400 font-th">13.是否鄰近郵局或常用機關</th>
         </tr>
         <!-- 第六行 -->
         <tr>
             <td class="xf7100 font-td">
-                <%= buttonyeson(@yfcase.leak) %>
+                <% if @yfcase.leak %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf7200 font-th">06.建物是否無嚴重漏水現象</th>
             <td class="xf7300 font-td">
-                <%= buttonyeson(@yfcase.main_road) %>
+                <% if @yfcase.main_road %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf7400 font-th">14.是否鄰近幹道</th>
         </tr>
         <!-- 第七行 -->
         <tr>
             <td class="xf8100 font-td">
-                <%= buttonyeson(@yfcase.easy_parking) %>
+                <% if @yfcase.easy_parking %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf8200 font-th">07.建物前或附近是否停車方便</th>
             <td class="xf8300 font-td">
-                <%= buttonyeson(@yfcase.water_and_power_failure) %>
+                <% if @yfcase.water_and_power_failure %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf8400 font-th">15.是否斷水斷電</th>
         </tr>
         <!-- 第八行 -->
         <tr>
             <td class="xf9100 font-td">
-                <%= buttonyeson(@yfcase.railway) %>
+                <% if @yfcase.railway %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf9200 font-th">08.是否鄰近捷運站或台鐵站</th>
             <td class="xf9300 font-td">
-                <%= buttonyeson(@yfcase.good_vision) %>
+                <% if @yfcase.good_vision %>
+                  	<span style='color: Blue;'><i class='fa fa-check-circle fa-2x'></i></span>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                <% else %>
+                  	<span style='color: gray;'><i class='fa fa-circle fa-2x'></i></span>
+                  	<span style='color: Red;'><i class='fa fa-times-circle fa-2x'></i></span>
+                <% end %>
             </td>
             <th class="xf9400 font-th">16.建物採光視野是否良好</th>
         </tr>
@@ -788,7 +871,6 @@
 
 <% if @yfcase.editable_by?(current_user) && @yfcase.subsigntrueas.blank? %>
     <div id="showitem">
-        <%= link_to '轉換成(PDF)', yfcase_path(@yfcase, format: "pdf"),class: "btn btn-success" %>
     	<%= link_to '編輯', edit_yfcase_path(@yfcase),class: "btn btn-primary" %> |
         <%= link_to '返回', yfcases_path,class: "btn btn-info" %>
     </div>

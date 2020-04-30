@@ -7,7 +7,7 @@
         <tr>
             <th>操作</th>
             <th>案號</th>
-            <th colspan="4">項目</th>
+            <th>項目</th>
         </tr>
     </thead>
     <tbody>
@@ -33,17 +33,9 @@
                 <% end %>
             </td>
             <td>
-                <%= link_to 'YF評量表', yfratingscale_yfcase_path(yfcase,format: "pdf") %>
+                (修改中，暫不開放)
             </td>
-            <td>
-                <%= link_to '契稅申請書', deedtax_yfcase_path(yfcase,format: "pdf") %>
-            </td>
-            <td>
-                <%= link_to '不動產登記', realestateregistration_yfcase_path(yfcase,format: "pdf") %>
-            </td>
-            <td>
-                <%= link_to '起訴狀', complaint_yfcase_path(yfcase,format: "pdf") %>
-            </td>
+           
         </tr>
         <% end %>
     </tbody>
