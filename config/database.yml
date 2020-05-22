@@ -1,40 +1,40 @@
 
 # gem 'pg'
 
-# default: &default
-#   adapter: postgresql
-#   encoding: unicode
-#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
-# development:
-#   <<: *default
-#   database: yangfurails6_development
+development:
+  <<: *default
+  database: yangfurails6_development
 
-# test:
-#   <<: *default
-#   database: yangfurails6_test
+test:
+  <<: *default
+  database: yangfurails6_test
 
-# production:
-#   <<: *default
-#   database: <%= ENV['DATABASE_URL'] %>
+production:
+  <<: *default
+  database: <%= ENV['DATABASE_URL'] %>
 #   # username: yangfurails6
 #   # password: <%= ENV['YANGFURAILS6_DATABASE_PASSWORD'] %>
 
 
 # gem 'sqlite3'
-default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+# default: &default
+#   adapter: sqlite3
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+#   timeout: 5000
 
-development:
-  <<: *default
-  database: db/development.sqlite3
+# development:
+#   <<: *default
+#   database: db/development.sqlite3
 
-test:
-  <<: *default
-  database: db/test.sqlite3
+# test:
+#   <<: *default
+#   database: db/test.sqlite3
 
-production:
-  <<: *default
-  database: db/production.sqlite3
+# production:
+#   <<: *default
+#   database: db/production.sqlite3
