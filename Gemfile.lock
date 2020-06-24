@@ -116,6 +116,8 @@ GEM
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pdf-core (0.7.0)
+    pg (1.2.3)
+    pg (1.2.3-x64-mingw32)
     prawn (2.2.2)
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
@@ -124,7 +126,7 @@ GEM
     public_suffix (4.0.3)
     puma (4.3.3)
       nio4r (~> 2.0)
-    rack (2.2.2)
+    rack (2.2.3)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -239,6 +241,7 @@ DEPENDENCIES
   font_awesome5_rails
   jbuilder (~> 2.7)
   jquery-ui-rails
+  pg (>= 0.18, < 2.0)
   prawn
   prawn-table
   puma (~> 4.1)
